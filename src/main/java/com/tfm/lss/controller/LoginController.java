@@ -3,6 +3,8 @@ package com.tfm.lss.controller;
 import java.io.IOException;
 
 import com.tfm.lss.service.CommandProcess;
+import com.tfm.lss.service.JoinMemberFormService;
+import com.tfm.lss.service.LoginService;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -38,6 +40,14 @@ public class LoginController extends HttpServlet{
 		
 		String viewPage = null;
 		CommandProcess service = null;
+		
+		if(command.equals("/*.mvc") || command.equals("/loginForm.mvc")) {
+			service = new LoginService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/joinMemberForm.mvc")) {
+			service = new JoinMemberFormService();
+			viewPage = service.requestProcess(request, response);
+		}
 		
 		
 		if(viewPage != null) {
