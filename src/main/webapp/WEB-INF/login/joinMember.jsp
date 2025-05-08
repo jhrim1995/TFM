@@ -12,11 +12,11 @@
 		
 		<div class="row my-5 text-start">
 			<div class="col">
-					<a class="text-decoration-none fs-3" href = "login.jsp">TFM 로고</a>
+					<a class="text-decoration-none fs-3" href = "loginForm.mvc">TFM 로고</a>
 			</div>
 		</div>
 	
-		<form class="row justify-content-center my-3" name="joinMemberForm" action="#" method="post" id="joinMemberForm" >
+		<form class="row justify-content-center my-3" name="joinMemberForm" action="joinMember.mvc" method="post" id="joinMemberForm" >
 				<table class="table">
 					<tr><td>
 						<input class="form-control" type="text"  name="id" id="id" placeholder="아이디">
@@ -29,9 +29,9 @@
 						<input class="form-control" type="text"  name="birthday" id="birthday"  placeholder="생년월일(8글자)">
 					</td></tr>
 					<tr><td>
-						<input class="btn-check" type="radio"  name="gender" id="gender1" value="남성"><label class="btn" for="gender1">남자</label>
+						<input class="btn-check" type="radio"  name="gender" id="gender1" value="남성" checked><label class="btn" for="gender1">남자</label>
 						<input class="btn-check" type="radio"  name="gender" id="gender2" value="여성"><label class="btn" for="gender2">여자</label>
-						<input class="btn-check" type="radio"  name="foreign" id="foreign1" value="K"><label class="btn" for="foreign1">내국인</label>
+						<input class="btn-check" type="radio"  name="foreign" id="foreign1" value="K" checked><label class="btn" for="foreign1">내국인</label>
 						<input class="btn-check" type="radio"  name="foreign" id="foreign2" value="F"><label class="btn" for="foreign2">외국인</label>
 					</td></tr>
 					<tr><td>

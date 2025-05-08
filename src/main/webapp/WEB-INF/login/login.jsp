@@ -5,12 +5,12 @@
 	
 		<div class="row my-5 text-center">
 			<div class="col">
-					<h1>TFM 로고</h1>
+					<a href="main.mvc"><img src = "images/logo.jpg"/></a>
 			</div>
 		</div>
 		
 
-		<form class="row justify-content-center my-3" name="loginForm" action="../loginCheck.mvc">
+		<form class="row justify-content-center my-3" name="loginForm" action="lowginCheck.mvc">
 			<div class = "col">
 				<div class="row my-2">
 					<input class="form-control " type="text"  name="id" placeholder="아이디를 입력해주세요.">

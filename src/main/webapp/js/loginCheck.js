@@ -20,6 +20,11 @@ $(function(){
 					return false;
 		}
 		
+		if($("#nickname").val().length <=  0){
+							alert("닉네임을 입력해주세요.");
+							return false;
+		}
+		
 		if($("#birthday").val().length <=  0){
 					alert("생일을 입력해주세요.");
 					return false;
@@ -39,8 +44,6 @@ $(function(){
 				alert("번호를 잘못 입력 하였습니다.");
 				return false;
 		}
-		
-		alert($("#gender1").val() + " / " + $("#gender2").val());
 		
 	});
 	

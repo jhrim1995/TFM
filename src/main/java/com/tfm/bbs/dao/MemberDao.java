@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.tfm.bbs.dao.DBManager;
 import com.tfm.bbs.vo.Member;
 
 public class MemberDao {
@@ -13,6 +14,34 @@ public class MemberDao {
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
+	
+	
+	// 회원 가입할때 아이디 중복 확인
+	public boolean overlapIDCheck(String id) {
+				
+		String overlapSql = "SELECT m_id FROM members WHERE m_id = ?";
+
+		boolean result = false;
+				
+		try {
+				conn = DBManager.getConnection();
+				pstmt = conn.prepareStatement(overlapSql);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+					
+				if(rs.next()) {
+					result = true;
+				}
+				
+			} catch(Exception e) {				
+				e.printStackTrace();			
+			} finally {		
+				DBManager.close(conn, pstmt, rs);
+			}		
+			
+		return result;
+	}
+	
 	
 	// 가입 하기 (Member 테이블에 정보 넣기)
 	public void insertMember(Member member) {
