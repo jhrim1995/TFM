@@ -3,24 +3,24 @@ package com.tfm.at.vo;
 import java.sql.Timestamp;
 
 public class AtBoard {
-	//at_no, m_id, title, content, p_date, views, fv
+	
 	private int at_no;
 	private String m_id;
 	private String title;
 	private String content;
-	private Timestamp p_date;
+	private String pass;
+	private Timestamp w_date;
 	private int views;
-	private int fv;
 	
 	public AtBoard() {}
-	public AtBoard(int at_no, String m_id, String title, String content, Timestamp p_date, int views, int fv) {
+	public AtBoard(int at_no, String m_id, String title, String content, String pass, Timestamp w_date, int views) {
 		this.at_no = at_no;
 		this.m_id = m_id;
 		this.title = title;
 		this.content = content;
-		this.p_date = p_date;
+		this.pass = pass;
+		this.w_date = w_date;
 		this.views = views;
-		this.fv = fv;
 	}
 	public int getAt_no() {
 		return at_no;
@@ -46,23 +46,23 @@ public class AtBoard {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Timestamp getP_date() {
-		return p_date;
+	public String getPass() {
+		return pass;
 	}
-	public void setP_date(Timestamp p_date) {
-		this.p_date = p_date;
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+	public Timestamp getW_date() {
+		return w_date;
+	}
+	public void setW_date(Timestamp w_date) {
+		this.w_date = w_date;
 	}
 	public int getViews() {
 		return views;
 	}
 	public void setViews(int views) {
 		this.views = views;
-	}
-	public int getFv() {
-		return fv;
-	}
-	public void setFv(int fv) {
-		this.fv = fv;
 	}
 	
 }

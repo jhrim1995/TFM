@@ -14,6 +14,53 @@ public class AtBoardDao {
 	private ResultSet rs;
 	private static DataSource ds;
 	
+	public boolean isPassCheck(int at_no, String pass) {
+		boolean isPass = false;
+		String bPass = "SELECT pass FROM article WHERE at_no=?";
+		try {
+			conn=ds.getConnection();
+			pstmt = conn.prepareStatement(bPass);
+			pstmt.setInt(1, at_no);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				isPass = rs.getString(1).equals(pass);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+				
+			} catch (SQLException e) {}
+		}
+		return isPass;
+	}
+	
+	public void insertBoard(AtBoard board) {
+		String insertBoard = "INSERT INTO article (at_no, m_id, title, content, pass, w_date, views) VALUES (article_seq.NEXTVAL, ?, ?, ?, ?, SYSDATE, 0)";
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(insertBoard); 
+			pstmt.setString(1, board.getM_id());
+			pstmt.setString(2, board.getTitle());
+			pstmt.setString(3, board.getContent());
+			pstmt.setString(4, board.getPass());
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println("AtBoardDao-insertBoard():SQLException");
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (SQLException e) {}
+		}
+	} // end insertBoard(AtBoard board);
+	
 	public AtBoard atGetBoard(int at_no) {
 		
 		String atBoard = "SELECT * FROM article WHERE at_no=?";
@@ -31,9 +78,9 @@ public class AtBoardDao {
 				b.setM_id(rs.getString("m_id"));
 				b.setTitle(rs.getString("title"));
 				b.setContent(rs.getString("content"));
-				b.setP_date(rs.getTimestamp("p_date"));
+				b.setPass(rs.getString("pass"));
+				b.setW_date(rs.getTimestamp("w_date"));
 				b.setViews(rs.getInt("views"));
-				b.setFv(rs.getInt("fv"));
 			}
 		} catch (SQLException e) {
 			System.out.println("AtBoardDao - atGetBoard() - SQLException");
@@ -75,9 +122,9 @@ public class AtBoardDao {
 				b.setM_id(rs.getString("m_id"));
 				b.setTitle(rs.getString("title"));
 				b.setContent(rs.getString("content"));
-				b.setP_date(rs.getTimestamp("p_date"));
+				b.setPass(rs.getString("pass"));
+				b.setW_date(rs.getTimestamp("w_date"));
 				b.setViews(rs.getInt("views"));
-				b.setFv(rs.getInt("fv"));
 				
 				boardList.add(b);
 			}

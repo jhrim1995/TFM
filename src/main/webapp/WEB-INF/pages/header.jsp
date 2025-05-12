@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="bootstrap/bootstrap.bundle.min.js"></script>
 <div class="top-bar">
     <div class="logo">
       <a href="main.mvc"><img src ="images/logo.jpg" height="40" width="100" /></a>

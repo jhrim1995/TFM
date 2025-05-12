@@ -9,10 +9,69 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>맛집 기사 상세보기</title>
 <link href="bootstrap/bootstrap.min.css" rel="stylesheet" >
+<script src="bootstrap/bootstrap.bundle.min.js"></script>
 <script src="js/jquery-3.7.1.min.js"></script>
-<script src="js/atformcheck.js"></script>
+<script src="js/atFormCheck.js"></script>
 </head>
 <body>
-
+	<div class="container" >
+	<!-- header -->
+	<%@ include file="../pages/header.jsp" %>
+	<!-- content -->
+	<div class="row my-5" id="global-content" >
+		<div class="col">
+			<form name="checkForm" id="checkForm" >
+				<input type="hidden" name="at_no" id="at_no" value="${board.no }" />
+				<input type="hidden" name="pass" id="rPass"/>
+			</form>
+			<div class="row text-center" >
+				<div class="col">
+					<h2 class="fs-3 fw-bold" >기사 상세보기</h2>
+				</div>
+			</div>
+			<div class="row my-3" >
+				<div class="col" >
+					<table class="table table-bordered" >
+						<tbody>
+							<tr>
+								<th class="table-secondary" >제목</th>
+								<td colspan="3" >${ board.title }</td>
+							</tr>
+							<tr>
+								<th>글쓴이</th>
+								<td>${ board.m_id }</td>
+								<th>작성일</th>
+								<td><fmt:formatDate value="${ board.p_date }"
+										pattern="yyyy-MM-dd HH:mm:ss" /></td>
+							</tr>
+							<tr>
+								<th>비밀번호</th>
+								<td>
+									<div class="col-sm-8">
+										<input class="form-control" type="password" name="pass" id="pass" />
+									</div>
+								</td>
+								<th>조회수</th>
+								<td>${ board.views }</td>
+							</tr>
+							<tr>
+								<td colspan="4" >
+									<pre>${ board.content }</pre>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="row my-3" >
+			<div class="col text-center" >
+				<input class="bth btn-warning" type="button" id="detailUpdate" value="수정하기"/>&nbsp;&nbsp;
+				<input class="bth btn-danger" type="button" id="detailDelete" value="삭제하기"/>&nbsp;&nbsp;
+				<input class="bth btn-success" type="button" value="목록보기" onclick="location.href='atBoardList'" />
+			</div>
+		</div>
+	</div>
+	</div>
 </body>
 </html>

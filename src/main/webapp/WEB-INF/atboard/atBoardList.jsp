@@ -13,7 +13,7 @@
 <body>
 	<div class="container">
 	<!-- header	-->
-	
+	<%@ include file="../pages/header.jsp" %>
 		<!-- content -->
 		<div class="row my-5 text-center" >
 			<div class="col">
