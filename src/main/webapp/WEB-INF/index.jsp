@@ -9,6 +9,7 @@
 	<link href="bootstrap/bootstrap.min.css" rel="stylesheet" >
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 	<link rel="stylesheet" type="text/css" href="css/global.css" />
+<<<<<<< HEAD
 	<link rel="stylesheet" type="text/css" href="css/member.css" />		
 <<<<<<< HEAD
     <style>      	
@@ -21,43 +22,74 @@
 	<div class="container">
 	<!-- header -->
 =======
+=======
+>>>>>>> Seok
 	<script src="js/jquery-3.7.1.min.js"></script>
+	<style>
+	 body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      min-height: 100vh;
+   }
+   
+   .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: #fff;
+      border-bottom: 2px solid #ccc;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .menu-box {
+      padding: 10px 16px;
+      border: 2px solid #333;
+      border-radius: 8px;
+      background-color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      color: #000;
+      transition: all 0.2s ease;
+    }
+    
+    .menu-box:hover {
+      background-color: #333;
+      color: white;
+    }
+    
+    .auth-buttons a {
+      text-decoration: none;
+      padding: 10px 18px;
+      background-color: #333;
+      color: #fff;
+      border-radius: 5px;
+      margin-left: 10px;
+      transition: background-color 0.2s ease;
+    }
+   .container{
+   	margin-top : 150px;
+   }
+	</style>
 </head>
 <body>
+	<%@ include file="pages/header.jsp" %>
 	<div class="container">
+<<<<<<< HEAD
 		<%@ include file="pages/header.jsp" %>
 		<jsp:include page="${ param.body }" />
 >>>>>>> main
+=======
+				<jsp:include page="${ param.body }" />	
+>>>>>>> Seok
 	</div>
     <script src="bootstrap/bootstrap.bundle.min.js"></script>	
-	<!-- 로그인 모달 -->
-	<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true"
-		data-bs-backdrop="static" data-bs-keyboard="false">
-		<div class="modal-dialog">
-		    <div class="modal-content">
-		      	<div class="modal-header bg-primary bg-gradient text-white">
-			        <h1 class="modal-title fs-5 fw-bold" id="modalLabel">회원 로그인</h1>
-			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		      	</div>
-				<form action="login.mvc" method="post">
-					<div class="modal-body">	        
-						<div class="mb-3">
-		            		<label for="userId" class="col-form-label fw-bold">아이디 : </label>
-		            		<input type="text" class="form-control" id="userId" name="id">
-		          		</div>
-			          	<div class="mb-3">
-				            <label for="pass" class="col-form-label fw-bold">비밀번호 : </label>
-			            	<input type="password" class="form-control" id="pass" name="pass">
-			          	</div>	        
-		    		</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-				        <button type="submit" class="btn btn-primary">로그인</button>
-			      	</div>
-		      	</form>
-	    	</div>	    
-		</div>
-	</div>
-		
 </body>
 </html>

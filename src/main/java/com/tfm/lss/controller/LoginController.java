@@ -4,7 +4,13 @@ import java.io.IOException;
 
 import com.tfm.lss.service.CommandProcess;
 import com.tfm.lss.service.JoinMemberFormService;
+import com.tfm.lss.service.JoinMemberService;
+import com.tfm.lss.service.LoginCheckService;
 import com.tfm.lss.service.LoginService;
+import com.tfm.lss.service.LogoutService;
+import com.tfm.lss.service.MainFormService;
+import com.tfm.lss.service.MyProfileFormService;
+import com.tfm.lss.service.UpdateProfileService;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -41,11 +47,29 @@ public class LoginController extends HttpServlet{
 		String viewPage = null;
 		CommandProcess service = null;
 		
-		if(command.equals("/*.mvc") || command.equals("/loginForm.mvc")) {
+		if(command.equals("/*.mvc") || command.equals("/main.mvc")){
+			service = new MainFormService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/loginForm.mvc")) {
 			service = new LoginService();
 			viewPage = service.requestProcess(request, response);
 		}else if(command.equals("/joinMemberForm.mvc")) {
 			service = new JoinMemberFormService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/joinMember.mvc")) {
+			service = new JoinMemberService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/loginCheck.mvc")) {
+			service = new LoginCheckService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/logout.mvc")) {
+			service = new LogoutService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/myProfileForm.mvc")) {
+			service = new MyProfileFormService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/updateProfile.mvc")) {
+			service = new UpdateProfileService();
 			viewPage = service.requestProcess(request, response);
 		}
 		
@@ -53,16 +77,15 @@ public class LoginController extends HttpServlet{
 		if(viewPage != null) {
 			String view = viewPage.split(":")[0];
 			System.out.println("view = " + view);
-			
-			// 여기까지 코드가 흘러 왔따는 것은 해당 요청을 처리 한 후일 것이다...(포워드 혹은 리다이렉트)
 			if(view.equals("r") || view.equals("redirect")) {
 				response.sendRedirect(viewPage.split(":")[1]);
+			}else if(view.equals("f")){
+				RequestDispatcher rd =  request.getRequestDispatcher(viewPage.split(":")[1]);
+				rd.forward(request, response);
 			}else {
 				RequestDispatcher rd =  request.getRequestDispatcher(PREFIX + view + SUFFIX);
 				rd.forward(request, response);
 			}
 		}
 	}
-	
-	
 }
