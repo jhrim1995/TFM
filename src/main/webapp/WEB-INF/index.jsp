@@ -9,21 +9,6 @@
 	<link href="bootstrap/bootstrap.min.css" rel="stylesheet" >
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 	<link rel="stylesheet" type="text/css" href="css/global.css" />
-<<<<<<< HEAD
-	<link rel="stylesheet" type="text/css" href="css/member.css" />		
-<<<<<<< HEAD
-    <style>      	
-    </style>
-	<script src="js/jquery-3.7.1.min.js"></script>
-	<script src="js/formcheck.js"></script>
-	<script src="js/member.js"></script>
-</head>
-<body>
-	<div class="container">
-	<!-- header -->
-=======
-=======
->>>>>>> Seok
 	<script src="js/jquery-3.7.1.min.js"></script>
 	<style>
 	 body {
@@ -82,13 +67,7 @@
 <body>
 	<%@ include file="pages/header.jsp" %>
 	<div class="container">
-<<<<<<< HEAD
-		<%@ include file="pages/header.jsp" %>
-		<jsp:include page="${ param.body }" />
->>>>>>> main
-=======
-				<jsp:include page="${ param.body }" />	
->>>>>>> Seok
+				<jsp:include page="${ param.body }" />
 	</div>
     <script src="bootstrap/bootstrap.bundle.min.js"></script>	
 </body>
