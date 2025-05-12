@@ -12,15 +12,13 @@
 	<link rel="stylesheet" type="text/css" href="css/member.css" />		
     <style>      	
     </style>
-	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/jquery-3.7.1.min.js"></script>
 	<script src="js/formcheck.js"></script>
 	<script src="js/member.js"></script>
 </head>
 <body>
 	<div class="container">
-		<!-- <%@ include file="pages/header.jsp" %>
-		<jsp:include page="${ param.body }" />
-		<%@ include file="pages/footer.jsp" %> -->
+	<!-- header -->
 	</div>
     <script src="bootstrap/bootstrap.bundle.min.js"></script>	
 
