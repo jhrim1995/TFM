@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 	<link rel="stylesheet" type="text/css" href="css/global.css" />
 	<link rel="stylesheet" type="text/css" href="css/member.css" />		
+<<<<<<< HEAD
     <style>      	
     </style>
 	<script src="js/jquery-3.7.1.min.js"></script>
@@ -19,9 +20,16 @@
 <body>
 	<div class="container">
 	<!-- header -->
+=======
+	<script src="js/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<%@ include file="pages/header.jsp" %>
+		<jsp:include page="${ param.body }" />
+>>>>>>> main
 	</div>
     <script src="bootstrap/bootstrap.bundle.min.js"></script>	
-
 	<!-- 로그인 모달 -->
 	<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true"
 		data-bs-backdrop="static" data-bs-keyboard="false">
