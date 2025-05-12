@@ -21,7 +21,7 @@
 	<div class="row my-5" id="global-content" >
 		<div class="col">
 			<form name="checkForm" id="checkForm" >
-				<input type="hidden" name="at_no" id="at_no" value="${board.no }" />
+				<input type="hidden" name="at_no" id="at_no" value="${b.at_no }" />
 				<input type="hidden" name="pass" id="rPass"/>
 			</form>
 			<div class="row text-center" >
@@ -35,13 +35,13 @@
 						<tbody>
 							<tr>
 								<th class="table-secondary" >제목</th>
-								<td colspan="3" >${ board.title }</td>
+								<td colspan="3" >${ b.title }</td>
 							</tr>
 							<tr>
 								<th>글쓴이</th>
 								<td>${ board.m_id }</td>
 								<th>작성일</th>
-								<td><fmt:formatDate value="${ board.p_date }"
+								<td><fmt:formatDate value="${ b.p_date }"
 										pattern="yyyy-MM-dd HH:mm:ss" /></td>
 							</tr>
 							<tr>
@@ -52,11 +52,11 @@
 									</div>
 								</td>
 								<th>조회수</th>
-								<td>${ board.views }</td>
+								<td>${ b.views }</td>
 							</tr>
 							<tr>
 								<td colspan="4" >
-									<pre>${ board.content }</pre>
+									<pre>${ b.content }</pre>
 								</td>
 							</tr>
 						</tbody>

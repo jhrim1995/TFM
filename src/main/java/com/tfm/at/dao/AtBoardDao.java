@@ -38,16 +38,16 @@ public class AtBoardDao {
 		return isPass;
 	}
 	
-	public void insertBoard(AtBoard board) {
+	public void insertBoard(AtBoard b) {
 		String insertBoard = "INSERT INTO article (at_no, m_id, title, content, pass, w_date, views) VALUES (article_seq.NEXTVAL, ?, ?, ?, ?, SYSDATE, 0)";
 		
 		try {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(insertBoard); 
-			pstmt.setString(1, board.getM_id());
-			pstmt.setString(2, board.getTitle());
-			pstmt.setString(3, board.getContent());
-			pstmt.setString(4, board.getPass());
+			pstmt.setString(1, b.getM_id());
+			pstmt.setString(2, b.getTitle());
+			pstmt.setString(3, b.getContent());
+			pstmt.setString(4, b.getPass());
 			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {

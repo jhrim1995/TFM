@@ -21,9 +21,9 @@ public class AtBoardDetailController extends HttpServlet {
 		String at_no = req.getParameter("at_no");
 		
 		AtBoardDao dao = new AtBoardDao();
-		AtBoard board = dao.atGetBoard(Integer.valueOf(at_no));
+		AtBoard b = dao.atGetBoard(Integer.valueOf(at_no));
 		
-		req.setAttribute("board", board);
+		req.setAttribute("b", b);
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/atboard/atBoardDetail.jsp");
 		rd.forward(req, resp);
 	}
