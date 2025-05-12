@@ -36,7 +36,7 @@
 						  <option value="KTap">KT알뜰폰</option>
 						  <option value="LGap">LGU+알뜰폰</option>
 						</select>
-						<input class="form-control" type="text"  name="phone"  id="phone" placeholder="핸드폰 번호">
+						<input class="form-control" type="text"  name="phone"  id="phone" placeholder="핸드폰 번호 ( - 포함 해주세요.)">
 					</td></tr>
 				</table>
 				<input class="btn btn-lg btn-dark" type="submit" value="가입 신청" >

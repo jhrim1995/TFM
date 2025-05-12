@@ -29,10 +29,26 @@ public class UpdateProfileService implements CommandProcess{
 		String oldRealPass = dao.getPassword(id);
 		
 		if(!oldPass.equals(oldRealPass)) {
+			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = response.getWriter();
-			out.println();
+			out.println("<script>");
+			out.println(" alert('비밀번호가 일치 하지 않습니다.');");
+			out.println(" history.back();");
+			out.println("</script>");
+			
+			return null;
 		}
 		
+		Member member = new Member(id, pass, email, name, nickname, null, null, null, telecom, phone, null);
+		
+		dao.updateProfile(member);
+		
+		PrintWriter out = response.getWriter();
+		response.setContentType("text/html; charset=utf-8");
+		out.println("<script>");
+		out.println(" alert('수정이 완료되었습니다.');");
+		out.println(" location.href='main.mvc';");
+		out.println("</script>");
 		
 		return null;
 	}
