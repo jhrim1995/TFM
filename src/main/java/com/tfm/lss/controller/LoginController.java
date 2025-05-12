@@ -2,6 +2,7 @@ package com.tfm.lss.controller;
 
 import java.io.IOException;
 
+import com.tfm.lss.service.CancleMembershipService;
 import com.tfm.lss.service.CommandProcess;
 import com.tfm.lss.service.JoinMemberFormService;
 import com.tfm.lss.service.JoinMemberService;
@@ -10,6 +11,9 @@ import com.tfm.lss.service.LoginService;
 import com.tfm.lss.service.LogoutService;
 import com.tfm.lss.service.MainFormService;
 import com.tfm.lss.service.MyProfileFormService;
+import com.tfm.lss.service.SearchIdFormService;
+import com.tfm.lss.service.SearchIdPassService;
+import com.tfm.lss.service.SearchPassFormService;
 import com.tfm.lss.service.UpdateProfileService;
 
 import jakarta.servlet.RequestDispatcher;
@@ -70,6 +74,18 @@ public class LoginController extends HttpServlet{
 			viewPage = service.requestProcess(request, response);
 		}else if(command.equals("/updateProfile.mvc")) {
 			service = new UpdateProfileService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/cancleMembership.mvc")) {
+			service = new CancleMembershipService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/searchIdForm.mvc")) {
+			service = new SearchIdFormService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/searchPassForm.mvc")) {
+			service = new SearchPassFormService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/searchIdPass.mvc")) {
+			service = new SearchIdPassService();
 			viewPage = service.requestProcess(request, response);
 		}
 		
