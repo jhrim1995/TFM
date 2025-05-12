@@ -39,7 +39,7 @@
 		
 		<div class="row my-5 text-center">
 			<div class="col">
-				<a class="text-decoration-none mx-3"  href = "#">아이디찾기 </a> | <a class="text-decoration-none mx-3" href = "#">비밀번호찾기 </a> | <a class="text-decoration-none mx-3" href = "joinMemberForm.mvc"> 회원가입 </a>
+				<a class="text-decoration-none mx-3"  href = "searchIdForm.mvc">아이디찾기 </a> | <a class="text-decoration-none mx-3" href = "searchPassForm.mvc">비밀번호찾기 </a> | <a class="text-decoration-none mx-3" href = "joinMemberForm.mvc"> 회원가입 </a>
 			</div>
 		</div>
 		

@@ -8,11 +8,21 @@
 					<a class="text-decoration-none fs-3" href = "main.mvc"><img src = "images/logo.jpg" height="100" width="400"/></a>
 			</div>
 		</div>
+		
+		<div class="row text-end">
+			<div class="col">
+				<form name="cancleMembershipForm" id="cancleMembershipForm" action="cancleMembership.mvc" method="post">
+					<input type="hidden" name="cancleId" id="cancleId" value="${Member.m_id}" readonly>
+					<input type="hidden" name="canclePass" id="canclePass">
+					<input type="submit" class="btn btn-dark"  value="회원 탈퇴" >
+				</form>
+			</div>
+		</div>
 	
 		<form class="row justify-content-center my-3" name="updateProfileForm" action="updateProfile.mvc" method="post" id="updateProfileForm" >
 				<table class="table">
 					<tr><td>
-						<input class="form-control" type="text"  name="id" id="id" value="${Member.m_id}" disabled readonly>
+						<input class="form-control bg-secondary-subtle" type="text"  name="id" id="id" value="${Member.m_id}" readonly>
 						<input class="form-control" type="password" name="oldPass" id="oldPass" placeholder="이전 비밀번호">
 						<input class="form-control" type="password" name="pass" id="pass" placeholder="새로운 비밀번호 (비밀번호를 그대로 유지하면 이전과 같게 입력하세요.)">
 						<input class="form-control" type="email" name="email" id="email" placeholder="[선택] 이메일 주소 (비밀번호 찾기 등 확인용)" value = "${Member.email}">
@@ -20,11 +30,11 @@
 					<tr><td>
 						<input class="form-control" type="text"  name="name" id="name" placeholder="이름" value = "${Member.m_name}">
 						<input class="form-control" type="text"  name="nickname" id="nickname" placeholder="닉네임" value = "${Member.nickname}">
-						<input class="form-control" type="text"  name="birthday" id="birthday"  placeholder="생년월일(8글자)" value = "${Member.birthday}" disabled readonly>
+						<input class="form-control bg-secondary-subtle" type="text"  name="birthday" id="birthday"  placeholder="생년월일(8글자)" value = "${Member.birthday}" readonly>
 					</td></tr>
 					<tr><td>
-						<input class="form-control" type="text"  name="gender" id="gender" value = "${Member.gender}" disabled readonly>
-						<input class="form-control" type="text"  name="foreign" id="foreign" value = '${Member.foreignyn.equals("K") ? "내국인" : "외국인"}' disabled readonly>
+						<input class="form-control bg-secondary-subtle" type="text"  name="gender" id="gender" value = "${Member.gender}" readonly>
+						<input class="form-control bg-secondary-subtle" type="text"  name="foreign" id="foreign" value = '${Member.foreignyn.equals("K") ? "내국인" : "외국인"}' readonly>
 					</td></tr>
 					<tr><td>
 						<select class="form-select form-select mb-3" name = "telecom">
@@ -35,7 +45,7 @@
 						  <option value="KTap" ${Member.telecom.equals("KTap") ? "selected" : ""}>KT알뜰폰</option>
 						  <option value="LGap" ${Member.telecom.equals("LGap") ? "selected" : ""}>LGU+알뜰폰</option>
 						</select>
-						<input class="form-control" type="text"  name="phone"  id="phone" placeholder="핸드폰 번호" value = "${Member.phone}">
+						<input class="form-control" type="text"  name="phone"  id="phone" placeholder="핸드폰 번호 ( - 포함 해주세요.)" value = "${Member.phone}">
 					</td></tr>
 				</table>
 				<input class="btn btn-lg btn-dark" type="submit" value="수정하기" >

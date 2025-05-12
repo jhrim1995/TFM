@@ -149,7 +149,7 @@ public class MemberDao {
 		// 내 정보 수정하기
 		public void updateProfile(Member member) {
 								
-				String updateProfileSql = "update members set pass = ?, email = ?, m_name = ?, nickname = ?, telecom = ? , phone = ?   WHERE m_id = ?";
+				String updateProfileSql = "update members set pass = ?, email = ?, m_name = ?, nickname = ?, telecom = ? , phone = ?, M_date = sysdate   WHERE m_id = ?";
 						
 				try {
 							conn = DBManager.getConnection();
@@ -182,6 +182,7 @@ public class MemberDao {
 			try {
 					conn = DBManager.getConnection();
 					pstmt = conn.prepareStatement(passSql);
+					pstmt.setString(1, id);
 					rs = pstmt.executeQuery();
 									
 					if(rs.next()) {
@@ -191,11 +192,92 @@ public class MemberDao {
 				} catch(Exception e) {				
 						e.printStackTrace();			
 				} finally {		
-						DBManager.close(conn, pstmt);
+						DBManager.close(conn, pstmt, rs);
 				}	
 			
 			return pass;
 									
+		}
+		
+		// 회원 탈퇴
+		public void cancleMembership(String id) {
+												
+					String passSql = "delete from members where m_id = ?";
+										
+					try {
+							conn = DBManager.getConnection();
+							pstmt = conn.prepareStatement(passSql);
+							pstmt.setString(1, id);
+							pstmt.executeUpdate();
+											
+																	
+						} catch(Exception e) {				
+								e.printStackTrace();			
+						} finally {		
+								DBManager.close(conn, pstmt);
+						}	
+											
+		}
+		
+		
+		// 아이디 찾기
+		public ArrayList<String> searchIdList(String name, String telecom, String phone) {
+														
+			String findIdsSql = "select m_id from members where m_name = ? and telecom = ? and phone = ?";
+			ArrayList<String> idList = new ArrayList<String>();
+										
+			try {
+					conn = DBManager.getConnection();
+					pstmt = conn.prepareStatement(findIdsSql);
+					pstmt.setString(1, name);
+					pstmt.setString(2, telecom);
+					pstmt.setString(3, phone);
+					rs = pstmt.executeQuery();
+									
+					while(rs.next()) {
+						String id = "";
+						id = rs.getString("m_id");
+						
+						idList.add(id);
+					}
+																				
+				} catch(Exception e) {				
+					e.printStackTrace();			
+				} finally {		
+					DBManager.close(conn, pstmt);
+				}	
+			
+			return idList;
+													
+		}
+		
+		// 비밀번호 찾아오기
+		public String getPassword(String id, String name, String telecom, String phone) {
+												
+			String passSql = "select pass from members where m_id = ? and m_name = ? and telecom = ? and phone = ?";
+			String pass = "";
+										
+			try {
+					conn = DBManager.getConnection();
+					pstmt = conn.prepareStatement(passSql);
+					pstmt.setString(1, id);
+					pstmt.setString(2, name);
+					pstmt.setString(3, telecom);
+					pstmt.setString(4, phone);
+					rs = pstmt.executeQuery();
+											
+					if(rs.next()) {
+						pass = rs.getString("pass");
+					}
+																	
+				} catch(Exception e) {				
+					e.printStackTrace();			
+				} finally {		
+					DBManager.close(conn, pstmt, rs);
+				}	
+					
+			return pass;
+											
 		}
 		
 	

@@ -3,6 +3,57 @@
  */
 $(function(){
 	
+	// 아이디, 비밀번호 찾을 때
+		$("#searchIdPassForm").on("submit", function(){
+			
+			if($("#findThing").val() == "pass"){
+				if($("#id").val().length <= 0){
+							alert("아이디를 입력해주세요.");
+							return false;
+				}
+			}
+			
+			
+			if($("#name").val().length <= 0){
+					alert("이름을 입력해주세요.");
+					return false;
+			}
+			
+			if($("#phone").val().length <= 0){
+					alert("핸드폰 번호를 입력해주세요.");
+					return false;
+			}
+			
+			if($("#phone").val().length != 13 ){
+							alert("번호를 잘못 입력 하였습니다.");
+							return false;
+			}
+				
+		}); // 아이디, 비밀번호 찾을 때
+	
+	
+	// 회원 탈퇴 버튼을 누를 때
+	$("#cancleMembershipForm").on("submit", function(){
+			
+			if($("#oldPass").val().length <=  0){
+				
+				alert("이전 비밀번호를 입력해 주세요.");
+				
+				return false;
+			}
+			
+			let result = confirm("정말로 회원을 탈퇴 하시겠습니까?");
+			
+			if(! result){
+				
+				return false;	
+			
+			}
+			
+			$("#canclePass").val($("#oldPass").val());
+			
+	}); // 회원 탈퇴 버튼을 누를 때
+	
 	// 내 정보 수정 할 때 
 		$("#updateProfileForm").on("submit", function(){
 		
