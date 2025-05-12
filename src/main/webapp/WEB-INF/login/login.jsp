@@ -1,28 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script src="js/loginCheck.js"></script>
 <div class="container">
 	
 		<div class="row my-5 text-center">
 			<div class="col">
-					<a href="main.mvc"><img src = "images/logo.jpg"/></a>
+					<a href="main.mvc"><img src = "images/logo.jpg" height="100" width="400"/></a>
 			</div>
 		</div>
 		
 
-		<form class="row justify-content-center my-3" name="loginForm" action="lowginCheck.mvc">
-			<div class = "col">
-				<div class="row my-2">
-					<input class="form-control " type="text"  name="id" placeholder="아이디를 입력해주세요.">
-				</div>
-				<div class="row my-2">
-					<input class="form-control" type="password" name="pass" placeholder="비밀번호를 입력해주세요.">
-				</div>
-				<div class="row my-2">
-					<input class="btn btn-lg btn-dark" type="submit" value="로그인" >
-				</div>
+		
+			<div class = "row">
+					<div class="col">
+						<form class="row" name="loginForm"  id="loginForm" action="loginCheck.mvc" method="post">
+							<div class = "col">
+								<div class="row">
+									<div class="col-5 mx-auto my-2">
+										<input class="form-control" type="text"  name="id" id = "userId" placeholder="아이디를 입력해주세요.">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-5 mx-auto">
+										<input class="form-control" type="password" name="pass" id="pass" placeholder="비밀번호를 입력해주세요.">
+									</div>
+								</div>
+								<div class="row my-2">
+									<div class="d-grid col-5 mx-auto">
+										<input class="btn btn-lg btn-dark" type="submit" value="로그인" >
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
 			</div>
-		</form>
+	
 		
 		<div class="row my-5 text-center">
 			<div class="col">

@@ -70,32 +70,133 @@ public class MemberDao {
 		}
 	}
 	
-	// 로그인 시 아이디/ 비번만 가져와 비교할 때 사용
-	public Member getIdPass(String id, String pass) {
-			
-			String sqlQuery = "select m_id, pass from members where m_id = ? ";
-			Member member = new Member();
-			
-			try {
-				conn = DBManager.getConnection();
-				pstmt = conn.prepareStatement(sqlQuery);
-				pstmt.setString(1, id);
-				rs = pstmt.executeQuery();
-				
-				while(rs.next()) {
-					System.out.println(rs.getString("pass"));
-					member.setM_id(rs.getString("m_id"));
-					member.setPass(rs.getString("pass"));
-				}
-			}catch(Exception e){
-				e.printStackTrace();	
-			}finally {
-				DBManager.close(conn, pstmt);
-			}
-			
-			return member;
-		}
+	// 로그인 시
+	public int loginCheck(String id, String pass) {
+					
+			String checkIdSql = "SELECT m_id FROM members WHERE m_id = ?";
 
+			int checkNumber = -1;  // 아이디가 없을 때
+					
+			try {
+					conn = DBManager.getConnection();
+					pstmt = conn.prepareStatement(checkIdSql);
+					pstmt.setString(1, id);
+					rs = pstmt.executeQuery();
+						
+					if(rs.next()) {
+						checkNumber = 0;  // 아이디는 존재 하고 비밀번호가 틀릴 때
+					}
+					
+					String checkpassSql = "SELECT m_id FROM members WHERE m_id = ? and pass = ?";
+					
+					conn = DBManager.getConnection();
+					pstmt = conn.prepareStatement(checkpassSql);
+					pstmt.setString(1, id);
+					pstmt.setString(2, pass);
+					rs = pstmt.executeQuery();
+						
+					if(rs.next()) {
+						checkNumber = 1; // 비밀번호까지 맞을 때
+					}
+					
+					
+				} catch(Exception e) {				
+					e.printStackTrace();			
+				} finally {		
+					DBManager.close(conn, pstmt, rs);
+				}		
+				
+			return checkNumber;
+		}
 	
+	
+		// 내 정보보기에서 내 정보 가져오기
+		public Member myProfileAll(String id) {
+			
+				Member m = new Member();
+						
+				String myProfileSql = "SELECT m_id, pass, email, m_name, nickname, birthday, gender, foreignyn, telecom, phone FROM members WHERE m_id = ?";
+				
+				try {
+						conn = DBManager.getConnection();
+						pstmt = conn.prepareStatement(myProfileSql);
+						pstmt.setString(1, id);
+						rs = pstmt.executeQuery();
+							
+						if(rs.next()) {
+							m.setM_id(rs.getString("m_id"));
+							m.setPass(rs.getString("pass"));
+							m.setEmail(rs.getString("email"));
+							m.setM_name(rs.getString("m_name"));
+							m.setNickname(rs.getString("nickname"));
+							m.setBirthday(rs.getString("birthday"));
+							m.setGender(rs.getString("gender"));
+							m.setForeignyn(rs.getString("foreignyn"));
+							m.setTelecom(rs.getString("telecom"));
+							m.setPhone(rs.getString("phone"));
+						}
+						
+					} catch(Exception e) {				
+						e.printStackTrace();			
+					} finally {		
+						DBManager.close(conn, pstmt, rs);
+					}		
+					
+				return m;
+			}
+	
+		
+		// 내 정보 수정하기
+		public void updateProfile(Member member) {
+								
+				String updateProfileSql = "update members set pass = ?, email = ?, m_name = ?, nickname = ?, telecom = ? , phone = ?   WHERE m_id = ?";
+						
+				try {
+							conn = DBManager.getConnection();
+							pstmt = conn.prepareStatement(updateProfileSql);
+							pstmt.setString(1, member.getPass());
+							pstmt.setString(2, member.getEmail());
+							pstmt.setString(3, member.getM_name());
+							pstmt.setString(4, member.getNickname());
+							pstmt.setString(5, member.getTelecom());								
+							pstmt.setString(6, member.getPhone());								
+							pstmt.setString(7, member.getM_id());	
+							
+							pstmt.executeUpdate();
+							
+								
+				} catch(Exception e) {				
+						e.printStackTrace();			
+				} finally {		
+						DBManager.close(conn, pstmt);
+				}		
+							
+		}
+		
+		// 비밀번호 찾아오기
+		public String getPassword(String id) {
+										
+			String passSql = "select pass from members where m_id = ?";
+			String pass = "";
+								
+			try {
+					conn = DBManager.getConnection();
+					pstmt = conn.prepareStatement(passSql);
+					rs = pstmt.executeQuery();
+									
+					if(rs.next()) {
+						pass = rs.getString("pass");
+					}
+															
+				} catch(Exception e) {				
+						e.printStackTrace();			
+				} finally {		
+						DBManager.close(conn, pstmt);
+				}	
+			
+			return pass;
+									
+		}
+		
 	
 }

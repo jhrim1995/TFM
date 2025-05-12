@@ -1,18 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>회원가입</title>
 <script src="js/loginCheck.js"></script>
-</head>
-<body>
 	<div class="container">
 		
 		<div class="row my-5 text-start">
 			<div class="col">
-					<a class="text-decoration-none fs-3" href = "loginForm.mvc">TFM 로고</a>
+					<a class="text-decoration-none fs-3" href = "loginForm.mvc"><img src = "images/logo.jpg" height="100" width="400"/></a>
 			</div>
 		</div>
 	
@@ -51,6 +44,3 @@
 	
 	
 	</div>
-<script src="../bootstrap/bootstrap.bundle.min.js"></script>
-</body>
-</html>

@@ -7,7 +7,10 @@ import com.tfm.lss.service.JoinMemberFormService;
 import com.tfm.lss.service.JoinMemberService;
 import com.tfm.lss.service.LoginCheckService;
 import com.tfm.lss.service.LoginService;
+import com.tfm.lss.service.LogoutService;
 import com.tfm.lss.service.MainFormService;
+import com.tfm.lss.service.MyProfileFormService;
+import com.tfm.lss.service.UpdateProfileService;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -59,6 +62,15 @@ public class LoginController extends HttpServlet{
 		}else if(command.equals("/loginCheck.mvc")) {
 			service = new LoginCheckService();
 			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/logout.mvc")) {
+			service = new LogoutService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/myProfileForm.mvc")) {
+			service = new MyProfileFormService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/updateProfile.mvc")) {
+			service = new UpdateProfileService();
+			viewPage = service.requestProcess(request, response);
 		}
 		
 		
@@ -67,6 +79,9 @@ public class LoginController extends HttpServlet{
 			System.out.println("view = " + view);
 			if(view.equals("r") || view.equals("redirect")) {
 				response.sendRedirect(viewPage.split(":")[1]);
+			}else if(view.equals("f")){
+				RequestDispatcher rd =  request.getRequestDispatcher(viewPage.split(":")[1]);
+				rd.forward(request, response);
 			}else {
 				RequestDispatcher rd =  request.getRequestDispatcher(PREFIX + view + SUFFIX);
 				rd.forward(request, response);
