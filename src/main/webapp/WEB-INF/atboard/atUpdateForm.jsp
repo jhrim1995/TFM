@@ -6,6 +6,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>기사 수정하기</title>
+<link href="bootstrap/bootstrap.min.css" rel="stylesheet" >
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.12.1/font/bootstrap-icons.min.css">	
+<link rel="stylesheet" type="text/css" href="css/global.css" />
+<link rel="stylesheet" type="text/css" href="css/member.css" />
 <script src="bootstrap/bootstrap.bundle.min.js"></script>
 <script src="js/jquery-3.7.1.min.js"></script>
 <script src="js/atFormCheck.js"></script>
@@ -24,6 +28,11 @@
 			</div>
 			<form name="atUpdateForm" action="atUpdateProcess" id="atUpdateForm" class="row g-3 border-success" method="post" >
 				<input type="hidden" name="at_no" value="${ b.at_no }" />
+				<input type="hidden" name="pageNum" value="${pageNum}" />
+				<c:if test="${ searchOption }">
+				<input type="hidden" name="type" value="${ type }" />
+				<input type="hidden" name="keyword" value="${ keyword }" />
+				</c:if>
 				<div class="col-4 offset-md-2" >
 					<label for="m_id" class="form-label" >글쓴이</label>
 					<input type="text" class="form-control" name="m_id" id="m_id"  placeholder="작성자를 입력해주세요" value="${ b.m_id }">
@@ -42,7 +51,14 @@
 				</div>
 				<div class="col-8 offset-md-2 text-center mt-5" >
 					<input type="submit" value="수정하기" class="btn btn-success" />&nbsp;&nbsp;
-					<input type="button" value="목록보기" onclick="location.href='atBoardList'" class="btn btn-success" />
+					<!-- 검색 X -->
+					<c:if test="${not searchOption}">
+					<input class="bth btn-success" type="button" value="목록보기" onclick="location.href='atBoardList?pageNum=${ pageNum }'" />
+					</c:if>
+					<!-- 검색 O -->
+					<c:if test="${searchOption}">
+					<input class="bth btn-success" type="button" value="목록보기" onclick="location.href='atBoardList?pageNum=${ pageNum }&type=${type}&keyword=${keyword}" />
+					</c:if>
 				</div>
 			</form>
 		</div>

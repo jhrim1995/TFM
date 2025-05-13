@@ -36,26 +36,19 @@ INSERT INTO article (at_no, m_id, title, content, pass, w_date, views) VALUES (a
 INSERT INTO article (at_no, m_id, title, content, pass, w_date, views) VALUES (article_seq.NEXTVAL,'글쓴이09','맛집기사 제목09','@@@@@@@@@@@기사본문@9@@@@@@@@@@@@', 1234, '2025-05-28 10:00:00',10);
 INSERT INTO article (at_no, m_id, title, content, pass, w_date, views) VALUES (article_seq.NEXTVAL,'글쓴이10','맛집기사 제목10','@@@@@@@@@@@기사본문@10@@@@@@@@@@@@', 1234, '2025-05-29 10:00:00',10);
 
-
 commit;
+
+select * from article ORDER BY at_no DESC;;
 
 -- 기본 페이지 게시 글 수
 SELECT COUNT(*) FROM article;
 
 -- 기본 페이징
-SELECT * FROM 
-    (SELECT ROWNUM num, sj.* FROM 
-        (SELECT * FROM article ORDER BY no DESC)sj)
-WHERE num >= 1 AND num <= 10;
+SELECT * FROM (SELECT ROWNUM num, sa.* FROM (SELECT * FROM article ORDER BY at_no DESC)sa) WHERE num >= 1 AND num <= 10;
 
 -- 검색 페이징(type = title, writer, content),  검색어
 SELECT * FROM 
-    (SELECT ROWNUM num, sj.* FROM 
-        (SELECT * FROM article WHERE title LIKE '%@@%' ORDER BY no DESC)sj)
+    (SELECT ROWNUM num, sa.* FROM 
+        (SELECT * FROM article WHERE title LIKE '%@@%' ORDER BY at_no DESC)sa)
 WHERE num >= 1 AND num <= 10;
   
-
-select * from 
-    (select rownum num, sub.* from
-        (select * from jspbbs order by no desc) sub)
-where num >= 41 and num <= 50;

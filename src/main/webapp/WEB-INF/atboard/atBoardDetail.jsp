@@ -9,6 +9,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>맛집 기사 상세보기</title>
 <link href="bootstrap/bootstrap.min.css" rel="stylesheet" >
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.12.1/font/bootstrap-icons.min.css">	
+<link rel="stylesheet" type="text/css" href="css/global.css" />
+<link rel="stylesheet" type="text/css" href="css/member.css" />
 <script src="bootstrap/bootstrap.bundle.min.js"></script>
 <script src="js/jquery-3.7.1.min.js"></script>
 <script src="js/atFormCheck.js"></script>
@@ -23,6 +26,11 @@
 			<form name="checkForm" id="checkForm" >
 				<input type="hidden" name="at_no" id="at_no" value="${b.at_no }" />
 				<input type="hidden" name="pass" id="rPass"/>
+				<input type="hidden" name="pageNum" value="${ pageNum }" />
+				<c:if test="${ searchOption }">
+				<input type="hidden" name="type" value="${ type }" />
+				<input type="hidden" name="keyword" value="${ keyword }" />
+				</c:if>
 			</form>
 			<div class="row text-center" >
 				<div class="col">
@@ -68,7 +76,14 @@
 			<div class="col text-center" >
 				<input class="bth btn-warning" type="button" id="atDetailUpdate" value="수정하기"/>&nbsp;&nbsp;
 				<input class="bth btn-danger" type="button" id="atDetailDelete" value="삭제하기"/>&nbsp;&nbsp;
-				<input class="bth btn-success" type="button" value="목록보기" onclick="location.href='atBoardList'" />
+				<!-- 검색 X -->
+				<c:if test="${not searchOption}">
+				<input class="bth btn-success" type="button" value="목록보기" onclick="location.href='atBoardList?pageNum=${ pageNum }'" />
+				</c:if>
+				<!-- 검색 O -->
+				<c:if test="${searchOption}">
+				<input class="bth btn-success" type="button" value="목록보기" onclick="location.href='atBoardList?pageNum=${ pageNum }&type=${type}&keyword=${keyword}" />
+				</c:if>
 			</div>
 		</div>
 	</div>

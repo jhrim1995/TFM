@@ -9,6 +9,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>맛집 기사 게시판</title>
 <link href="bootstrap/bootstrap.min.css" rel="stylesheet" >
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.12.1/font/bootstrap-icons.min.css">	
+<link rel="stylesheet" type="text/css" href="css/global.css" />
+<link rel="stylesheet" type="text/css" href="css/member.css" />
+<script src="js/jquery-3.7.1.min.js"></script>
+<script src="js/formCheck.js"></script>
+<script src="js/member.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -29,17 +35,34 @@
 				</select>
 			</div>
 			<div class="col-4" >
-				<input type="text" name="keyword" class="form-control" id="keyworn" />
+				<input type="text" name="keyword" class="form-control" id="keyword" />
 			</div>
 			<div class="col-auto" >
-				<input type="submit" value="검 색" class = "btn btn-light" >
+				<input type="submit" value="검 색" class = "btn btn-light" />
 			</div>
 		</form>
-			<div class="row" >
-				<div class="col text-end" >
-					<a href="atWriteForm" class="btn btn-ourline-primary" >글쓰기</a>
+			<c:if test="${ searchOption }">
+				<div class="row my-3">
+					<div class="col text-center">
+						"${ keyword }" 검색 결과
+					</div>
 				</div>
-			</div>
+				<div class="row my-3">
+					<div class="col-6">
+						<a href="atBoardList" class="btn btn-outline-info">리스트</a>
+					</div>
+					<div class="col-6 text-end">
+						<a href="atWriteForm" class="btn btn-outline-info">글쓰기</a>
+					</div>
+				</div>
+			</c:if>
+			<c:if test="${ not searchOption }">
+				<div class="row my-3">
+					<div class="col text-end">
+						<a href="atWriteForm" class="btn btn-outline-info">글쓰기</a>
+					</div>
+				</div>
+			</c:if>
 			<div class="row my-3" >
 				<div class="col" >
 					<table class="table table-hover" >
@@ -53,17 +76,40 @@
 						</tr>
 						</thead>
 						<tbody class="text-light" >
-						<c:if test="${ not empty bList }">
-							<c:forEach var="b" items="${ bList }" >
+						<!-- 검색 O, 검색리스트 O -->
+						<c:if test="${ searchOption and not empty bList }">
+							<c:forEach var="b" items="${ bList }" varStatus="status" >
 							<tr>
 								<td>${ b.at_no }</td>
 								<td>${ b.m_id }</td>
-								<td><a href="atBoardDatail?no=${b.at_no}" class="text-decoration-nonelink-light" >${b.title}</a></td>
+								<td><a href="atBoardDatail?no=${b.at_no}&pageNum=${currentPage}&type=${type}&keword=${ketword}" 
+								class="text-decoration-none " >${b.title}</a></td>
+								<td>${ b.w_date}</td>
 								<td>${ b.views }</td>
 							</tr>
 							</c:forEach>
 						</c:if>
-						<c:if test="${ empty bList }">
+						<!-- 검색 X, 검색리스트 O -->
+						<c:if test="${ not searchOption and not empty bList }">
+							<c:forEach var="b" items="${ bList }" varStatus="status" >
+							<tr>
+								<td>${ b.at_no }</td>
+								<td>${ b.m_id }</td>
+								<td><a href="atBoardDatail?no=${b.at_no}&pageNum=${currentPage}" 
+								class="text-decoration-none " >${b.title}</a></td>
+								<td>${ b.w_date}</td>
+								<td>${ b.views }</td>
+							</tr>
+							</c:forEach>
+						</c:if>
+						<!-- 검색 O, 리스트 X -->
+						<c:if test="${ searchOption and empty bList }">
+							<tr>
+								<td colspan="5" class="text-center" >"${ keyword }"가 포함된 게시글이 없습니다.</td>
+							</tr>
+						</c:if>
+						<!-- 검색 X, 리스트 X -->
+						<c:if test="${ not searchOption and empty bList }">
 							<tr>
 								<td colspan="5" class="text-center" >게시글이 없습니다.</td>
 							</tr>
@@ -72,10 +118,71 @@
 					</table>
 				</div>
 			</div>
-			<!-- footer
-			<%@ include file="../pages/footer.jsp" %> -->
+		<!-- 검색 O, 리스트O -->
+		<c:if test="${ searchOption and not empty bList }">
+			<div class="row" >
+				<div class="col" >
+					<nav aria-label="PAGE navigation" >
+						<ul class="pagination justify-content-center" >
+							<c:if test="${ startPage > pageGroup }" >
+								<li class="page-item" >
+									<a class="page-link" href="atBoardList?pageNum=${ startPage - pageGroup }&type=${ type }&keyword=${ keyword }" >이전</a>
+								</li>
+							</c:if>
+							<c:forEach var="i" begin="${ startPage }" end="${ endPage }" >
+								<c:if test="${ i == currentPage }">
+									<li class="page-item active" aria-current="page" >
+										<span class="page-link" ></span>
+									</li>
+								</c:if>
+								<c:if test="${ i != currentPage }">
+									<li class="page-item" ><a class="page-link" href="atBoardList?pageNum=${i}&type=${ type }&keyword=${ keyword }" >${i}</a>
+									</li>
+								</c:if>
+							</c:forEach>
+							<c:if test="${ endPage < pageCount }">
+								<li class="page-item" >
+									<a class="page-link" href="atBoardList?pageNum=${ startPage + pageGroup }&type=${ type }&keyword=${ keyword }" >다음</a>
+								</li>
+							</c:if>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</c:if>
+		<!-- 검색 X, 리스트O -->
+		<c:if test="${ not searchOption and not empty bList }">
+			<div class="row" >
+				<div class="col" >
+					<nav aria-label="PAGE navigation" >
+						<ul class="pagination justify-content-center" >
+							<c:if test="${ startPage > pageGroup }" >
+								<li class="page-item" >
+									<a class="page-link" href="atBoardList?pageNum=${ startPage - pageGroup }" >이전</a>
+								</li>
+							</c:if>
+							<c:forEach var="i" begin="${ startPage }" end="${ endPage }" >
+								<c:if test="${ i == currentPage }">
+									<li class="page-item active" aria-current="page" >
+										<span class="page-link" ></span>
+									</li>
+								</c:if>
+								<c:if test="${ i != currentPage }">
+									<li class="page-item" ><a class="page-link" href="atBoardList?pageNum=${i}" >${i}</a>
+									</li>
+								</c:if>
+							</c:forEach>
+							<c:if test="${ endPage < pageCount }">
+								<li class="page-item" >
+									<a class="page-link" href="atBoardList?pageNum=${ startPage + pageGroup }" >다음</a>
+								</li>
+							</c:if>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</c:if>
 	</div>
 	<script src="bootstrap/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-

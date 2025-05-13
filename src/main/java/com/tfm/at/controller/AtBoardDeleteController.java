@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 import java.net.URLEncoder;
 
 import com.tfm.at.dao.AtBoardDao;
-import com.tfm.at.vo.AtBoard;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,8 +12,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/atUpdateProcess")
-public class AtBoardUpdateController extends HttpServlet {
+@WebServlet("/atDeleteProcess")
+public class AtBoardDeleteController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
@@ -24,8 +23,11 @@ public class AtBoardUpdateController extends HttpServlet {
 		String sNo = req.getParameter("at_no");
 		String pass = req.getParameter("pass");
 		String pageNum = req.getParameter("pageNum");
+		String type = req.getParameter("type");
+		String keyword = req.getParameter("keyword");
 		
-		if(sNo == null || sNo.equals("") || pageNum == null || pageNum.equals("")) {
+		
+		if(sNo == null || sNo.equals("") || pass == null || pass.equals("")|| pageNum == null || pageNum.equals("")) {
 			resp.setContentType("text/html; charset=utf-8");
 			PrintWriter out = resp.getWriter();
 			out.println("<script>");
@@ -33,10 +35,12 @@ public class AtBoardUpdateController extends HttpServlet {
 			out.println(" history.back();");
 			out.println("</script>");
 			return;
-		}
+			}
+		
+		int no = Integer.parseInt(sNo);
 		
 		AtBoardDao dao = new AtBoardDao();
-		boolean isPassCheck = dao.isPassCheck(Integer.parseInt(sNo), pass);
+		boolean isPassCheck = dao.isPassCheck(no, pass);
 		if(! isPassCheck) {
 			StringBuilder sb = new StringBuilder();
 			sb.append("<script>");
@@ -48,22 +52,7 @@ public class AtBoardUpdateController extends HttpServlet {
 			out.println("비밀번호가 틀립니다.");
 			return;
 		}
-		AtBoard b = new AtBoard();
-		
-		String m_id = req.getParameter("m_id");
-		String title = req.getParameter("title");
-		String content = req.getParameter("content");
-		
-		b.setAt_no(Integer.parseInt(sNo));
-		b.setM_id(m_id);
-		b.setTitle(title);
-		b.setContent(content);
-		b.setPass(pass);
-		
-		dao.updateBoard(b);
-		
-		String type = req.getParameter("type");
-		String keyword = req.getParameter("keyword");
+		dao.deleteBoard(no);
 		
 		boolean searchOption = (type == null || type.equals("") || keyword == null || keyword.equals("")) ? false : true;
 		String url = "atBoardList?pageNum="+pageNum;
@@ -73,5 +62,7 @@ public class AtBoardUpdateController extends HttpServlet {
 		}
 		
 		resp.sendRedirect(url);
+		
 	}
+	
 }

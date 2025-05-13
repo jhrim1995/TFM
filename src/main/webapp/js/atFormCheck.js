@@ -1,5 +1,15 @@
 $(function() {
 	
+	$("#searchForm").on("submit", function() {
+		var keyword = $("#keyword").val();
+		if(keyword.length <= 0) {
+			alert("검색어를 입력해 주세요.")
+			return false;
+		}
+		$(this).attr("method", "post")
+		$(this).attr("action", "atBoardList")
+	});
+	
 	$("#atDetailDelete").on("click", function() {
 		var pass = $("#pass").val();
 		if(pass.length <4){

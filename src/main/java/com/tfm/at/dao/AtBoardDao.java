@@ -14,6 +14,93 @@ public class AtBoardDao {
 	private ResultSet rs;
 	private static DataSource ds;
 	
+	public ArrayList<AtBoard> searchList(String type, String keyword, int startRow, int endRow) {
+		String searchList = "SELECT * FROM (SELECT ROWNUM num, sa.* FROM (SELECT * FROM article WHERE " + type + " LIKE ? ORDER BY at_no DESC ) sa ) WHERE num >= ? AND num <= ?";
+		
+		ArrayList<AtBoard> boardList = null;
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(searchList);
+			pstmt.setString(1, "%" + keyword + "%");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				boardList = new ArrayList<AtBoard>();
+				do {
+				AtBoard b = new AtBoard();
+				b.setAt_no(rs.getInt("at_no"));
+				b.setM_id(rs.getString("m_id"));
+				b.setTitle(rs.getString("title"));
+				b.setContent(rs.getString("content"));
+				b.setPass(rs.getString("pass"));
+				b.setW_date(rs.getTimestamp("w_date"));
+				b.setViews(rs.getInt("views"));
+				
+				boardList.add(b);
+			} while(rs.next()); }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (SQLException se) {}
+		}
+		return boardList;
+	} // end searchList();
+	
+	public int getBoardCount(String type, String keyword) {
+		String boardCount = "SELECT COUNT(*) FROM article WHERE "
+				+ type + " LIKE '%' || ? || '%'";
+		int count = 0;
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(boardCount);
+			pstmt.setString(1, keyword);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (SQLException e) {}
+		}
+		return count;
+	} // end getBoardCount(String type, String keyword);
+	
+	public int getBoardCount() {
+		String boardCount = "SELECT COUNT(*) FROM article";
+		int count = 0;
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(boardCount);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (SQLException e) {}
+		}
+		return count;
+	} // end getBoardCount();
+	
 	public void deleteBoard(int at_no) {
 		String deleteBoard = "DELETE FROM article WHERE at_no=?";
 		
@@ -147,17 +234,21 @@ public class AtBoardDao {
 		}
 	}
 	
-	public ArrayList<AtBoard> boardList() {
-		String atBoardList = "SELECT * FROM article ORDER BY at_no DESC";
+	public ArrayList<AtBoard> boardList(int startRow, int endRow) {
+		String atBoardList = "SELECT * FROM (SELECT ROWNUM num, sa.* FROM (SELECT * FROM article ORDER BY at_no DESC)sa) WHERE num >= ? AND num <= ?";
+		
 		ArrayList<AtBoard> boardList = null;
 		
 		try {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(atBoardList);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
 			rs = pstmt.executeQuery();
 			
-			boardList = new ArrayList<AtBoard>();
-			while(rs.next()) {
+			if(rs.next()) {
+				boardList = new ArrayList<AtBoard>();
+				do {
 				AtBoard b = new AtBoard();
 				b.setAt_no(rs.getInt("at_no"));
 				b.setM_id(rs.getString("m_id"));
@@ -168,20 +259,17 @@ public class AtBoardDao {
 				b.setViews(rs.getInt("views"));
 				
 				boardList.add(b);
-			}
+			} while(rs.next()); }
 		} catch (SQLException e) {
-			System.out.println("AtBoardDao - boardList() - SQLException");
 			e.printStackTrace();
 		} finally {
 			try {
 				if(rs != null) rs.close();
 				if(pstmt != null) pstmt.close();
 				if(conn != null) conn.close();
-			} catch (SQLException e) {}
+			} catch (SQLException se) {}
 		}
-		
 		return boardList;
 	} // end boardList();
-	
 	
 }
