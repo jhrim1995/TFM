@@ -14,6 +14,47 @@ public class AtBoardDao {
 	private ResultSet rs;
 	private static DataSource ds;
 	
+	public void deleteBoard(int at_no) {
+		String deleteBoard = "DELETE FROM article WHERE at_no=?";
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(deleteBoard); 
+			pstmt.setInt(1, at_no);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (SQLException e) {}
+		}
+	} // end deleteBoard(int at_no);
+	
+	public void updateBoard(AtBoard b) {
+		String updateBoard = "UPDATE article set m_id=?, title=?, content=?, w_date=SYSDATE, WHERE at_no=?";
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(updateBoard); 
+			pstmt.setString(1, b.getM_id());
+			pstmt.setString(2, b.getTitle());
+			pstmt.setString(3, b.getContent());
+			pstmt.setInt(4, b.getAt_no());
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println("AtBoardDao-updateBoard():SQLException");
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (SQLException e) {}
+		}
+	} // updateBoard(AtBoard b);
+	
 	public boolean isPassCheck(int at_no, String pass) {
 		boolean isPass = false;
 		String bPass = "SELECT pass FROM article WHERE at_no=?";

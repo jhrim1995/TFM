@@ -66,8 +66,8 @@
 		</div>
 		<div class="row my-3" >
 			<div class="col text-center" >
-				<input class="bth btn-warning" type="button" id="detailUpdate" value="수정하기"/>&nbsp;&nbsp;
-				<input class="bth btn-danger" type="button" id="detailDelete" value="삭제하기"/>&nbsp;&nbsp;
+				<input class="bth btn-warning" type="button" id="atDetailUpdate" value="수정하기"/>&nbsp;&nbsp;
+				<input class="bth btn-danger" type="button" id="atDetailDelete" value="삭제하기"/>&nbsp;&nbsp;
 				<input class="bth btn-success" type="button" value="목록보기" onclick="location.href='atBoardList'" />
 			</div>
 		</div>

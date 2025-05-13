@@ -8,7 +8,7 @@
 <title>기사 수정하기</title>
 <script src="bootstrap/bootstrap.bundle.min.js"></script>
 <script src="js/jquery-3.7.1.min.js"></script>
-<script src="js/atformcheck.js"></script>
+<script src="js/atFormCheck.js"></script>
 </head>
 <body>
 	<div class="container" >
@@ -26,7 +26,7 @@
 				<input type="hidden" name="at_no" value="${ b.at_no }" />
 				<div class="col-4 offset-md-2" >
 					<label for="m_id" class="form-label" >글쓴이</label>
-					<input type="text" class="form-control" name="m_id" id="m_id"  placeholder="작성자를 입력해주세요" >
+					<input type="text" class="form-control" name="m_id" id="m_id"  placeholder="작성자를 입력해주세요" value="${ b.m_id }">
 				</div>
 				<div class="col-4" >
 					<label for="pass" class="form-label" >비밀번호</label>
@@ -34,14 +34,14 @@
 				</div>
 				<div class="col-8 offset-md-2" >
 					<label for="title" class="form-label">제 목</label>
-					<input type="text" class="form-control" name="title" id="title" >
+					<input type="text" class="form-control" name="title" id="title" value="${ b.title }" >
 				</div>
 				<div class="col-8 offset-md-2" >
 					<label for="content" class="form-label" >내 용</label>
-						<textarea class="form-control" name="content" id="content" rows="10" ></textarea>
+						<textarea class="form-control" name="content" id="content" rows="10" >${ b.content }</textarea>
 				</div>
 				<div class="col-8 offset-md-2 text-center mt-5" >
-					<input type="submit" value="등록하기" class="btn btn-success" />&nbsp;&nbsp;
+					<input type="submit" value="수정하기" class="btn btn-success" />&nbsp;&nbsp;
 					<input type="button" value="목록보기" onclick="location.href='atBoardList'" class="btn btn-success" />
 				</div>
 			</form>

@@ -8,7 +8,7 @@
 <title>기사 쓰기</title>
 <script src="bootstrap/bootstrap.bundle.min.js"></script>
 <script src="js/jquery-3.7.1.min.js"></script>
-<script src="js/atformcheck.js"></script>
+<script src="js/atFormCheck.js"></script>
 </head>
 <body>
 	<div class="container" >
