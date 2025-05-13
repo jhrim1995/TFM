@@ -15,11 +15,13 @@
 						<input class="form-control" type="text"  name="id" id="id" placeholder="아이디">
 						<input class="form-control" type="password" name="pass" id="pass" placeholder="비밀번호">
 						<input class="form-control" type="email" name="email" id="email" placeholder="[선택] 이메일 주소 (비밀번호 찾기 등 확인용)">
+						<div class="text-danger text-center" id="info1"></div>
 					</td></tr>
 					<tr><td>
 						<input class="form-control" type="text"  name="name" id="name" placeholder="이름">
 						<input class="form-control" type="text"  name="nickname" id="nickname" placeholder="닉네임">
 						<input class="form-control" type="text"  name="birthday" id="birthday"  placeholder="생년월일(8글자)">
+						<div class="text-danger text-center" id="info2"></div>
 					</td></tr>
 					<tr><td>
 						<input class="btn-check" type="radio"  name="gender" id="gender1" value="남성" checked><label class="btn" for="gender1">남자</label>
@@ -37,6 +39,7 @@
 						  <option value="LGap">LGU+알뜰폰</option>
 						</select>
 						<input class="form-control" type="text"  name="phone"  id="phone" placeholder="핸드폰 번호 ( - 포함 해주세요.)">
+						<div class="text-danger text-center" id="info3"></div>
 					</td></tr>
 				</table>
 				<input class="btn btn-lg btn-dark" type="submit" value="가입 신청" >
