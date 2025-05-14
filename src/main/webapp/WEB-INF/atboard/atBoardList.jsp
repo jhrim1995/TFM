@@ -49,17 +49,17 @@
 				</div>
 				<div class="row my-3">
 					<div class="col-6">
-						<a href="atBoardList" class="btn btn-outline-info">리스트</a>
+						<a href="atBoardList.mvc" class="btn btn-outline-info">리스트</a>
 					</div>
 					<div class="col-6 text-end">
-						<a href="atWriteForm" class="btn btn-outline-info">글쓰기</a>
+						<a href="atWriteForm.mvc" class="btn btn-outline-info">글쓰기</a>
 					</div>
 				</div>
 			</c:if>
 			<c:if test="${ not searchOption }">
 				<div class="row my-3">
 					<div class="col text-end">
-						<a href="atWriteForm" class="btn btn-outline-info">글쓰기</a>
+						<a href="atWriteForm.mvc" class="btn btn-outline-info">글쓰기</a>
 					</div>
 				</div>
 			</c:if>
@@ -82,7 +82,7 @@
 							<tr>
 								<td>${ b.at_no }</td>
 								<td>${ b.m_id }</td>
-								<td><a href="atBoardDatail?no=${b.at_no}&pageNum=${currentPage}&type=${type}&keword=${ketword}" 
+								<td><a href="atBoardDatail.mvc?no=${b.at_no}&pageNum=${currentPage}&type=${type}&keword=${ketword}" 
 								class="text-decoration-none " >${b.title}</a></td>
 								<td>${ b.w_date}</td>
 								<td>${ b.views }</td>
@@ -95,7 +95,7 @@
 							<tr>
 								<td>${ b.at_no }</td>
 								<td>${ b.m_id }</td>
-								<td><a href="atBoardDatail?no=${b.at_no}&pageNum=${currentPage}" 
+								<td><a href="atBoardDatail.mvc?no=${b.at_no}&pageNum=${currentPage}" 
 								class="text-decoration-none " >${b.title}</a></td>
 								<td>${ b.w_date}</td>
 								<td>${ b.views }</td>
@@ -126,7 +126,7 @@
 						<ul class="pagination justify-content-center" >
 							<c:if test="${ startPage > pageGroup }" >
 								<li class="page-item" >
-									<a class="page-link" href="atBoardList?pageNum=${ startPage - pageGroup }&type=${ type }&keyword=${ keyword }" >이전</a>
+									<a class="page-link" href="atBoardList.mvc?pageNum=${ startPage - pageGroup }&type=${ type }&keyword=${ keyword }" >이전</a>
 								</li>
 							</c:if>
 							<c:forEach var="i" begin="${ startPage }" end="${ endPage }" >
@@ -136,13 +136,13 @@
 									</li>
 								</c:if>
 								<c:if test="${ i != currentPage }">
-									<li class="page-item" ><a class="page-link" href="atBoardList?pageNum=${i}&type=${ type }&keyword=${ keyword }" >${i}</a>
+									<li class="page-item" ><a class="page-link" href="atBoardList.mvc?pageNum=${i}&type=${ type }&keyword=${ keyword }" >${i}</a>
 									</li>
 								</c:if>
 							</c:forEach>
 							<c:if test="${ endPage < pageCount }">
 								<li class="page-item" >
-									<a class="page-link" href="atBoardList?pageNum=${ startPage + pageGroup }&type=${ type }&keyword=${ keyword }" >다음</a>
+									<a class="page-link" href="atBoardList.mvc?pageNum=${ startPage + pageGroup }&type=${ type }&keyword=${ keyword }" >다음</a>
 								</li>
 							</c:if>
 						</ul>
@@ -158,7 +158,7 @@
 						<ul class="pagination justify-content-center" >
 							<c:if test="${ startPage > pageGroup }" >
 								<li class="page-item" >
-									<a class="page-link" href="atBoardList?pageNum=${ startPage - pageGroup }" >이전</a>
+									<a class="page-link" href="atBoardList.mvc?pageNum=${ startPage - pageGroup }" >이전</a>
 								</li>
 							</c:if>
 							<c:forEach var="i" begin="${ startPage }" end="${ endPage }" >
@@ -168,13 +168,13 @@
 									</li>
 								</c:if>
 								<c:if test="${ i != currentPage }">
-									<li class="page-item" ><a class="page-link" href="atBoardList?pageNum=${i}" >${i}</a>
+									<li class="page-item" ><a class="page-link" href="atBoardList.mvc?pageNum=${i}" >${i}</a>
 									</li>
 								</c:if>
 							</c:forEach>
 							<c:if test="${ endPage < pageCount }">
 								<li class="page-item" >
-									<a class="page-link" href="atBoardList?pageNum=${ startPage + pageGroup }" >다음</a>
+									<a class="page-link" href="atBoardList.mvc?pageNum=${ startPage + pageGroup }" >다음</a>
 								</li>
 							</c:if>
 						</ul>

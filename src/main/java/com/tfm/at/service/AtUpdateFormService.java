@@ -1,23 +1,20 @@
-package com.tfm.at.controller;
+package com.tfm.at.service;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.PrintWriter;
 
-import com.tfm.at.dao.*;
-import com.tfm.at.vo.*;
+import com.tfm.at.dao.AtBoardDao;
+import com.tfm.at.vo.AtBoard;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/atUpdateForm")
-public class AtBoardUpdateFormController extends HttpServlet {
+public class AtUpdateFormService implements AtCommandProcess {
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
-			throws ServletException, IOException {
+	public String requestProcess(
+			HttpServletRequest req, HttpServletResponse resp) 
+					throws ServletException, IOException {
 		
 		req.setCharacterEncoding("utf-8");
 		String sNo = req.getParameter("at_no");
@@ -34,7 +31,7 @@ public class AtBoardUpdateFormController extends HttpServlet {
 			out.println(" alert('잘못된 접근입니다.');");
 			out.println(" history.back();");
 			out.println("</script>");
-			return;
+			return null;
 			}
 		
 		AtBoardDao dao = new AtBoardDao();
@@ -49,10 +46,10 @@ public class AtBoardUpdateFormController extends HttpServlet {
 			out.println("history.back();");
 			out.println("</script>");
 			out.close();
-			return;
+			return null;
 		}
 		boolean searchOption = (type == null || type.equals("") || keyword == null || keyword.equals("")) ? false : true;
-		AtBoard b = dao.atGetBoard(no);
+		AtBoard b = dao.atGetBoard(Integer.valueOf(no), false);
 		req.setAttribute("b", b);
 		req.setAttribute("pageNum", pageNum);
 		req.setAttribute("searchOption", searchOption);
@@ -61,9 +58,7 @@ public class AtBoardUpdateFormController extends HttpServlet {
 			req.setAttribute("keyword", keyword);
 		}
 		
-		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/atboard/atUpdateForm.jsp");
-		rd.forward(req, resp);
-		
+		return "atboard/atUpdateForm";
 	}
 	
 }

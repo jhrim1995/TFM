@@ -1,23 +1,21 @@
-package com.tfm.at.controller;
+package com.tfm.at.service;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 import com.tfm.at.dao.AtBoardDao;
 import com.tfm.at.vo.AtBoard;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/atBoardDetail")
-public class AtBoardDetailController extends HttpServlet {
+public class AtBoardDetailService implements AtCommandProcess {
 
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
-			throws ServletException, IOException {
+	public String requestProcess(
+			HttpServletRequest req, HttpServletResponse resp)
+					throws ServletException, IOException {
+		
 		String at_no = req.getParameter("at_no");
 		String pageNum = req.getParameter("pageNum");
 		String type = req.getParameter("type");
@@ -30,12 +28,12 @@ public class AtBoardDetailController extends HttpServlet {
 			out.println(" alert('잘못된 접근입니다.');");
 			out.println(" history.back();");
 			out.println("</script>");
-			return;
+			return null;
 		}
 		boolean searchOption = ( type == null || type.equals("") || keyword == null || keyword.equals("")) ? false : true;
 		
 		AtBoardDao dao = new AtBoardDao();
-		AtBoard b = dao.atGetBoard(Integer.valueOf(at_no));
+		AtBoard b = dao.atGetBoard(Integer.valueOf(at_no), true);
 		req.setAttribute("b", b);
 		req.setAttribute("pageNum", pageNum);
 		req.setAttribute("searchOption", searchOption);
@@ -43,9 +41,6 @@ public class AtBoardDetailController extends HttpServlet {
 			req.setAttribute("keyword", keyword );
 			req.setAttribute("type", type );
 		}
-		
-		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/atboard/atBoardDetail.jsp");
-		rd.forward(req, resp);
+		return "atboard/atBoardDetail";
 	}
-	
 }

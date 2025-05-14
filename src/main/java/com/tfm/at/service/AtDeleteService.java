@@ -1,4 +1,4 @@
-package com.tfm.at.controller;
+package com.tfm.at.service;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -7,18 +7,14 @@ import java.net.URLEncoder;
 import com.tfm.at.dao.AtBoardDao;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/atDeleteProcess")
-public class AtBoardDeleteController extends HttpServlet {
+public class AtDeleteService implements AtCommandProcess {
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
-			throws ServletException, IOException {
-		req.setCharacterEncoding("utf-8");
+	public String requestProcess(
+			HttpServletRequest req, HttpServletResponse resp) 
+					throws ServletException, IOException {
 		
 		String sNo = req.getParameter("at_no");
 		String pass = req.getParameter("pass");
@@ -34,7 +30,7 @@ public class AtBoardDeleteController extends HttpServlet {
 			out.println(" alert('잘못된 접근입니다.');");
 			out.println(" history.back();");
 			out.println("</script>");
-			return;
+			return null;
 			}
 		
 		int no = Integer.parseInt(sNo);
@@ -50,19 +46,16 @@ public class AtBoardDeleteController extends HttpServlet {
 			resp.setContentType("text/html; charset=utf-8");
 			PrintWriter out = resp.getWriter();
 			out.println("비밀번호가 틀립니다.");
-			return;
+			return null;
 		}
 		dao.deleteBoard(no);
 		
 		boolean searchOption = (type == null || type.equals("") || keyword == null || keyword.equals("")) ? false : true;
-		String url = "atBoardList?pageNum="+pageNum;
+		String url = "atBoardList.mvc?pageNum="+pageNum;
 		if(searchOption) {
 			keyword = URLEncoder.encode(keyword,"utf-8");
 			url += "&type=" + type + "&keyword="+keyword;
 		}
-		
-		resp.sendRedirect(url);
-		
+		return "r:" + url;
 	}
-	
 }

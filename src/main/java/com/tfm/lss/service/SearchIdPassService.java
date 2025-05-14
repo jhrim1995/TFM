@@ -4,13 +4,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import com.tfm.at.service.AtCommandProcess;
 import com.tfm.bbs.dao.MemberDao;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class SearchIdPassService implements CommandProcess{
+public class SearchIdPassService implements CommandProcess, AtCommandProcess{
 	
 	@Override
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {

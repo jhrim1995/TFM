@@ -1,4 +1,4 @@
-package com.tfm.at.controller;
+package com.tfm.at.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,28 +8,15 @@ import com.tfm.at.vo.AtBoard;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/atBoardList")
-public class AtBoardListController extends HttpServlet {
-	
+public class AtBoardListService implements AtCommandProcess {
 	private static final int PAGE_SIZE = 10;
 	private static final int PAGE_GROUP = 10;
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
-			throws ServletException, IOException {
-		req.setCharacterEncoding("utf-8");
-		doGet(req,resp);
-	}
-	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
-			throws ServletException, IOException {
-		
+
+	public String requestProcess(
+			HttpServletRequest req, HttpServletResponse resp) {
 		String pageNum = req.getParameter("pageNum");
 		String type = req.getParameter("type");
 		String keyword = req.getParameter("keyword");
@@ -72,8 +59,7 @@ public class AtBoardListController extends HttpServlet {
 			req.setAttribute("keyword", keyword);
 			req.setAttribute("type", type );
 		}
+		return "atboard/atBoardList";
 		
-		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/atboard/atBoardList.jsp");
-		rd.forward(req, resp);
 	}
 }

@@ -7,7 +7,7 @@ $(function() {
 			return false;
 		}
 		$(this).attr("method", "post")
-		$(this).attr("action", "atBoardList")
+		$(this).attr("action", "atBoardList.mvc")
 	});
 	
 	$("#atDetailDelete").on("click", function() {
@@ -17,7 +17,7 @@ $(function() {
 			return false;
 		}
 		$("#rPass").val(pass);
-		$("#checkForm").attr("action", "atDeleteProcess");
+		$("#checkForm").attr("action", "atDeleteProcess.mvc");
 		$("#checkForm").attr("method", "post");
 		$("#checkForm").submit();
 	});
@@ -52,7 +52,7 @@ $(function() {
 			return false;
 		}
 		$("#rPass").val(pass);
-		$("#checkForm").attr("action", "atUpdateForm");
+		$("#checkForm").attr("action", "atUpdateForm.mvc");
 		$("#checkForm").attr("method", "post");
 		$("#checkForm").submit();
 	});

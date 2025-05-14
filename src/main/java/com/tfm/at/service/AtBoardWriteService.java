@@ -1,4 +1,4 @@
-package com.tfm.at.controller;
+package com.tfm.at.service;
 
 import java.io.IOException;
 
@@ -6,17 +6,14 @@ import com.tfm.at.dao.AtBoardDao;
 import com.tfm.at.vo.AtBoard;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/atWriteProcess")
-public class AtBoardWriteController extends HttpServlet {
+public class AtBoardWriteService implements AtCommandProcess {
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
-			throws ServletException, IOException {
+	public String requestProcess(
+			HttpServletRequest req, HttpServletResponse resp) 
+					throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		
 		String m_id = req.getParameter("m_id");
@@ -34,7 +31,6 @@ public class AtBoardWriteController extends HttpServlet {
 		AtBoardDao dao = new AtBoardDao();
 		dao.insertBoard(b);
 		
-		resp.sendRedirect("atBoardList");
+		return "r:atBoardList";
 	}
-	
 }

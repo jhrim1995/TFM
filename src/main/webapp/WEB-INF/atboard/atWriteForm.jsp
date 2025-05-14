@@ -41,7 +41,7 @@
 				</div>
 				<div class="col-8 offset-md-2 text-center mt-5" >
 					<input type="submit" value="등록하기" class="btn btn-success" />&nbsp;&nbsp;
-					<input type="button" value="목록보기" onclick="location.href='atBoardList'" class="btn btn-success" />
+					<input type="button" value="목록보기" onclick="location.href='atBoardList.mvc'" class="btn btn-success" />
 				</div>
 			</form>
 		</div>

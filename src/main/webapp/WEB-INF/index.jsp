@@ -1,4 +1,4 @@
-<!--<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -67,8 +67,8 @@
 <body>
 	<%@ include file="pages/header.jsp" %>
 	<div class="container">
-				<jsp:include page="${ param.body }" />
+				<!--<jsp:include page="${ param.body }" />-->
 	</div>
     <script src="bootstrap/bootstrap.bundle.min.js"></script>	
 </body>
-</html>-->
+</html>

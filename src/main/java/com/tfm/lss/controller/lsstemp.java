@@ -1,4 +1,4 @@
-package com.tfm.lss.controller;
+/*package com.tfm.lss.controller;
 
 import java.io.IOException;
 
@@ -104,4 +104,7 @@ public class LoginController extends HttpServlet{
 			}
 		}
 	}
-}
+}*/
+package com;
+
+

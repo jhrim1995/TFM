@@ -78,11 +78,11 @@
 				<input class="bth btn-danger" type="button" id="atDetailDelete" value="삭제하기"/>&nbsp;&nbsp;
 				<!-- 검색 X -->
 				<c:if test="${not searchOption}">
-				<input class="bth btn-success" type="button" value="목록보기" onclick="location.href='atBoardList?pageNum=${ pageNum }'" />
+				<input class="bth btn-success" type="button" value="목록보기" onclick="location.href='atBoardList.mvc?pageNum=${ pageNum }'" />
 				</c:if>
 				<!-- 검색 O -->
 				<c:if test="${searchOption}">
-				<input class="bth btn-success" type="button" value="목록보기" onclick="location.href='atBoardList?pageNum=${ pageNum }&type=${type}&keyword=${keyword}" />
+				<input class="bth btn-success" type="button" value="목록보기" onclick="location.href='atBoardList.mvc?pageNum=${ pageNum }&type=${type}&keyword=${keyword}" />
 				</c:if>
 			</div>
 		</div>
