@@ -12,7 +12,6 @@ import com.tfm.lss.service.LogoutService;
 import com.tfm.lss.service.MainFormService;
 import com.tfm.lss.service.MyProfileFormService;
 import com.tfm.lss.service.SearchIdFormService;
-import com.tfm.lss.service.SearchIdPassService;
 import com.tfm.lss.service.SearchPassFormService;
 import com.tfm.lss.service.UpdateProfileService;
 
@@ -83,9 +82,6 @@ public class LoginController extends HttpServlet{
 			viewPage = service.requestProcess(request, response);
 		}else if(command.equals("/searchPassForm.mvc")) {
 			service = new SearchPassFormService();
-			viewPage = service.requestProcess(request, response);
-		}else if(command.equals("/searchIdPass.mvc")) {
-			service = new SearchIdPassService();
 			viewPage = service.requestProcess(request, response);
 		}
 		

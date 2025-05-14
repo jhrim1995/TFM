@@ -12,7 +12,7 @@
 			<img src="images/errorpage.gif" usemap="#errorpage"/>
 			<map name="errorpage">
 				<area shape="rect" coords="336, 136, 436, 159" 
-					href="index.mvc" alt="홈으로 이동" />
+					href="main.mvc" alt="홈으로 이동" />
 			</map>
 		</div>
 	</div>
