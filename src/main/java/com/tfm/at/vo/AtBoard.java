@@ -11,6 +11,7 @@ public class AtBoard {
 	private String pass;
 	private Timestamp w_date;
 	private int views;
+	private int recm;
 	
 	public AtBoard() {}
 	public AtBoard(int at_no, String m_id, String title, String content, String pass, Timestamp w_date, int views) {
@@ -63,6 +64,12 @@ public class AtBoard {
 	}
 	public void setViews(int views) {
 		this.views = views;
+	}
+	public int getRecm() {
+		return recm;
+	}
+	public void setRecm(int recm) {
+		this.recm = recm;
 	}
 	
 }

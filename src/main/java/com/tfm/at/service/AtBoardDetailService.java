@@ -2,9 +2,11 @@ package com.tfm.at.service;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import com.tfm.at.dao.AtBoardDao;
 import com.tfm.at.vo.AtBoard;
+import com.tfm.at.vo.AtReply;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -36,7 +38,10 @@ public class AtBoardDetailService implements AtCommandProcess {
 		
 		AtBoardDao dao = new AtBoardDao();
 		AtBoard b = dao.atGetBoard(Integer.valueOf(at_no), true);
+		ArrayList<AtReply> rList = dao.getReplyList(Integer.valueOf(at_no));
+		
 		req.setAttribute("b", b);
+		req.setAttribute("rList", rList);
 		req.setAttribute("pageNum", pageNum);
 		req.setAttribute("searchOption", searchOption);
 		if(searchOption) {

@@ -15,6 +15,39 @@ public class AtBoardDao {
 	private ResultSet rs;
 	private static DataSource ds;
 	
+	public ArrayList<AtReply> getReplyList(int at_no) {
+		String replyList = "SELECT * FROM at_reply WHERE at_no = ? ORDER BY c_no DESC";
+		
+		AtReply r = null; 
+		ArrayList<AtReply> rList = null;
+		
+		try {
+			conn = AtDBManager.getConnection();
+			pstmt = conn.prepareStatement(replyList);
+			pstmt.setInt(1, at_no);;
+			rs = pstmt.executeQuery();
+			
+			rList = new ArrayList<AtReply>();
+			
+			while(rs.next()) {
+				
+				r = new AtReply();
+				r.setC_no(rs.getInt("c_no"));
+				r.setAt_no(rs.getInt("at_no"));
+				r.setM_id(rs.getString("m_id"));
+				r.setC_con(rs.getString("c_con"));
+				r.setC_date(rs.getTimestamp("c_date"));
+				rList.add(r);
+			}
+		} catch (SQLException e) {
+			System.out.println("AtBoardDao-rList");
+			e.printStackTrace();
+		} finally {
+			AtDBManager.close(conn, pstmt, rs);
+		}
+		return rList;
+	} // end rList();
+	
 	public ArrayList<AtBoard> searchList(String type, String keyword, int startRow, int endRow) {
 		String searchList = "SELECT * FROM (SELECT ROWNUM num, sa.* FROM (SELECT * FROM article WHERE " + type + " LIKE ? ORDER BY at_no DESC ) sa ) WHERE num >= ? AND num <= ?";
 		
@@ -192,6 +225,7 @@ public class AtBoardDao {
 				b.setPass(rs.getString("pass"));
 				b.setW_date(rs.getTimestamp("w_date"));
 				b.setViews(rs.getInt("views"));
+				b.setRecm(rs.getInt("recm"));
 			}
 			AtDBManager.commit(conn);
 		} catch (SQLException e) {

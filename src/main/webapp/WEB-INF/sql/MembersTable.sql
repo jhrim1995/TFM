@@ -11,3 +11,6 @@ create table members(
     phone varchar2(13) not null,
     m_date date
 );
+
+select * from members;
+drop * 
