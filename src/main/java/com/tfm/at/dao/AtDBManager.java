@@ -21,12 +21,13 @@ public class AtDBManager {
 	
 	public static Connection getConnection() {
 		try {
-			DS.getConnection();
-		} catch (SQLException e) {
+			CONN = DS.getConnection();
+		} catch (SQLException e) {			
 			e.printStackTrace();
 		}
 		return CONN;
 	}
+
 	
 	public static void close(Connection conn, PreparedStatement pstmt) {
 		try {

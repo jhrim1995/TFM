@@ -6,18 +6,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>기사 수정하기</title>
-<link href="bootstrap/bootstrap.min.css" rel="stylesheet" >
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.12.1/font/bootstrap-icons.min.css">	
-<link rel="stylesheet" type="text/css" href="css/global.css" />
-<link rel="stylesheet" type="text/css" href="css/member.css" />
-<script src="bootstrap/bootstrap.bundle.min.js"></script>
-<script src="js/jquery-3.7.1.min.js"></script>
-<script src="js/atFormCheck.js"></script>
+
 </head>
 <body>
 	<div class="container" >
-		<!-- header -->
-		<%@ include file="../pages/header.jsp" %>
+		
 	<!-- content -->
 	<div class="row my-5" id="global-content" >
 		<div	class="col"	>

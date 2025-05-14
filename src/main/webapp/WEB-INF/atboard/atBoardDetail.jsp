@@ -8,23 +8,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>맛집 기사 상세보기</title>
-<link href="bootstrap/bootstrap.min.css" rel="stylesheet" >
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.12.1/font/bootstrap-icons.min.css">	
-<link rel="stylesheet" type="text/css" href="css/global.css" />
-<link rel="stylesheet" type="text/css" href="css/member.css" />
-<script src="bootstrap/bootstrap.bundle.min.js"></script>
-<script src="js/jquery-3.7.1.min.js"></script>
-<script src="js/atFormCheck.js"></script>
 </head>
 <body>
 	<div class="container" >
-	<!-- header -->
-	<%@ include file="../pages/header.jsp" %>
+	
 	<!-- content -->
 	<div class="row my-5" id="global-content" >
 		<div class="col">
 			<form name="checkForm" id="checkForm" >
-				<input type="hidden" name="at_no" id="at_no" value="${b.at_no }" />
+				<input type="hidden" name="at_no" id="at_no" value="${b.at_no}" />
 				<input type="hidden" name="pass" id="rPass"/>
 				<input type="hidden" name="pageNum" value="${ pageNum }" />
 				<c:if test="${ searchOption }">
@@ -47,9 +39,9 @@
 							</tr>
 							<tr>
 								<th>글쓴이</th>
-								<td>${ board.m_id }</td>
+								<td>${ b.m_id }</td>
 								<th>작성일</th>
-								<td><fmt:formatDate value="${ b.p_date }"
+								<td><fmt:formatDate value="${ b.w_date }"
 										pattern="yyyy-MM-dd HH:mm:ss" /></td>
 							</tr>
 							<tr>
@@ -82,7 +74,7 @@
 				</c:if>
 				<!-- 검색 O -->
 				<c:if test="${searchOption}">
-				<input class="bth btn-success" type="button" value="목록보기" onclick="location.href='atBoardList.mvc?pageNum=${ pageNum }&type=${type}&keyword=${keyword}" />
+				<input class="bth btn-success" type="button" value="목록보기" onclick="location.href='atBoardList.mvc?pageNum=${ pageNum }&type=${type}&keyword=${keyword}'" />
 				</c:if>
 			</div>
 		</div>

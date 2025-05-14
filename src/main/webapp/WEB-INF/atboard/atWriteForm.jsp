@@ -12,8 +12,7 @@
 </head>
 <body>
 	<div class="container" >
-		<!-- header -->
-		<%@ include file="../pages/header.jsp" %>
+		
 	<!-- content -->
 	<div class="row my-5" id="global-content" >
 		<div	class="col"	>

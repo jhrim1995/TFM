@@ -106,7 +106,7 @@ public class AtBoardDao {
 	} // end deleteBoard(int at_no);
 	
 	public void updateBoard(AtBoard b) {
-		String updateBoard = "UPDATE article set m_id=?, title=?, content=?, w_date=SYSDATE, WHERE at_no=?";
+		String updateBoard = "UPDATE article set m_id=?, title=?, content=?, w_date=SYSDATE WHERE at_no=?";
 		
 		try {
 			conn = AtDBManager.getConnection();

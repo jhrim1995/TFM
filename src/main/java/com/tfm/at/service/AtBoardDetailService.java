@@ -21,6 +21,8 @@ public class AtBoardDetailService implements AtCommandProcess {
 		String type = req.getParameter("type");
 		String keyword = req.getParameter("keyword");
 		
+		System.out.println("넘어왔는지 확인");
+		
 		if(at_no == null || at_no.equals("") || pageNum == null || pageNum.equals("")) {
 			resp.setContentType("text/html; charset=utf-8");
 			PrintWriter out = resp.getWriter();

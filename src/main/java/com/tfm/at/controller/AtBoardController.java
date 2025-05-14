@@ -42,7 +42,7 @@ public class AtBoardController extends HttpServlet {
 		AtCommandProcess service = null;
 		String viewPage = null;
 		
-		if(command.equals("/atBoardList.mvc") || command.equals("/*mvc") || command.equals("/index.mvc")) {
+		if(command.equals("/atBoardList.mvc") || command.equals("/*.mvc") || command.equals("/index.mvc")) {
 			service = new AtBoardListService();
 			viewPage = service.requestProcess(req, resp);
 		} else if(command.equals("/atBoardDetail.mvc")) {

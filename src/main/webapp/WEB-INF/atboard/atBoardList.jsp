@@ -8,18 +8,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>맛집 기사 게시판</title>
-<link href="bootstrap/bootstrap.min.css" rel="stylesheet" >
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.12.1/font/bootstrap-icons.min.css">	
-<link rel="stylesheet" type="text/css" href="css/global.css" />
-<link rel="stylesheet" type="text/css" href="css/member.css" />
-<script src="js/jquery-3.7.1.min.js"></script>
-<script src="js/formCheck.js"></script>
-<script src="js/member.js"></script>
+
 </head>
 <body>
 	<div class="container">
-	<!-- header	-->
-	<%@ include file="../pages/header.jsp" %>
+	
 		<!-- content -->
 		<div class="row my-5 text-center" >
 			<div class="col">
@@ -82,7 +75,7 @@
 							<tr>
 								<td>${ b.at_no }</td>
 								<td>${ b.m_id }</td>
-								<td><a href="atBoardDatail.mvc?no=${b.at_no}&pageNum=${currentPage}&type=${type}&keword=${ketword}" 
+								<td><a href="atBoardDetail.mvc?at_no=${b.at_no}&pageNum=${currentPage}&type=${type}&keword=${ketword}" 
 								class="text-decoration-none " >${b.title}</a></td>
 								<td>${ b.w_date}</td>
 								<td>${ b.views }</td>
@@ -95,7 +88,7 @@
 							<tr>
 								<td>${ b.at_no }</td>
 								<td>${ b.m_id }</td>
-								<td><a href="atBoardDatail.mvc?no=${b.at_no}&pageNum=${currentPage}" 
+								<td><a href="atBoardDetail.mvc?at_no=${b.at_no}&pageNum=${currentPage}" 
 								class="text-decoration-none " >${b.title}</a></td>
 								<td>${ b.w_date}</td>
 								<td>${ b.views }</td>

@@ -1,7 +1,7 @@
 $(function() {
 	
 	$("#searchForm").on("submit", function() {
-		var keyword = $("#keyword").val();
+		let keyword = $("#keyword").val();
 		if(keyword.length <= 0) {
 			alert("검색어를 입력해 주세요.")
 			return false;
@@ -11,7 +11,7 @@ $(function() {
 	});
 	
 	$("#atDetailDelete").on("click", function() {
-		var pass = $("#pass").val();
+		let pass = $("#pass").val();
 		if(pass.length <4){
 			alert("게시글을 삭제하려면 비밀번호를 입력해주세요.")
 			return false;
@@ -46,7 +46,7 @@ $(function() {
 	})
 	
 	$("#atDetailUpdate").on("click", function() {
-		var pass = $("#pass").val();
+		let pass = $("#pass").val();
 		if(pass.length <4){
 			alert("게시글을 수정하려면 비밀번호를 입력해주세요.")
 			return false;
