@@ -1,4 +1,4 @@
-package come.tfm.lss.action;
+package com.tfm.lss.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
