@@ -15,6 +15,24 @@ public class AtBoardDao {
 	private ResultSet rs;
 	private static DataSource ds;
 	
+	public void updateReply(AtReply r) {
+		String updateReply = "UPDATE at_reply set c_con=?, c_date=SYSDATE WHERE c_no=?";
+		
+		try {
+			conn = AtDBManager.getConnection();
+			pstmt = conn.prepareStatement(updateReply); 
+			pstmt.setString(1, r.getC_con());
+			pstmt.setInt(2, r.getC_no());
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println("AtBoardDao-updateReply(r)");
+			e.printStackTrace();
+		} finally {
+			AtDBManager.close(conn, pstmt, rs);
+		}
+	} // updateReply(r);
+	
 	public void addReply(AtReply r) {
 		String insertReply = "INSERT INTO at_reply VALUES(reply_seq.NEXTVAL, ?, ?, ?, SYSDATE')";
 		

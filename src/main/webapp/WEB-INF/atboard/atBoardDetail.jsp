@@ -94,13 +94,13 @@
 	<div class="row mb-3" >
 		<div class="col" id="rList" >
 			<c:forEach var="reply" items="${rList }" >
-			<div class="row border border-top-0 replyRow" >
+			<div class="replyRow row border border-top-0 " >
 				<div class="col" >
 					<div class="row bg-light p-2" >
 						<div class="col-4" >
 							<span>${ r.m_id }</span>
 						</div>
-						<div class="col-8 text-end" >
+						<div class="col-8 text-end p-1" >
 							<span class="me-3" >
 								<fmt:formatDate value="${ r.c_date }" pattern="yyyy-MM-dd HH:mm:ss"/>
 							</span>
@@ -113,7 +113,7 @@
 						</div>
 					</div>
 					<div class="row" >
-						<div class="col p-3" >
+						<div class="col p-2" >
 							<pre>${ r.c_con }</pre>
 						</div>
 					</div>
@@ -126,8 +126,8 @@
 	<!-- 댓글 X -->
 	<c:if test="${ empty rList }">
 	<div class="row mb-5" id="rList" >
-		<div class="col text-center borar p-5" >
-			<div>댓글이 없습니다.</div>
+		<div class="col border p-5" >
+			<div class="text-center">댓글이 없습니다.</div>
 		</div>
 	</div>
 	</c:if>

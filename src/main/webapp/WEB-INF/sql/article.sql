@@ -98,6 +98,8 @@ SELECT * FROM at_reply ORDER BY c_no DESC;
 
 INSERT INTO at_reply VALUES(reply_seq.NEXTVAL, 200, '댓글쓴이11', '댓글입력기능 테스트',  '2025-05-08 13:44:32');
 
+UPDATE at_reply set c_con='테스트@@@@@@@@@@@@@@@@@@@@ㅡ', c_date=SYSDATE WHERE c_no=115;
+
 
 create table members(
     m_id varchar2(30) primary key,
