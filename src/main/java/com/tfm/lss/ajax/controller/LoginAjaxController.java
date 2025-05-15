@@ -2,7 +2,7 @@ package com.tfm.lss.ajax.controller;
 
 import java.io.IOException;
 
-import come.tfm.lss.action.OverlapIdCheckAction;
+import com.tfm.lss.action.OverlapIdCheckAction;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
