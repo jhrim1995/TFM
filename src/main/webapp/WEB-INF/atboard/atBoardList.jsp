@@ -66,6 +66,7 @@
 							<th>제목</th>
 							<th>작성일</th>
 							<th>조회수</th>
+							<th>추천수</th>
 						</tr>
 						</thead>
 						<tbody class="text-light" >
@@ -79,6 +80,7 @@
 								class="text-decoration-none " >${b.title}</a></td>
 								<td>${ b.w_date}</td>
 								<td>${ b.views }</td>
+								<td>${ b.recm }</td>
 							</tr>
 							</c:forEach>
 						</c:if>
@@ -92,6 +94,7 @@
 								class="text-decoration-none " >${b.title}</a></td>
 								<td>${ b.w_date}</td>
 								<td>${ b.views }</td>
+								<td>${ b.recm }</td>
 							</tr>
 							</c:forEach>
 						</c:if>

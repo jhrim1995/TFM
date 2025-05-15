@@ -94,7 +94,7 @@
 	<div class="row mb-3" >
 		<div class="col" id="rList" >
 			<c:forEach var="reply" items="${rList }" >
-			<div class="replyRow row border border-top-0" >
+			<div class="row border border-top-0 replyRow" >
 				<div class="col" >
 					<div class="row bg-light p-2" >
 						<div class="col-4" >
@@ -108,7 +108,7 @@
 							<i class="bi bi-pencil">수정</i></button>
 							<button class="atDeleteReply btn btn-outline-danger btn-sm" data-no="${r.c_no }" >
 							<i class="bi bi-trash3">삭제</i></button>
-							<button class="atDeleteReply btn btn-outline-warning btn-sm" data-no="${r.c_no }" >
+							<button class="atDeleteReply btn btn-outline-warning btn-sm" onclick="atReportReply('${r.c_no }')" >
 							<i class="bi bi-exclamation-triangle">신고</i></button>
 						</div>
 					</div>
@@ -145,11 +145,11 @@
 							</div>
 						</div>
 						<div class="row my-3" >
-							<div class="col-md-10" >
+							<div class="col-10" >
 								<textarea name="c_con" id="c_con" class="form-control" rows="4" ></textarea>
 							</div>
-							<div class="com-md">
-								<input type="submit" value="댓글쓰기" class="btn btn-success h-100 w-100" id="atReplyWriteButton" />
+							<div class="col-2">
+								<input type="submit" value="댓글쓰기" class="btn btn-primary h-100 w-100" id="atReplyWriteButton" />
 							</div>
 						</div>
 					</div>

@@ -15,6 +15,57 @@ public class AtBoardDao {
 	private ResultSet rs;
 	private static DataSource ds;
 	
+	public void addReply(AtReply r) {
+		String insertReply = "INSERT INTO at_reply VALUES(reply_seq.NEXTVAL, ?, ?, ?, SYSDATE')";
+		
+		try {
+			conn = AtDBManager.getConnection();
+			pstmt = conn.prepareStatement(insertReply);
+			pstmt.setInt(1, r.getAt_no());
+			pstmt.setString(2, r.getC_con());
+			pstmt.setString(3, r.getM_id());
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println("AtBoardDao-addReply");
+			e.printStackTrace();
+		} finally {
+			AtDBManager.close(conn, pstmt, rs);
+		}
+	} // end addReply(AtReply r);
+	
+	public HashMap<String, Integer> atGetRecm(int at_no, String strRecm) {
+		HashMap<String, Integer> map = null;
+		String addRecm = "UPDATE article set recm = recm+1 WHERE at_no=?";
+		String selectResult = "SELECT recm FROM article WHERE at_no=?";
+		
+		try {
+			conn = AtDBManager.getConnection();
+			AtDBManager.setAutoCommit(conn, false);
+			if(strRecm.equals("cm")) {
+				pstmt = conn.prepareStatement(addRecm);
+			}
+			pstmt.setInt(1, at_no);
+			pstmt.executeUpdate();
+			pstmt = conn.prepareStatement(selectResult);
+			pstmt.setInt(1, at_no);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				map = new HashMap<String, Integer>();
+				map.put("recm", rs.getInt(1));
+			}
+			AtDBManager.commit(conn);
+		} catch (SQLException e) {
+			AtDBManager.rollback(conn);
+			System.out.println("BoardDao-atGetRecm()");
+			e.printStackTrace();
+		} finally {
+			AtDBManager.close(conn, pstmt, rs);
+		}
+		return map;
+	} // end HashMap<String, Integer> atGetRecm();
+	
 	public ArrayList<AtReply> getReplyList(int at_no) {
 		String replyList = "SELECT * FROM at_reply WHERE at_no = ? ORDER BY c_no DESC";
 		
@@ -72,6 +123,7 @@ public class AtBoardDao {
 				b.setPass(rs.getString("pass"));
 				b.setW_date(rs.getTimestamp("w_date"));
 				b.setViews(rs.getInt("views"));
+				b.setRecm(rs.getInt("recm"));
 				
 				boardList.add(b);
 			} while(rs.next()); }
@@ -272,6 +324,7 @@ public class AtBoardDao {
 				b.setPass(rs.getString("pass"));
 				b.setW_date(rs.getTimestamp("w_date"));
 				b.setViews(rs.getInt("views"));
+				b.setRecm(rs.getInt("recm"));
 				
 				boardList.add(b);
 			} while(rs.next()); }

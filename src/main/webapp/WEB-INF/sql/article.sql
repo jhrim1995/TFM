@@ -6,7 +6,7 @@ CREATE TABLE article (
     pass VARCHAR2(10 Char) NOT NULL,
     w_date TIMESTAMP NOT NULL,
     views number(5) NOT NULL,
-    recm number(5)
+    recm number(5)  DEFAULT 0
 );
 
 select * from article;
@@ -39,7 +39,11 @@ INSERT INTO article (at_no, m_id, title, content, pass, w_date, views) VALUES (a
 
 commit;
 
-select * from article ORDER BY at_no DESC;;
+select * from article ORDER BY at_no DESC;
+
+UPDATE article set recm = recm+1 WHERE at_no=200;
+SELECT * FROM article WHERE at_no = 200;
+
 
 -- 기본 페이지 게시 글 수
 SELECT COUNT(*) FROM article;
@@ -90,7 +94,9 @@ INSERT INTO at_reply(c_no, at_no, m_id, c_con, c_date) VALUES(reply_seq.NEXTVAL,
 INSERT INTO at_reply(c_no, at_no, m_id, c_con, c_date) VALUES(reply_seq.NEXTVAL, 199, '댓글쓴이10', '항상 감사합니다~',  '2023-05-05 13:44:32');
 
 commit;
-SELECT * FROM at_reply;
+SELECT * FROM at_reply ORDER BY c_no DESC;
+
+INSERT INTO at_reply VALUES(reply_seq.NEXTVAL, 200, '댓글쓴이11', '댓글입력기능 테스트',  '2025-05-08 13:44:32');
 
 
 create table members(
