@@ -37,7 +37,7 @@ import jakarta.servlet.http.HttpServletResponse;
 @MultipartConfig(fileSizeThreshold = 1024 * 10,
 						maxFileSize = 1024 * 1024 * 10,
 						maxRequestSize = 1024 * 1024 * 10 * 10)
-@WebServlet(name="rvBoardController", urlPatterns="*.mvc")	
+@WebServlet(name="rvBoardController")	
 public class RvBoardController extends HttpServlet{
 		
 	private final String PREFIX = "/WEB-INF/index.jsp?body=";
