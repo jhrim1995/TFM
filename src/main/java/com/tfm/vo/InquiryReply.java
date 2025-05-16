@@ -1,4 +1,4 @@
-package com.tfm.qna.vo;
+package com.tfm.vo;
 
 import java.sql.Timestamp;
 

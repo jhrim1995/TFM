@@ -1,4 +1,4 @@
-package com.tfm.bbs.vo;
+package com.tfm.vo;
 
 public class Member {
 		  private String m_id ; 

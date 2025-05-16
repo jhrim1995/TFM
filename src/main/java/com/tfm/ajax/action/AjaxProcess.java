@@ -1,4 +1,4 @@
-package com.tfm.lss.ajax.controller;
+package com.tfm.ajax.action;
 
 import java.io.IOException;
 

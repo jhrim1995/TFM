@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import com.tfm.qna.dao.FaqDao;
-import com.tfm.qna.vo.Faq;
+import com.tfm.vo.Faq;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

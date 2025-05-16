@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.tfm.bbs.dao.DBManager;
-import com.tfm.bbs.vo.Member;
+import com.tfm.vo.Member;
 
 public class MemberDao {
 	

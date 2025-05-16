@@ -5,8 +5,8 @@ import java.io.PrintWriter;
 
 import com.tfm.qna.dao.FaqDao;
 import com.tfm.qna.dao.InquiryDao;
-import com.tfm.qna.vo.Faq;
-import com.tfm.qna.vo.Inquiry;
+import com.tfm.vo.Faq;
+import com.tfm.vo.Inquiry;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

@@ -1,17 +1,17 @@
-package com.tfm.at.service;
+package com.tfm.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 import com.tfm.at.dao.AtBoardDao;
-import com.tfm.at.vo.AtBoard;
+import com.tfm.vo.*;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class AtBoardListService implements AtCommandProcess {
+public class AtBoardListService implements CommandProcess {
 	private static final int PAGE_SIZE = 10;
 	private static final int PAGE_GROUP = 10;
 

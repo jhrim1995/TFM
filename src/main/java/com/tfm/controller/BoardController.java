@@ -90,9 +90,13 @@ public class BoardController extends HttpServlet {
 		if(command.equals("/*.mvc") || command.equals("/main.mvc")){
 			service = new MainFormService();
 			viewPage = service.requestProcess(request, response);
+<<<<<<< HEAD
 <<<<<<< HEAD:src/main/java/com/tfm/qna/controller/QNAController.java
 =======
 		}else if(command.equals("/loginForm.mvc")) {
+=======
+		}else if(command.equals("/loginForm.mvc")) {  // 로그인
+>>>>>>> Seok
 			service = new LoginService();
 			viewPage = service.requestProcess(request, response);
 		}else if(command.equals("/joinMemberForm.mvc")) {
@@ -125,7 +129,7 @@ public class BoardController extends HttpServlet {
 		}else if(command.equals("/searchIdPass.mvc")) {
 			service = new SearchIdPassService();
 			viewPage = service.requestProcess(request, response);
-		}else if (command.equals("/faqlist.mvc")) {
+		}else if (command.equals("/faqlist.mvc")) {  // Q&A
 	        service = new FaqService();
 	        viewPage = service.requestProcess(request, response);
 	    } else if (command.equals("/faqDetail.mvc")) {
@@ -176,6 +180,47 @@ public class BoardController extends HttpServlet {
 	
 =======
 			viewPage = service.requestProcess(request, response);	
+		} else if (command.equals("/inquirylist.mvc")) {
+	        service = new InquiryService();
+	        viewPage = service.requestProcess(request, response);
+		} else if (command.equals("/inquiryDetail.mvc")) {
+	        service = new InquiryDetailService();
+	        viewPage = service.requestProcess(request, response);
+		} else if (command.equals("/inquirywriteForm.mvc")) {
+			service = new InquiryWriteFormService();
+			viewPage = service.requestProcess(request, response);
+		} else if (command.equals("/inquirywriteProcess.mvc")) {
+			service = new InquiryWriteService();
+			viewPage = service.requestProcess(request, response);
+		} else if (command.equals("/inquiryupdateForm.mvc")) {
+			service = new InquiryUpdateFormService();
+			viewPage = service.requestProcess(request, response);
+		} else if (command.equals("/inquiryupdateProcess.mvc")) {
+			service = new InquiryUpdateService();
+			viewPage = service.requestProcess(request, response);
+		} else if (command.equals("/inquirydeleteProcess.mvc")) {
+			service = new InquiryDeleteService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/atBoardList.mvc")) {  // 기사 게시판
+			service = new AtBoardListService();
+			viewPage = service.requestProcess(request, response);
+		} else if(command.equals("/atBoardDetail.mvc")) {
+			service = new AtBoardDetailService();
+			viewPage = service.requestProcess(request, response);
+		} else if(command.equals("/atWriteForm.mvc")) {
+			viewPage = "atboard/atWriteForm";
+		} else if(command.equals("/atWriteProcess.mvc")) {
+			service = new AtBoardWriteService();
+			viewPage = service.requestProcess(request, response);
+		} else if(command.equals("/atUpdateForm.mvc")) {
+			service = new AtUpdateFormService();
+			viewPage = service.requestProcess(request, response);
+		} else if(command.equals("/atUpdateProcess.mvc")) {
+			service = new AtUpdateService();
+			viewPage = service.requestProcess(request, response);
+		} else if(command.equals("/atDeleteProcess.mvc")) {
+			service = new AtDeleteService();
+			viewPage = service.requestProcess(request, response);
 		}
 		
 >>>>>>> main:src/main/java/com/tfm/controller/BoardController.java

@@ -13,7 +13,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import com.tfm.bbs.dao.DBManager;
-import com.tfm.qna.vo.Faq;
+import com.tfm.vo.Faq;
 
 public class FaqDao {
 	

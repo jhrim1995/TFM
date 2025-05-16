@@ -12,8 +12,8 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import com.tfm.bbs.dao.DBManager;
-import com.tfm.qna.vo.Inquiry;
-import com.tfm.qna.vo.InquiryReply;
+import com.tfm.vo.Inquiry;
+import com.tfm.vo.InquiryReply;
 
 public class InquiryDao {
 	
