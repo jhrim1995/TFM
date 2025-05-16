@@ -74,12 +74,12 @@
 						<tbody class="text-light" >
 						<!-- 검색 O, 검색리스트 O -->
 						<c:if test="${ searchOption and not empty bList }">
-							<c:forEach var="b" items="${ bList }" varStatus="status" >
+							<c:forEach var="b" items="${ bList }" >
 							<tr>
 								<td>${ b.at_no }</td>
-								<td>${ b.m_id }</td>
-								<td><a href="atBoardDetail.mvc?at_no=${b.at_no}&pageNum=${currentPage}&type=${type}&keword=${ketword}" 
-								class="text-decoration-none " >${b.title}</a></td>
+								<td class="text-secondary" >${ b.m_id }</td>
+								<td class="text-secondary"><a href="boardDetail.mvc?no=${b.at_no}&pageNum=${currentPage}&type=${type}&keyword=${keyword}" 
+										class="text-secondary text-decoration-none">${b.title}</a></td>
 								<td>${ b.w_date}</td>
 								<td>${ b.views }</td>
 								<td>${ b.recm }</td>
@@ -88,12 +88,12 @@
 						</c:if>
 						<!-- 검색 X, 검색리스트 O -->
 						<c:if test="${ not searchOption and not empty bList }">
-							<c:forEach var="b" items="${ bList }" varStatus="status" >
+							<c:forEach var="b" items="${ bList }" >
 							<tr>
 								<td>${ b.at_no }</td>
 								<td>${ b.m_id }</td>
-								<td><a href="atBoardDetail.mvc?at_no=${b.at_no}&pageNum=${currentPage}" 
-								class="text-decoration-none " >${b.title}</a></td>
+								<td class="text-secondary"><a href="boardDetail.mvc?no=${b.at_no}&pageNum=${currentPage}" 
+										class="text-secondary text-decoration-none">${b.title}</a></td>
 								<td>${ b.w_date}</td>
 								<td>${ b.views }</td>
 								<td>${ b.recm }</td>

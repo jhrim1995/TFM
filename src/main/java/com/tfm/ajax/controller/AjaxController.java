@@ -10,7 +10,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+
 @WebServlet(name="AjaxController", urlPatterns="*.ajax")
+
 public class AjaxController extends HttpServlet {
 	
 	@Override
