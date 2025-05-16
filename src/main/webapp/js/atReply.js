@@ -44,8 +44,8 @@ $(document).ready(function() {
 						+'					<i class="bi bi-pencil">수정</i></button>'
 						+'					<button class="atDeleteReply btn btn-outline-danger btn-sm" data-no="'+v.c_no+'" >'
 						+'					<i class="bi bi-trash3">삭제</i></button>'
-						+'					<button class="atDeleteReply btn btn-outline-warning btn-sm" onclick="atReportReply(\''+v.c_no+'>'
-						+'					<i class="bi bi-exclamation-triangle">신고</i></button>'
+						+'<button class="btn btn-outline-warning btn-sm" onclick="atReportReply(\''+v.c_no+'\')">'
+						+'<i class="bi bi-exclamation-triangle">신고</i></button>'
 						+'				</div>'
 						+'			</div>'
 						+'			<div class="row" >'
@@ -72,7 +72,7 @@ $(document).ready(function() {
 		return false;
 	});
 	
-	$(document).on("click", "#atModifyReply", function() {
+	$(document).on("click", ".atModifyReply", function() {
 		var $replyRow = $(this).parents(".replyRow");
 
 		if($("#atReplyForm").is(":visible")) {
@@ -135,8 +135,8 @@ $(document).ready(function() {
 					+'					<i class="bi bi-pencil">수정</i></button>'
 					+'					<button class="atDeleteReply btn btn-outline-danger btn-sm" data-no="'+v.c_no+'" >'
 					+'					<i class="bi bi-trash3">삭제</i></button>'
-					+'					<button class="atDeleteReply btn btn-outline-warning btn-sm" onclick="atReportReply(\''+v.c_no+'>'
-					+'					<i class="bi bi-exclamation-triangle">신고</i></button>'
+					+'<button class="btn btn-outline-warning btn-sm" onclick="atReportReply(\''+v.c_no+'\')">'
+					+'<i class="bi bi-exclamation-triangle">신고</i></button>'
 					+'				</div>'
 					+'			</div>'
 					+'			<div class="row" >'
@@ -200,8 +200,8 @@ $(document).ready(function() {
 					+'					<i class="bi bi-pencil">수정</i></button>'
 					+'					<button class="atDeleteReply btn btn-outline-danger btn-sm" data-no="'+v.c_no+'" >'
 					+'					<i class="bi bi-trash3">삭제</i></button>'
-					+'					<button class="atDeleteReply btn btn-outline-warning btn-sm" onclick="atReportReply(\''+v.c_no+'>'
-					+'					<i class="bi bi-exclamation-triangle">신고</i></button>'
+					+'<button class="btn btn-outline-warning btn-sm" onclick="atReportReply(\''+v.c_no+'\')">'
+					+'<i class="bi bi-exclamation-triangle">신고</i></button>'
 					+'				</div>'
 					+'			</div>'
 					+'			<div class="row" >'
@@ -227,8 +227,8 @@ $(document).ready(function() {
 	});
 	
 	$("#atReplyWrite").on("click", function() {
-		console.log($("atReplyForm").css("display"));
-		console.log($("atReplyForm").is("visible"));
+		console.log($("#atReplyForm").css("display"));
+		console.log($("#atReplyForm").is("visible"));
 		if($("#atReplyForm").is(":visible")) {
 			var $prev = $("#atReplyTitle").prev();
 			if(! $prev.is("#atReplyForm")) {

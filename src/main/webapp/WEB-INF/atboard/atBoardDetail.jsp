@@ -93,7 +93,7 @@
 	<c:if test="${ not empty rList }">
 	<div class="row mb-3" >
 		<div class="col" id="rList" >
-			<c:forEach var="reply" items="${rList }" >
+			<c:forEach var="r" items="${rList }" >
 			<div class="replyRow row border border-top-0 " >
 				<div class="col" >
 					<div class="row bg-light p-2" >
