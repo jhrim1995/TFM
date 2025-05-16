@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>JSP MVC 게시판</title>	
+	<title>TFM</title>	
 	<link href="bootstrap/bootstrap.min.css" rel="stylesheet" >
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 	<link rel="stylesheet" type="text/css" href="css/global.css" />
@@ -67,7 +67,7 @@
 <body>
 	<%@ include file="pages/header.jsp" %>
 	<div class="container">
-				<jsp:include page="${ param.body }" />	
+				<jsp:include page="${ param.body }" />
 	</div>
     <script src="bootstrap/bootstrap.bundle.min.js"></script>	
 </body>
