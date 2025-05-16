@@ -14,6 +14,7 @@ import com.tfm.lss.service.MyProfileFormService;
 import com.tfm.lss.service.SearchIdFormService;
 import com.tfm.lss.service.SearchIdPassService;
 import com.tfm.lss.service.SearchPassFormService;
+import com.tfm.lss.service.TestFormService;
 import com.tfm.lss.service.UpdateProfileService;
 
 import jakarta.servlet.RequestDispatcher;
@@ -87,7 +88,10 @@ public class LoginController extends HttpServlet{
 		}else if(command.equals("/searchIdPass.mvc")) {
 			service = new SearchIdPassService();
 			viewPage = service.requestProcess(request, response);
-		}
+		}/*else if(command.equals("/testForm.mvc")) {
+			service = new TestFormService();
+			viewPage = service.requestProcess(request, response);
+		} 테스트할 때 사용하는 곳 */
 		
 		
 		if(viewPage != null) {
