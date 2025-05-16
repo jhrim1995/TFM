@@ -1,4 +1,4 @@
-package com.tfm.qna.service;
+package com.tfm.service;
 
 import java.io.IOException;
 import java.io.PrintWriter;

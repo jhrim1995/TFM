@@ -125,7 +125,7 @@
     <a href="atBoardList.mvc" class="menu-box">기사</a>
     <a href="#" class="menu-box">리뷰</a>
     <a href="#" class="menu-box">자유</a>
-    <a href="#" class="menu-box">Q&A</a>
+    <a href="faqlist.mvc" class="menu-box">Q&A</a>
   </div>
  
 

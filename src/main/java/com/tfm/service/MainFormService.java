@@ -1,22 +1,27 @@
-package com.tfm.lss.service;
+package com.tfm.service;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.Iterator;
+
+<<<<<<< HEAD:src/main/java/com/tfm/lss/service/MainFormService.java
 
 import com.tfm.at.service.AtCommandProcess;
-import com.tfm.bbs.dao.MemberDao;
-import com.tfm.bbs.vo.Member;
 
+=======
+>>>>>>> Seok:src/main/java/com/tfm/service/MainFormService.java
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class JoinMemberFormService implements CommandProcess, AtCommandProcess{
+public class MainFormService implements CommandProcess, AtCommandProcess{
 
 	@Override
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		return "login/joinMember";
+		
+		
+		return "f:WEB-INF/main01.jsp";
 	}
+
 	
 }

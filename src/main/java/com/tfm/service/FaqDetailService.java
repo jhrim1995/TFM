@@ -1,20 +1,18 @@
-package com.tfm.qna.service;
+package com.tfm.service;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import com.tfm.qna.dao.FaqDao;
-import com.tfm.qna.dao.InquiryDao;
 import com.tfm.qna.vo.Faq;
-import com.tfm.qna.vo.Inquiry;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-public class InquiryDetailService implements CommandProcess{
+public class FaqDetailService implements CommandProcess{
 
 	@Override
 	public String requestProcess(
@@ -24,7 +22,7 @@ public class InquiryDetailService implements CommandProcess{
 		HttpSession session = request.getSession();
 		boolean isLogin = session.getAttribute("isLogin") != null ? (Boolean) session.getAttribute("isLogin") : false;
 		
-			
+		 	
 	String no = request.getParameter("no");
 	String pageNum = request.getParameter("pageNum");
 	String type = request.getParameter("type");
@@ -34,8 +32,8 @@ public class InquiryDetailService implements CommandProcess{
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.println("<script>");
-		out.println("	alert('잘못된 접근')");
-		out.println("	location.href='inquirylist.mvc'");
+		out.println("	alert('잘못된 접근');");
+		out.println("	location.href='faqlist.mvc'");
 		out.println("</script>");
 		
 		return null;
@@ -43,21 +41,20 @@ public class InquiryDetailService implements CommandProcess{
 	
 	boolean searchOption = (type == null || type.equals("") || keyword == null || keyword.equals("")) ? false : true;
 	
-	InquiryDao dao = new InquiryDao();
+	FaqDao dao = new FaqDao();
+	Faq f = dao.getFaq(Integer.parseInt(no), true);
 	
-	Inquiry i = dao.getInquiry(Integer.parseInt(no), true);
-
-	if (i == null) {
+	if (f == null) {
         response.setContentType("text/html; charset=utf-8");
         PrintWriter out = response.getWriter();
         out.println("<script>");
-        out.println("	alert('해당 글이 존재하지 않습니다.')");
+        out.println("	alert('해당 글이 존재하지 않습니다.');");
         out.println("	history.back();");
         out.println("</script>");
         return null;
-    }	
+    }
 	
-	request.setAttribute("inquiry", i);
+	request.setAttribute("faq", f);
 	request.setAttribute("pageNum", pageNum);
 	request.setAttribute("searchOption", searchOption);
 	
@@ -66,6 +63,6 @@ public class InquiryDetailService implements CommandProcess{
 		request.setAttribute("keyword", keyword);
 	}
 	
-	return "qna/inquiryDetail";
+	return "qna/faqDetail";
 	}
 }

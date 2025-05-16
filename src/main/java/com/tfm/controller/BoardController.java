@@ -1,8 +1,9 @@
-package com.tfm.qna.controller;
+package com.tfm.controller;
 
 import java.io.File;
 import java.io.IOException;
 
+<<<<<<< HEAD:src/main/java/com/tfm/qna/controller/QNAController.java
 import com.tfm.qna.service.CommandProcess;
 import com.tfm.qna.service.FaqDeleteService;
 import com.tfm.qna.service.FaqDetailService;
@@ -18,21 +19,30 @@ import com.tfm.qna.service.InquiryUpdateFormService;
 import com.tfm.qna.service.InquiryUpdateService;
 import com.tfm.qna.service.InquiryWriteFormService;
 import com.tfm.qna.service.InquiryWriteService;
+=======
+import com.tfm.service.*;
+
+
+>>>>>>> main:src/main/java/com/tfm/controller/BoardController.java
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+<<<<<<< HEAD:src/main/java/com/tfm/qna/controller/QNAController.java
 @MultipartConfig(fileSizeThreshold = 10 * 1024,
 				maxFileSize = 1024 * 1024 * 10,
 				maxRequestSize = 1024 * 1024 * 100)
 
 @WebServlet(name="QNAController")
 public class QNAController extends HttpServlet{
+=======
+@WebServlet(name="BoardController",urlPatterns="*.mvc")
+public class BoardController extends HttpServlet {
+>>>>>>> main:src/main/java/com/tfm/controller/BoardController.java
 
 	private final String PREFIX = "/WEB-INF/index.jsp?body=";
 	private final String SUFFIX = ".jsp";
@@ -54,45 +64,74 @@ public class QNAController extends HttpServlet{
 		System.out.println("init - " + parentFile);
 	}
 	
-	@Override
-	protected void doGet(
-			HttpServletRequest request, HttpServletResponse response) 
-					throws ServletException, IOException {
-		doProcess(request,response);
-	}
 	
 	@Override
-	protected void doPost(
-			HttpServletRequest request, HttpServletResponse response) 
-					throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		doProcess(request, response);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		doProcess(request, response);
 	}
 	
-	protected void doProcess(
-			HttpServletRequest request, HttpServletResponse response) 
-					throws ServletException, IOException {
+	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String command = requestURI.substring(contextPath.length());
-		
+		System.out.println("command = " + command);
 		
 		String viewPage = null;
 		CommandProcess service = null;
 		
-		
-		if (command.equals("/*.mvc") || command.equals("/main.mvc")) {
-	        service = new MainFormService();
-	        viewPage = service.requestProcess(request, response);
-	    
-	        
+		if(command.equals("/*.mvc") || command.equals("/main.mvc")){
+			service = new MainFormService();
+			viewPage = service.requestProcess(request, response);
+<<<<<<< HEAD:src/main/java/com/tfm/qna/controller/QNAController.java
+=======
+		}else if(command.equals("/loginForm.mvc")) {
+			service = new LoginService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/joinMemberForm.mvc")) {
+			service = new JoinMemberFormService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/joinMember.mvc")) {
+			service = new JoinMemberService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/loginCheck.mvc")) {
+			service = new LoginCheckService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/logout.mvc")) {
+			service = new LogoutService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/myProfileForm.mvc")) {
+			service = new MyProfileFormService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/updateProfile.mvc")) {
+			service = new UpdateProfileService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/cancleMembership.mvc")) {
+			service = new CancleMembershipService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/searchIdForm.mvc")) {
+			service = new SearchIdFormService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/searchPassForm.mvc")) {
+			service = new SearchPassFormService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/searchIdPass.mvc")) {
+			service = new SearchIdPassService();
+			viewPage = service.requestProcess(request, response);
 		}else if (command.equals("/faqlist.mvc")) {
 	        service = new FaqService();
 	        viewPage = service.requestProcess(request, response);
 	    } else if (command.equals("/faqDetail.mvc")) {
 			service = new FaqDetailService();
 			viewPage = service.requestProcess(request, response);
+>>>>>>> main:src/main/java/com/tfm/controller/BoardController.java
 	    } else if (command.equals("/faqwriteForm.mvc")) {
 			service = new FaqWriteFormService();
 			viewPage = service.requestProcess(request, response);
@@ -107,6 +146,7 @@ public class QNAController extends HttpServlet{
 			viewPage = service.requestProcess(request, response);
 		} else if (command.equals("/faqdeleteProcess.mvc")) {
 			service = new FaqDeleteService();
+<<<<<<< HEAD:src/main/java/com/tfm/qna/controller/QNAController.java
 			viewPage = service.requestProcess(request, response);
 		
 		
@@ -134,23 +174,25 @@ public class QNAController extends HttpServlet{
 			viewPage = service.requestProcess(request, response);
 			
 	
+=======
+			viewPage = service.requestProcess(request, response);	
+		}
 		
-		if (viewPage != null) {
-			// 반환값에 접두어가 있으면 처리 (r:, f:)
-			if (viewPage.startsWith("r:") || viewPage.startsWith("redirect:")) {
-				response.sendRedirect(viewPage.substring(viewPage.indexOf(":") + 1));
-			} else if (viewPage.startsWith("f:")) {
-				RequestDispatcher rd = request.getRequestDispatcher(viewPage.substring(2));
+>>>>>>> main:src/main/java/com/tfm/controller/BoardController.java
+		
+		if(viewPage != null) {
+			String view = viewPage.split(":")[0];
+			System.out.println("view = " + view);
+			if(view.equals("r") || view.equals("redirect")) {
+				response.sendRedirect(viewPage.split(":")[1]);
+			}else if(view.equals("f")){
+				RequestDispatcher rd =  request.getRequestDispatcher(viewPage.split(":")[1]);
 				rd.forward(request, response);
-			} else {
-				// index.jsp 템플릿 방식 사용
-				RequestDispatcher rd = request.getRequestDispatcher(PREFIX + viewPage + SUFFIX);
+			}else {
+				RequestDispatcher rd =  request.getRequestDispatcher(PREFIX + view + SUFFIX);
 				rd.forward(request, response);
 			}
-		} else {
-			response.sendError(HttpServletResponse.SC_NOT_FOUND);
 		}
-
-	}
 	
+	}
 }
