@@ -2,7 +2,6 @@ package com.tfm.ajax.controller;
 
 import java.io.IOException;
 
-import com.tfm.ajax.action.AjaxProcess;
 import com.tfm.ajax.action.*;
 
 import jakarta.servlet.ServletException;
@@ -32,10 +31,10 @@ public class AjaxController extends HttpServlet {
 		
 		AjaxProcess ajaxAction = null;
 		
-		if(command.equals("/overlapIdCheck.ajax")) {
+		if(command.equals("/overlapIdCheck.ajax")) {  // 로그인
 			ajaxAction = new OverlapIdCheckAction();
 			ajaxAction.ajaxProcess(request, response);
-		}else if(command.equals("/atRecm.ajax")) {
+		}else if(command.equals("/atRecm.ajax")) {    // 기사 게시판
 			ajaxAction = new AtRecmAction();
 			ajaxAction.ajaxProcess(request, response);
 		} else if(command.equals("/atReplyWrite.ajax")) {
@@ -46,6 +45,18 @@ public class AjaxController extends HttpServlet {
 			ajaxAction.ajaxProcess(request, response);
 		} else if(command.equals("/atReplyDelete.ajax")) {
 			ajaxAction = new AtReplyDeleteAction();
+			ajaxAction.ajaxProcess(request, response);
+		}else if(command.equals("/recommend.ajax")) {
+			ajaxAction = new RvRecommendAction();
+			ajaxAction.ajaxProcess(request, response);
+		} else if(command.equals("/rvReplyWrite.ajax")) {  // 리뷰 게시판
+			ajaxAction = new RvReplyWriteAction();
+			ajaxAction.ajaxProcess(request, response);
+		} else if(command.equals("/rvReplyUpdate.ajax")) {
+			ajaxAction = new RvReplyUpdateAction();
+			ajaxAction.ajaxProcess(request, response);	
+		} else if(command.equals("/rvReplyDelete.ajax")) {
+			ajaxAction = new RvReplyDeleteAction();
 			ajaxAction.ajaxProcess(request, response);
 		}
 	}

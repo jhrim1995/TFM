@@ -1,4 +1,4 @@
-package com.jspreview.mh.vo;
+package com.tfm.vo;
 
 import java.sql.Timestamp;
 

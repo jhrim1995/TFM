@@ -8,11 +8,12 @@ import com.tfm.service.*;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+@MultipartConfig(fileSizeThreshold = 1024 * 10, maxFileSize = 1024 * 1024 * 10, maxRequestSize = 1024 * 1024 * 10 * 10)
 @WebServlet(name="BoardController",urlPatterns="*.mvc")
 public class BoardController extends HttpServlet {
 
@@ -157,7 +158,28 @@ public class BoardController extends HttpServlet {
 		} else if(command.equals("/atDeleteProcess.mvc")) {
 			service = new AtDeleteService();
 			viewPage = service.requestProcess(request, response);
-		}
+		} else if(command.equals("/rvBoardList.mvc")){  // 리뷰 게시판
+			service = new RvBoardListService();
+			viewPage = service.requestProcess(request, response);		
+		} else if(command.equals("/rvBoardDetail.mvc")) {
+			service = new RvBoardDetailService();
+			viewPage = service.requestProcess(request, response);
+		} else if(command.equals("/rvWriteForm.mvc")) {
+			service = new RvBoardWriteFormService();
+			viewPage = service.requestProcess(request, response);
+		} else if(command.equals("/rvWriteProcess.mvc")) {
+			service = new RvBoardWriteService();
+			viewPage = service.requestProcess(request, response);
+		} else if(command.equals("/rvUpdateForm.mvc")) {
+			service = new RvUpdateFormService();
+			viewPage = service.requestProcess(request, response);
+		} else if(command.equals("/rvUpdateProcess.mvc")) {
+			service = new RvUpdateService();
+			viewPage = service.requestProcess(request,response);	
+		} else if(command.equals("/rvDeleteProcess.mvc")) {
+			service = new RvDeleteService();
+			viewPage = service.requestProcess(request, response);		
+		} 
 		
 		
 		if(viewPage != null) {

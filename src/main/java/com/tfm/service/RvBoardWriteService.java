@@ -1,4 +1,4 @@
-package com.jspreview.mh.service;
+package com.tfm.service;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,7 +6,8 @@ import java.util.Collection;
 import java.util.UUID;
 
 import com.jspreview.mh.dao.RvBoardDao;
-import com.jspreview.mh.vo.RvBoard;
+import com.tfm.service.CommandProcess;
+import com.tfm.vo.RvBoard;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

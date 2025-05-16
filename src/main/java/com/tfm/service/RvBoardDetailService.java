@@ -1,12 +1,12 @@
-package com.jspreview.mh.service;
+package com.tfm.service;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import com.jspreview.mh.dao.RvBoardDao;
-import com.jspreview.mh.vo.RvBoard;
-import com.jspreview.mh.vo.RvReply;
+import com.tfm.vo.RvBoard;
+import com.tfm.vo.RvReply;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;

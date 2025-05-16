@@ -12,8 +12,9 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import com.jspreview.mh.vo.RvBoard;
-import com.jspreview.mh.vo.RvReply;
+import com.tfm.bbs.dao.DBManager;
+import com.tfm.vo.RvBoard;
+import com.tfm.vo.RvReply;
 
 public class RvBoardDao {
 	

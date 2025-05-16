@@ -1,4 +1,4 @@
-package com.jspreview.mh.ajax;
+package com.tfm.ajax.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;

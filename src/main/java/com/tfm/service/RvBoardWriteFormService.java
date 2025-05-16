@@ -1,7 +1,9 @@
-package com.jspreview.mh.service;
+package com.tfm.service;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+
+import com.tfm.service.CommandProcess;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,7 +32,7 @@ public class RvBoardWriteFormService implements CommandProcess{
 			return null;
 		}
 		
-		return "rvboard/writeForm";
+		return "rvboard/rvWriteForm";
 	}
 
 }

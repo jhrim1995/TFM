@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 <script src="bootstrap/bootstrap.bundle.min.js"></script>
-=======
->>>>>>> Seok
->>>>>>> main
 <div class="top-bar">
 	<div class = "col-3">
     <div class="logo">
@@ -16,7 +10,7 @@
 	<div class="col-6 text-center">
     <div class="menu-center">
       <a href="atBoardList.mvc" class="menu-box">기사</a>
-      <a href="#" class="menu-box">리뷰</a>
+      <a href="rvBoardList.mvc" class="menu-box">리뷰</a>
       <a href="#" class="menu-box">자유</a>
       <a href="faqlist.mvc" class="menu-box">Q&A</a>
     </div>
