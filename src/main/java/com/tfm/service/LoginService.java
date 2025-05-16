@@ -1,4 +1,4 @@
-package com.tfm.lss.service;
+package com.tfm.service;
 
 import java.io.IOException;
 
@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public class LoginService implements CommandProcess, AtCommandProcess{
 
 	@Override
-	public String requestProcess(HttpServletRequest request, HttpServletResponse response) {
+	public String requestProcess(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 			
 		return "login/login";
 	}

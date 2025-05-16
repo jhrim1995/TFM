@@ -1,8 +1,6 @@
-package com.tfm.lss.service;
+package com.tfm.service;
 
 import java.io.IOException;
-import java.util.Iterator;
-
 
 import com.tfm.at.service.AtCommandProcess;
 
@@ -10,15 +8,16 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class MainFormService implements CommandProcess, AtCommandProcess{
-
+public class SearchPassFormService implements CommandProcess, AtCommandProcess{
+	
 	@Override
 	public String requestProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String findThing = "pass";
 		
+		request.setAttribute("findThing", findThing);
 		
-		return "f:WEB-INF/main01.jsp";
+		return "login/searchIdPass";
 	}
 
-	
 }

@@ -1,4 +1,4 @@
-package com.tfm.qna.service;
+package com.tfm.service;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-public class InquiryWriteFormService implements CommandProcess{
+public class FaqWriteFormService implements CommandProcess{
 
 	@Override
 	public String requestProcess(
@@ -24,12 +24,12 @@ public class InquiryWriteFormService implements CommandProcess{
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("	alert('로그인이 필요합니다.')");
-			out.println("	location.href='loginForm'");
+			out.println("	location.href='loginForm.mvc'");
 			out.println("</script>");
 		
 			return null;
 		}
-		return "qna/inquirywriteForm";
+		return "qna/faqwriteForm";
 		
 	}
 	

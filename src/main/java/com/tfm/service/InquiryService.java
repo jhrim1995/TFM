@@ -1,16 +1,16 @@
-package com.tfm.qna.service;
+package com.tfm.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.tfm.qna.dao.FaqDao;
-import com.tfm.qna.vo.Faq;
+import com.tfm.qna.dao.InquiryDao;
+import com.tfm.qna.vo.Inquiry;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class FaqService implements CommandProcess {
+public class InquiryService implements CommandProcess {
 
 	private static final int PAGE_SIZE = 10;
 	
@@ -34,19 +34,19 @@ public class FaqService implements CommandProcess {
 		int startRow = currentPage * PAGE_SIZE - (PAGE_SIZE - 1);
 		int endRow = startRow + PAGE_SIZE - 1;
 		
-		FaqDao dao = new FaqDao();
-		ArrayList<Faq> fList = null;
+		InquiryDao dao = new InquiryDao();
+		ArrayList<Inquiry> iList = null;
 		int listCount = 0;
 		
 		boolean searchOption = (type == null || type.equals("")
 				|| keyword == null || keyword.equals("")) ? false : true;
 		
 		if(!searchOption) {
-			fList = dao.faqList(startRow, endRow);
-			listCount = dao.getFaqCount();
+			iList = dao.inquiryList(startRow, endRow);
+			listCount = dao.getInquiryCount();
 		}else {
-			fList = dao.searchList(type, keyword, startRow, endRow);
-			listCount = dao.getFaqCount(type, keyword);
+			iList = dao.searchList(type, keyword, startRow, endRow);
+			listCount = dao.getInquiryCount(type, keyword);
 		}
 		
 		int pageCount = listCount / PAGE_SIZE + (listCount % PAGE_SIZE == 0 ? 0 : 1);
@@ -59,7 +59,7 @@ public class FaqService implements CommandProcess {
 			endPage = pageCount;
 		}
 		
-		request.setAttribute("fList", fList);
+		request.setAttribute("iList", iList);
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("pageGroup", PAGE_GROUP);
 		request.setAttribute("pageCount", pageCount);
@@ -71,7 +71,7 @@ public class FaqService implements CommandProcess {
 			request.setAttribute("type", type);
 			request.setAttribute("keyword", keyword);
 		}
-		return "qna/faqlist";
+		return "qna/inquirylist";
 	}
 
 }
