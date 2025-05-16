@@ -50,6 +50,28 @@
 								<pre>${ b.content }</pre>
 							</td>
 						</tr>
+						<tr>
+							<td colspan="4" >
+								<!-- 지도를 표시할 div 입니다 -->
+
+<div id="map" style="width: 500px; height: 400px;"></div>   // 지도 나오는곳
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bd0bb940f3caa6072d4a37d6db9c2c42"></script>
+<script type="text/javascript">
+   
+   var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+   var options = { //지도를 생성할 때 필요한 기본 옵션
+      center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
+      level: 3 //지도의 레벨(확대, 축소 정도)
+   };
+
+   var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+   
+</script>
+
+
+							</td>
+						</tr>
 					</tbody>
 				</table>
 			</div>

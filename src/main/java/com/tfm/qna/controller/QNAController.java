@@ -2,7 +2,7 @@ package com.tfm.qna.controller;
 
 import java.io.File;
 import java.io.IOException;
-import com.tfm.qna.service.CancleMembershipService;
+
 import com.tfm.qna.service.CommandProcess;
 import com.tfm.qna.service.FaqDeleteService;
 import com.tfm.qna.service.FaqDetailService;
@@ -18,17 +18,6 @@ import com.tfm.qna.service.InquiryUpdateFormService;
 import com.tfm.qna.service.InquiryUpdateService;
 import com.tfm.qna.service.InquiryWriteFormService;
 import com.tfm.qna.service.InquiryWriteService;
-import com.tfm.qna.service.JoinMemberFormService;
-import com.tfm.qna.service.JoinMemberService;
-import com.tfm.qna.service.LoginCheckService;
-import com.tfm.qna.service.LoginService;
-import com.tfm.qna.service.LogoutService;
-import com.tfm.qna.service.MainFormService;
-import com.tfm.qna.service.MyProfileFormService;
-import com.tfm.qna.service.SearchIdFormService;
-import com.tfm.qna.service.SearchIdPassService;
-import com.tfm.qna.service.SearchPassFormService;
-import com.tfm.qna.service.UpdateProfileService;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
@@ -42,7 +31,7 @@ import jakarta.servlet.http.HttpServletResponse;
 				maxFileSize = 1024 * 1024 * 10,
 				maxRequestSize = 1024 * 1024 * 100)
 
-@WebServlet(name="QNAController", urlPatterns="*.mvc")
+@WebServlet(name="QNAController")
 public class QNAController extends HttpServlet{
 
 	private final String PREFIX = "/WEB-INF/index.jsp?body=";
@@ -144,42 +133,7 @@ public class QNAController extends HttpServlet{
 			service = new InquiryDeleteService();
 			viewPage = service.requestProcess(request, response);
 			
-			
-		}else if(command.equals("/loginForm.mvc")) {
-			service = new LoginService();
-			viewPage = service.requestProcess(request, response);
-		}else if(command.equals("/joinMemberForm.mvc")) {
-			service = new JoinMemberFormService();
-			viewPage = service.requestProcess(request, response);
-		}else if(command.equals("/joinMember.mvc")) {
-			service = new JoinMemberService();
-			viewPage = service.requestProcess(request, response);
-		}else if(command.equals("/loginCheck.mvc")) {
-			service = new LoginCheckService();
-			viewPage = service.requestProcess(request, response);
-		}else if(command.equals("/logout.mvc")) {
-			service = new LogoutService();
-			viewPage = service.requestProcess(request, response);
-		}else if(command.equals("/myProfileForm.mvc")) {
-			service = new MyProfileFormService();
-			viewPage = service.requestProcess(request, response);
-		}else if(command.equals("/updateProfile.mvc")) {
-			service = new UpdateProfileService();
-			viewPage = service.requestProcess(request, response);
-		}else if(command.equals("/cancleMembership.mvc")) {
-			service = new CancleMembershipService();
-			viewPage = service.requestProcess(request, response);
-		}else if(command.equals("/searchIdForm.mvc")) {
-			service = new SearchIdFormService();
-			viewPage = service.requestProcess(request, response);
-		}else if(command.equals("/searchPassForm.mvc")) {
-			service = new SearchPassFormService();
-			viewPage = service.requestProcess(request, response);
-		}else if(command.equals("/searchIdPass.mvc")) {
-			service = new SearchIdPassService();
-			viewPage = service.requestProcess(request, response);
-		}
-		
+	
 		
 		if (viewPage != null) {
 			// 반환값에 접두어가 있으면 처리 (r:, f:)
