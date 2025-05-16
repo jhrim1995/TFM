@@ -2,15 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="js/loginCheck.js"></script>
+
 <div class="container">
+	<div class="col-7 bg-body mx-auto rounded-5">	
 	
-		<div class="row my-5 text-center">
-			<div class="col">
+		<div class="row text-center">
+			<div class="col my-5">
 					<a href="main.mvc"><img src = "images/logo.jpg" height="100" width="400"/></a>
 			</div>
 		</div>
-		
-
 		
 			<div class = "row">
 					<div class="col">
@@ -37,10 +37,11 @@
 			</div>
 	
 		
-		<div class="row my-5 text-center">
-			<div class="col">
+		<div class="row text-center">
+			<div class="col my-5">
 				<a class="text-decoration-none mx-3"  href = "searchIdForm.mvc">아이디찾기 </a> | <a class="text-decoration-none mx-3" href = "searchPassForm.mvc">비밀번호찾기 </a> | <a class="text-decoration-none mx-3" href = "joinMemberForm.mvc"> 회원가입 </a>
 			</div>
 		</div>
 		
+	</div>		
 </div>

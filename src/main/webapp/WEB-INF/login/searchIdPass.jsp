@@ -39,7 +39,7 @@
 	<div class="row my-2">
 					<input class="form-control" type="text"  name="phone"  id="phone" placeholder="핸드폰 번호 ( - 포함 해주세요.)">
 	</div>
-	
+	<div class="text-danger text-center" id="info"></div>
 	<div class="row my-2">
 					<input class="btn btn-lg btn-dark" type="submit" value="찾기" >
 	</div>

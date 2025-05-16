@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -104,6 +105,12 @@
     <div class="logo">
       <a href="main.mvc"><img src ="images/logo.jpg" height="40" width="100" /></a>
     </div>
+    <div>
+	 			<span>
+	 				<c:if test="${sessionScope.isLogin}"><h2>${sessionScope.nickname} 님 반갑습니다.</h2></c:if>
+	 				<c:if test="${!sessionScope.isLogin}"><h2>로그인을 해주세요.</h2></c:if>
+	 			</span>
+	 	</div>
     <div class="auth-buttons">
       <a href='${ sessionScope.isLogin ? "logout.mvc" : "loginForm.mvc"}'>${ sessionScope.isLogin ? "로그아웃" : "로그인"}</a>
       <a href='${ sessionScope.isLogin ? "myProfileForm.mvc" : "joinMemberForm.mvc"}'>${ sessionScope.isLogin ? "내정보" : "회원가입"}</a>
