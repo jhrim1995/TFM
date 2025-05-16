@@ -32,30 +32,31 @@ $(document).ready(function() {
 											+ (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) + ":"
 											+ (date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds());
 						var result =
-						'<div class="row border border-top-0 replyRow" >'
-						+'	<div class="col" >'
-						+'		<div class="row bg-light p-2" >'
-						+'			<div class="col-4" >'
-						+'				<span>'+v.m_id+'</span>'
-						+'			</div>'
-						+'				<div class="col-8 text-end" >'
-						+'					<span class="me-3" >'+strDate+'</span>'
-						+'					<button class="atModifyReply btn btn-outline-primary btn-sm" data-no="'+v.c_no+'" >'
-						+'					<i class="bi bi-pencil">수정</i></button>'
-						+'					<button class="atDeleteReply btn btn-outline-danger btn-sm" data-no="'+v.c_no+'" >'
-						+'					<i class="bi bi-trash3">삭제</i></button>'
-						+'<button class="btn btn-outline-warning btn-sm" onclick="atReportReply(\''+v.c_no+'\')">'
-						+'<i class="bi bi-exclamation-triangle">신고</i></button>'
-						+'				</div>'
-						+'			</div>'
-						+'			<div class="row" >'
-						+'				<div class="col p-3" >'
-						+'					<pre>'+v.c_con+'</pre>'
-						+'				</div>'
-						+'			</div>'
-						+'		</div>'
-						+'	</div>'
-						
+						'<div class="replyRow row border border-top-0 " >'+
+										'<div class="col" >'+
+											'<div class="row bg-light p-2" >'+
+												'<div class="col-4" >'+
+													`<span>${ v.m_id }</span>`+
+												'</div>'+
+												'<div class="col-8 text-end p-1" >'+
+													'<span class="me-3" >'+
+														`${ strDate }`+
+													'</span>'+
+													`<button class="atModifyReply btn btn-outline-primary btn-sm" data-no="${v.c_no }" >`+
+													'<i class="bi bi-pencil">수정</i></button>'+
+													`<button class="atDeleteReply btn btn-outline-danger btn-sm" data-no="${v.c_no }" >`+
+													'<i class="bi bi-trash3">삭제</i></button>'+
+													`<button class="atDeleteReply btn btn-outline-warning btn-sm" onclick="atReportReply('${v.c_no }')" >`+
+													'<i class="bi bi-exclamation-triangle">신고</i></button>'+
+												'</div>'+
+											'</div>'+
+											'<div class="row" >'+
+												'<div class="col p-2" >'+
+													`<pre>${ v.c_con }</pre>`+
+												'</div>'+
+											'</div>'+
+										'</div>'+
+									'</div>'
 						$("#atReplyList").append(result);
 						
 					}); // end each
@@ -123,29 +124,31 @@ $(document).ready(function() {
 										+ (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) + ":"
 										+ (date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds());
 					var result =
-					'<div class="row border border-top-0 replyRow" >'
-					+'	<div class="col" >'
-					+'		<div class="row bg-light p-2" >'
-					+'			<div class="col-4" >'
-					+'				<span>'+v.m_id+'</span>'
-					+'			</div>'
-					+'				<div class="col-8 text-end" >'
-					+'					<span class="me-3" >'+strDate+'</span>'
-					+'					<button class="atModifyReply btn btn-outline-primary btn-sm" data-no="'+v.c_no+'" >'
-					+'					<i class="bi bi-pencil">수정</i></button>'
-					+'					<button class="atDeleteReply btn btn-outline-danger btn-sm" data-no="'+v.c_no+'" >'
-					+'					<i class="bi bi-trash3">삭제</i></button>'
-					+'<button class="btn btn-outline-warning btn-sm" onclick="atReportReply(\''+v.c_no+'\')">'
-					+'<i class="bi bi-exclamation-triangle">신고</i></button>'
-					+'				</div>'
-					+'			</div>'
-					+'			<div class="row" >'
-					+'				<div class="col p-3" >'
-					+'					<pre>'+v.c_con+'</pre>'
-					+'				</div>'
-					+'			</div>'
-					+'		</div>'
-					+'	</div>'
+					'<div class="replyRow row border border-top-0 " >'+
+															'<div class="col" >'+
+																'<div class="row bg-light p-2" >'+
+																	'<div class="col-4" >'+
+																		`<span>${ v.m_id }</span>`+
+																	'</div>'+
+																	'<div class="col-8 text-end p-1" >'+
+																		'<span class="me-3" >'+
+																			`${ strDate }`+
+																		'</span>'+
+																		`<button class="atModifyReply btn btn-outline-primary btn-sm" data-no="${v.c_no }" >`+
+																		'<i class="bi bi-pencil">수정</i></button>'+
+																		`<button class="atDeleteReply btn btn-outline-danger btn-sm" data-no="${v.c_no }" >`+
+																		'<i class="bi bi-trash3">삭제</i></button>'+
+																		`<button class="atDeleteReply btn btn-outline-warning btn-sm" onclick="atReportReply('${v.c_no }')" >`+
+																		'<i class="bi bi-exclamation-triangle">신고</i></button>'+
+																	'</div>'+
+																'</div>'+
+																'<div class="row" >'+
+																	'<div class="col p-2" >'+
+																		`<pre>${ v.c_con }</pre>`+
+																	'</div>'+
+																'</div>'+
+															'</div>'+
+														'</div>'
 					
 					$("#atReplyList").append(result);
 					
@@ -188,29 +191,31 @@ $(document).ready(function() {
 										+ (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) + ":"
 										+ (date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds());
 					var result =
-					'<div class="row border border-top-0 replyRow" >'
-					+'	<div class="col" >'
-					+'		<div class="row bg-light p-2" >'
-					+'			<div class="col-4" >'
-					+'				<span>'+v.m_id+'</span>'
-					+'			</div>'
-					+'				<div class="col-8 text-end" >'
-					+'					<span class="me-3" >'+strDate+'</span>'
-					+'					<button class="atModifyReply btn btn-outline-primary btn-sm" data-no="'+v.c_no+'" >'
-					+'					<i class="bi bi-pencil">수정</i></button>'
-					+'					<button class="atDeleteReply btn btn-outline-danger btn-sm" data-no="'+v.c_no+'" >'
-					+'					<i class="bi bi-trash3">삭제</i></button>'
-					+'<button class="btn btn-outline-warning btn-sm" onclick="atReportReply(\''+v.c_no+'\')">'
-					+'<i class="bi bi-exclamation-triangle">신고</i></button>'
-					+'				</div>'
-					+'			</div>'
-					+'			<div class="row" >'
-					+'				<div class="col p-3" >'
-					+'					<pre>'+v.c_con+'</pre>'
-					+'				</div>'
-					+'			</div>'
-					+'		</div>'
-					+'	</div>'
+					'<div class="replyRow row border border-top-0 " >'+
+															'<div class="col" >'+
+																'<div class="row bg-light p-2" >'+
+																	'<div class="col-4" >'+
+																		`<span>${ v.m_id }</span>`+
+																	'</div>'+
+																	'<div class="col-8 text-end p-1" >'+
+																		'<span class="me-3" >'+
+																			`${ strDate }`+
+																		'</span>'+
+																		`<button class="atModifyReply btn btn-outline-primary btn-sm" data-no="${v.c_no }" >`+
+																		'<i class="bi bi-pencil">수정</i></button>'+
+																		`<button class="atDeleteReply btn btn-outline-danger btn-sm" data-no="${v.c_no }" >`+
+																		'<i class="bi bi-trash3">삭제</i></button>'+
+																		`<button class="atDeleteReply btn btn-outline-warning btn-sm" onclick="atReportReply('${v.c_no }')" >`+
+																		'<i class="bi bi-exclamation-triangle">신고</i></button>'+
+																	'</div>'+
+																'</div>'+
+																'<div class="row" >'+
+																	'<div class="col p-2" >'+
+																		`<pre>${ v.c_con }</pre>`+
+																	'</div>'+
+																'</div>'+
+															'</div>'+
+														'</div>'
 					
 					$("#atReplyList").append(result);
 					$("#atReplyList").removeClass("text-center");
