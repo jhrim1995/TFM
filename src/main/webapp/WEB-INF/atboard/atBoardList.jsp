@@ -52,7 +52,9 @@
 			<c:if test="${ not searchOption }">
 				<div class="row my-3">
 					<div class="col text-end">
+						<c:if test="${ sessionScope.id == 'atadmin' }">
 						<a href="atWriteForm.mvc" class="btn btn-outline-info">글쓰기</a>
+						</c:if>
 					</div>
 				</div>
 			</c:if>
