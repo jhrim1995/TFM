@@ -3,10 +3,6 @@ package com.tfm.lss.service;
 import java.io.IOException;
 import java.util.Iterator;
 
-import org.jsoup.*;
-import org.jsoup.nodes.*;
-import org.jsoup.select.*;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
