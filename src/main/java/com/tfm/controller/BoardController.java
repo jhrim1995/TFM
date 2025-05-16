@@ -3,27 +3,8 @@ package com.tfm.controller;
 import java.io.File;
 import java.io.IOException;
 
-<<<<<<< HEAD:src/main/java/com/tfm/qna/controller/QNAController.java
-import com.tfm.qna.service.CommandProcess;
-import com.tfm.qna.service.FaqDeleteService;
-import com.tfm.qna.service.FaqDetailService;
-import com.tfm.qna.service.FaqService;
-import com.tfm.qna.service.FaqUpdateFormService;
-import com.tfm.qna.service.FaqUpdateService;
-import com.tfm.qna.service.FaqWriteFormService;
-import com.tfm.qna.service.FaqWriteService;
-import com.tfm.qna.service.InquiryDeleteService;
-import com.tfm.qna.service.InquiryDetailService;
-import com.tfm.qna.service.InquiryService;
-import com.tfm.qna.service.InquiryUpdateFormService;
-import com.tfm.qna.service.InquiryUpdateService;
-import com.tfm.qna.service.InquiryWriteFormService;
-import com.tfm.qna.service.InquiryWriteService;
-=======
 import com.tfm.service.*;
 
-
->>>>>>> main:src/main/java/com/tfm/controller/BoardController.java
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
@@ -32,17 +13,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-<<<<<<< HEAD:src/main/java/com/tfm/qna/controller/QNAController.java
-@MultipartConfig(fileSizeThreshold = 10 * 1024,
-				maxFileSize = 1024 * 1024 * 10,
-				maxRequestSize = 1024 * 1024 * 100)
-
-@WebServlet(name="QNAController")
-public class QNAController extends HttpServlet{
-=======
 @WebServlet(name="BoardController",urlPatterns="*.mvc")
 public class BoardController extends HttpServlet {
->>>>>>> main:src/main/java/com/tfm/controller/BoardController.java
 
 	private final String PREFIX = "/WEB-INF/index.jsp?body=";
 	private final String SUFFIX = ".jsp";
@@ -90,13 +62,7 @@ public class BoardController extends HttpServlet {
 		if(command.equals("/*.mvc") || command.equals("/main.mvc")){
 			service = new MainFormService();
 			viewPage = service.requestProcess(request, response);
-<<<<<<< HEAD
-<<<<<<< HEAD:src/main/java/com/tfm/qna/controller/QNAController.java
-=======
-		}else if(command.equals("/loginForm.mvc")) {
-=======
 		}else if(command.equals("/loginForm.mvc")) {  // 로그인
->>>>>>> Seok
 			service = new LoginService();
 			viewPage = service.requestProcess(request, response);
 		}else if(command.equals("/joinMemberForm.mvc")) {
@@ -135,7 +101,6 @@ public class BoardController extends HttpServlet {
 	    } else if (command.equals("/faqDetail.mvc")) {
 			service = new FaqDetailService();
 			viewPage = service.requestProcess(request, response);
->>>>>>> main:src/main/java/com/tfm/controller/BoardController.java
 	    } else if (command.equals("/faqwriteForm.mvc")) {
 			service = new FaqWriteFormService();
 			viewPage = service.requestProcess(request, response);
@@ -150,11 +115,7 @@ public class BoardController extends HttpServlet {
 			viewPage = service.requestProcess(request, response);
 		} else if (command.equals("/faqdeleteProcess.mvc")) {
 			service = new FaqDeleteService();
-<<<<<<< HEAD:src/main/java/com/tfm/qna/controller/QNAController.java
 			viewPage = service.requestProcess(request, response);
-		
-		
-			
 		} else if (command.equals("/inquirylist.mvc")) {
 	        service = new InquiryService();
 	        viewPage = service.requestProcess(request, response);
@@ -175,10 +136,6 @@ public class BoardController extends HttpServlet {
 			viewPage = service.requestProcess(request, response);
 		} else if (command.equals("/inquirydeleteProcess.mvc")) {
 			service = new InquiryDeleteService();
-			viewPage = service.requestProcess(request, response);
-			
-	
-=======
 			viewPage = service.requestProcess(request, response);	
 		}else if(command.equals("/atBoardList.mvc")) {  // 기사 게시판
 			service = new AtBoardListService();
@@ -202,7 +159,6 @@ public class BoardController extends HttpServlet {
 			viewPage = service.requestProcess(request, response);
 		}
 		
->>>>>>> main:src/main/java/com/tfm/controller/BoardController.java
 		
 		if(viewPage != null) {
 			String view = viewPage.split(":")[0];
