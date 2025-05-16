@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import com.tfm.bbs.dao.MemberDao;
+import com.tfm.bbs.vo.Member;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -43,8 +44,11 @@ public class LoginCheckService implements CommandProcess{
 			return null;
 		}
 		
+		Member member = dao.myProfileAll(id);
+		
 		request.getSession().setAttribute("isLogin", true);
 		request.getSession().setAttribute("id", id);
+		request.getSession().setAttribute("nickname", member.getNickname());
 		
 		return "r:main.mvc";
 	}
