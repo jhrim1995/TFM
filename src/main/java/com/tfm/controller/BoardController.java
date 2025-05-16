@@ -117,6 +117,27 @@ public class BoardController extends HttpServlet {
 		} else if (command.equals("/faqdeleteProcess.mvc")) {
 			service = new FaqDeleteService();
 			viewPage = service.requestProcess(request, response);	
+		} else if (command.equals("/inquirylist.mvc")) {
+	        service = new InquiryService();
+	        viewPage = service.requestProcess(request, response);
+		} else if (command.equals("/inquiryDetail.mvc")) {
+	        service = new InquiryDetailService();
+	        viewPage = service.requestProcess(request, response);
+		} else if (command.equals("/inquirywriteForm.mvc")) {
+			service = new InquiryWriteFormService();
+			viewPage = service.requestProcess(request, response);
+		} else if (command.equals("/inquirywriteProcess.mvc")) {
+			service = new InquiryWriteService();
+			viewPage = service.requestProcess(request, response);
+		} else if (command.equals("/inquiryupdateForm.mvc")) {
+			service = new InquiryUpdateFormService();
+			viewPage = service.requestProcess(request, response);
+		} else if (command.equals("/inquiryupdateProcess.mvc")) {
+			service = new InquiryUpdateService();
+			viewPage = service.requestProcess(request, response);
+		} else if (command.equals("/inquirydeleteProcess.mvc")) {
+			service = new InquiryDeleteService();
+			viewPage = service.requestProcess(request, response);
 		}else if(command.equals("/atBoardList.mvc")) {  // 기사 게시판
 			service = new AtBoardListService();
 			viewPage = service.requestProcess(request, response);
