@@ -32,3 +32,4 @@ desktop.ini
 # ========== 민감한 설정파일 ==========
 *.env
 *.properties
+/.metadata/
