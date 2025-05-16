@@ -1,6 +1,7 @@
 package com.tfm.service;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import com.tfm.at.dao.AtBoardDao;
@@ -10,6 +11,7 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 public class AtBoardListService implements CommandProcess {
 	private static final int PAGE_SIZE = 10;
@@ -17,6 +19,7 @@ public class AtBoardListService implements CommandProcess {
 
 	public String requestProcess(
 			HttpServletRequest req, HttpServletResponse resp) {
+	
 		String pageNum = req.getParameter("pageNum");
 		String type = req.getParameter("type");
 		String keyword = req.getParameter("keyword");
