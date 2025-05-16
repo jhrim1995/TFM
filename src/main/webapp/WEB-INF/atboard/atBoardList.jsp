@@ -130,7 +130,7 @@
 							<c:forEach var="i" begin="${ startPage }" end="${ endPage }" >
 								<c:if test="${ i == currentPage }">
 									<li class="page-item active" aria-current="page" >
-										<span class="page-link" ></span>
+										<span class="page-link" >${i}</span>
 									</li>
 								</c:if>
 								<c:if test="${ i != currentPage }">
@@ -162,7 +162,7 @@
 							<c:forEach var="i" begin="${ startPage }" end="${ endPage }" >
 								<c:if test="${ i == currentPage }">
 									<li class="page-item active" aria-current="page" >
-										<span class="page-link" ></span>
+										<span class="page-link" >${i}</span>
 									</li>
 								</c:if>
 								<c:if test="${ i != currentPage }">
