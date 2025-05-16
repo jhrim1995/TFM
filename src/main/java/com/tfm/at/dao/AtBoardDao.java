@@ -15,6 +15,22 @@ public class AtBoardDao {
 	private ResultSet rs;
 	private static DataSource ds;
 	
+	public void deleteReply(AtReply r) {
+		String deleteReply = "DELETE FROM at_reply WHERE c_no=?";
+		
+		try {
+			conn = AtDBManager.getConnection();
+			pstmt = conn.prepareStatement(deleteReply); 
+			pstmt.setInt(1, r.getC_no());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("BoardDao - deleteReply(r)");
+			e.printStackTrace();
+		} finally {
+			AtDBManager.close(conn, pstmt);
+		}
+	} // end deleteReply(AtReply r);
+	
 	public void updateReply(AtReply r) {
 		String updateReply = "UPDATE at_reply set c_con=?, c_date=SYSDATE WHERE c_no=?";
 		

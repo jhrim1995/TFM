@@ -30,6 +30,9 @@ public class AtAjaxController extends HttpServlet {
 		} else if(command.equals("/atReplyUpdate.ajax")) {
 			ajaxAction = new AtReplyUpdateAction();
 			ajaxAction.ajaxProcess(req, resp);
+		} else if(command.equals("/atReplyDelete.ajax")) {
+			ajaxAction = new AtReplyDeleteAction();
+			ajaxAction.ajaxProcess(req, resp);
 		}
 	}
 

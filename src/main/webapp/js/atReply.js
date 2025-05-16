@@ -3,6 +3,75 @@
  */
 $(document).ready(function() {
 	
+	$(document).on("click", ".atDeleteReply", function() {
+		let no = $(this).attr("data-no");
+		let m_id = $(this).parent().prev().find("span").text();
+		let at_no = $("#atReplyForm input[name=at_no]").val();
+		let params = "c_no="+no+"&at_no="+at_no;
+		console.log(params);
+		
+		$atReplyForm = $("#atReplyForm").slideUp(300);
+		let result = confirm(m_id+"님이 작성한"+no+"번 댓글을 삭제하시겠습니까?");
+		
+		if(result) {
+			$.ajax({
+				url: "atReplyDelete.ajax",
+				data: params,
+				type: "post",
+				dataType: "json",
+				"success": function(resData, status, xhr) {
+					console.log(resData);
+					
+					$("#rList").empty();
+					$.each(resData, function(i, v){
+						var date = new Date(v.regDate);
+						var strDate = date.getFullYear() + "-" + ((date.getMonth() + 1 < 10)
+											? "0" + (date.getMonth() + 1) : (date.getMonth() + 1)) + "-"
+											+ (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + " "
+											+ (date.getHours() < 10 ? "0" + date.getHours() : date.getHours()) + ":"
+											+ (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) + ":"
+											+ (date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds());
+						var result =
+						'<div class="row border border-top-0 replyRow" >'
+						+'	<div class="col" >'
+						+'		<div class="row bg-light p-2" >'
+						+'			<div class="col-4" >'
+						+'				<span>'+v.m_id+'</span>'
+						+'			</div>'
+						+'				<div class="col-8 text-end" >'
+						+'					<span class="me-3" >'+strDate+'</span>'
+						+'					<button class="atModifyReply btn btn-outline-primary btn-sm" data-no="'+v.c_no+'" >'
+						+'					<i class="bi bi-pencil">수정</i></button>'
+						+'					<button class="atDeleteReply btn btn-outline-danger btn-sm" data-no="'+v.c_no+'" >'
+						+'					<i class="bi bi-trash3">삭제</i></button>'
+						+'					<button class="atDeleteReply btn btn-outline-warning btn-sm" onclick="atReportReply(\''+v.c_no+'>'
+						+'					<i class="bi bi-exclamation-triangle">신고</i></button>'
+						+'				</div>'
+						+'			</div>'
+						+'			<div class="row" >'
+						+'				<div class="col p-3" >'
+						+'					<pre>'+v.c_con+'</pre>'
+						+'				</div>'
+						+'			</div>'
+						+'		</div>'
+						+'	</div>'
+						
+						$("#atReplyList").append(result);
+						
+					}); // end each
+					
+					$("#atReplyForm").val("");
+					$atReplyForm.css("display", "none");
+					$("#global-content > div.col").append($atReplyForm);
+				},
+				error: function(xhr, status, error) {
+					alert("ajax 실패 : "+status+"-"+xhr.status)
+				}
+			});
+		}
+		return false;
+	});
+	
 	$(document).on("click", "#atModifyReply", function() {
 		var $replyRow = $(this).parents(".replyRow");
 
@@ -33,11 +102,11 @@ $(document).ready(function() {
 		}
 		$atReplyForm = $("#atReplyForm").slideUp(300);
 		
-		var params = $(this).serialize()+"&c_con=" + @@@@@@@@@@@@@@@@@@@@
+		var params = $(this).serialize()+"&c_no=" +$(this).attr("data-no"); 
 		console.log(params);
 		
 		$.ajax({
-			url: "atReplyWrite.ajax",
+			url: "atReplyUpdate.ajax",
 			data: params,
 			type: "post",
 			dataType: "json",
@@ -79,14 +148,15 @@ $(document).ready(function() {
 					+'	</div>'
 					
 					$("#atReplyList").append(result);
-					$("#atReplyList").removeClass("text-center");
-					$("#atReplyList").removeClass("p-5");
 					
 				}); // end each
-				$("#atReplyForm").slideUp(300).add("#c_con").val("");
+				
+				$("#atReplyForm").val("");
+				$atReplyForm.css("display", "none");
+				$("#global-content > div.col").append($atReplyForm);
 			},
-			"error": function(xhr, status) {
-				console.log("error : " + status);
+			error: function(xhr, status, error) {
+				alert("ajax 실패 : "+status+"-"+xhr.status)
 			}
 		});
 		return false;
