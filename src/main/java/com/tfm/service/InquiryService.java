@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import com.tfm.qna.dao.InquiryDao;
-import com.tfm.qna.vo.Inquiry;
+import com.tfm.vo.Inquiry;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

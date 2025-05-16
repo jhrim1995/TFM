@@ -1,4 +1,4 @@
-package com.tfm.at.ajax;
+package com.tfm.ajax.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,7 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class AtRecmAction implements AtAjaxProcess {
+public class AtRecmAction implements AjaxProcess {
 	public void ajaxProcess(
 			HttpServletRequest req, HttpServletResponse resp) 
 					throws ServletException, IOException {

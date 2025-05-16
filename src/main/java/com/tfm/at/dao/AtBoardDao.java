@@ -6,7 +6,7 @@ import java.util.*;
 import javax.naming.*;
 import javax.sql.*;
 
-import com.tfm.at.vo.*;
+import com.tfm.vo.*;
 import com.tfm.bbs.dao.DBManager;
 
 public class AtBoardDao {

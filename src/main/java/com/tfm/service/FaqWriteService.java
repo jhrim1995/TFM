@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.UUID;
 
 import com.tfm.qna.dao.FaqDao;
-import com.tfm.qna.vo.Faq;
+import com.tfm.vo.Faq;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

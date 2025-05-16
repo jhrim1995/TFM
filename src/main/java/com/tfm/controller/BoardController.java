@@ -63,7 +63,7 @@ public class BoardController extends HttpServlet {
 		if(command.equals("/*.mvc") || command.equals("/main.mvc")){
 			service = new MainFormService();
 			viewPage = service.requestProcess(request, response);
-		}else if(command.equals("/loginForm.mvc")) {
+		}else if(command.equals("/loginForm.mvc")) {  // 로그인
 			service = new LoginService();
 			viewPage = service.requestProcess(request, response);
 		}else if(command.equals("/joinMemberForm.mvc")) {
@@ -96,7 +96,7 @@ public class BoardController extends HttpServlet {
 		}else if(command.equals("/searchIdPass.mvc")) {
 			service = new SearchIdPassService();
 			viewPage = service.requestProcess(request, response);
-		}else if (command.equals("/faqlist.mvc")) {
+		}else if (command.equals("/faqlist.mvc")) {  // Q&A
 	        service = new FaqService();
 	        viewPage = service.requestProcess(request, response);
 	    } else if (command.equals("/faqDetail.mvc")) {
@@ -117,6 +117,26 @@ public class BoardController extends HttpServlet {
 		} else if (command.equals("/faqdeleteProcess.mvc")) {
 			service = new FaqDeleteService();
 			viewPage = service.requestProcess(request, response);	
+		}else if(command.equals("/atBoardList.mvc")) {  // 기사 게시판
+			service = new AtBoardListService();
+			viewPage = service.requestProcess(request, response);
+		} else if(command.equals("/atBoardDetail.mvc")) {
+			service = new AtBoardDetailService();
+			viewPage = service.requestProcess(request, response);
+		} else if(command.equals("/atWriteForm.mvc")) {
+			viewPage = "atboard/atWriteForm";
+		} else if(command.equals("/atWriteProcess.mvc")) {
+			service = new AtBoardWriteService();
+			viewPage = service.requestProcess(request, response);
+		} else if(command.equals("/atUpdateForm.mvc")) {
+			service = new AtUpdateFormService();
+			viewPage = service.requestProcess(request, response);
+		} else if(command.equals("/atUpdateProcess.mvc")) {
+			service = new AtUpdateService();
+			viewPage = service.requestProcess(request, response);
+		} else if(command.equals("/atDeleteProcess.mvc")) {
+			service = new AtDeleteService();
+			viewPage = service.requestProcess(request, response);
 		}
 		
 		

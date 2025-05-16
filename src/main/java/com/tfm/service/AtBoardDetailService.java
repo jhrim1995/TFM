@@ -1,18 +1,17 @@
-package com.tfm.at.service;
+package com.tfm.service;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import com.tfm.at.dao.AtBoardDao;
-import com.tfm.at.vo.AtBoard;
-import com.tfm.at.vo.AtReply;
+import com.tfm.vo.*;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class AtBoardDetailService implements AtCommandProcess {
+public class AtBoardDetailService implements CommandProcess {
 
 	public String requestProcess(
 			HttpServletRequest req, HttpServletResponse resp)
