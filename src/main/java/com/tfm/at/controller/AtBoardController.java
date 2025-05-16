@@ -105,7 +105,12 @@ public class AtBoardController extends HttpServlet {
 			System.out.println("view : " + view);
 			if(view.equals("r") || view.equals("redirect")) {
 				resp.sendRedirect(viewPage.split(":")[1]);
-			} else {
+				} else if(view.equals("f") || view.equals("forward")) {
+					RequestDispatcher rd = 
+							req.getRequestDispatcher(viewPage.split(":")[1]);
+						rd.forward(req, resp);
+					
+				}else {
 				RequestDispatcher rd = req.getRequestDispatcher(PREFIX + view + SUFFIX);
 				rd.forward(req, resp);
 			}

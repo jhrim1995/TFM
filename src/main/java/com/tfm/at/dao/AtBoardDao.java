@@ -50,7 +50,7 @@ public class AtBoardDao {
 	} // updateReply(r);
 	
 	public void addReply(AtReply r) {
-		String insertReply = "INSERT INTO at_reply VALUES(reply_seq.NEXTVAL, ?, ?, ?, SYSDATE')";
+		String insertReply = "INSERT INTO at_reply VALUES(reply_seq.NEXTVAL, ?, ?, ?, SYSDATE)";
 		
 		try {
 			conn = AtDBManager.getConnection();

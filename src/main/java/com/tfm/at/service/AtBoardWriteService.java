@@ -31,6 +31,6 @@ public class AtBoardWriteService implements AtCommandProcess {
 		AtBoardDao dao = new AtBoardDao();
 		dao.insertBoard(b);
 		
-		return "r:atBoardList";
+		return "r:atBoardList.mvc";
 	}
 }

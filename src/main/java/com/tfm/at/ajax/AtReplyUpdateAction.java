@@ -17,11 +17,13 @@ public class AtReplyUpdateAction implements AtAjaxProcess {
 					throws ServletException, IOException {
 		String at_no = req.getParameter("at_no");
 		String c_no = req.getParameter("c_no");
+		String m_id = req.getParameter("m_id");
 		String c_con = req.getParameter("c_con");
 		
-		AtReply r = new AtReply(Integer.parseInt(c_no), Integer.parseInt(at_no), c_con, null, null);
+		
+		AtReply r = new AtReply(Integer.parseInt(c_no), Integer.parseInt(at_no), m_id, c_con, null);
 		AtBoardDao dao = new AtBoardDao();
-		dao.addReply(r);
+		dao.updateReply(r);
 		
 		ArrayList<AtReply> rList = dao.getReplyList(Integer.parseInt(at_no));
 		

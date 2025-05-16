@@ -24,7 +24,7 @@ $(document).ready(function() {
 					
 					$("#rList").empty();
 					$.each(resData, function(i, v){
-						var date = new Date(v.regDate);
+						var date = new Date(v.c_date);
 						var strDate = date.getFullYear() + "-" + ((date.getMonth() + 1 < 10)
 											? "0" + (date.getMonth() + 1) : (date.getMonth() + 1)) + "-"
 											+ (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + " "
@@ -57,7 +57,7 @@ $(document).ready(function() {
 											'</div>'+
 										'</div>'+
 									'</div>'
-						$("#atReplyList").append(result);
+						$("#rList").append(result);
 						
 					}); // end each
 					
@@ -88,8 +88,7 @@ $(document).ready(function() {
 			$("#atReplyForm").removeClass("d-none")
 			.css("display", "none").insertAfter($replyRow).slideDown(300);
 			}
-			$("#atReplyForm").find("form")
-			.attr({"id":"atReplyUpdateForm", "data-no":$(this).attr("data-no")});
+			$("#atReplyForm").find("form").attr({"id":"atReplyUpdateForm", "data-no":$(this).attr("data-no")});
 			$("#atReplyWriteButton").val("댓글수정");
 			var r = $(this).parent().parent().next().find("pre").text();
 			$("#c_con").val($.trim(r));
@@ -116,13 +115,15 @@ $(document).ready(function() {
 				
 				$("#rList").empty();
 				$.each(resData, function(i, v){
-					var date = new Date(v.regDate);
+					var date = new Date(v.c_date);
+					console.log(date);
 					var strDate = date.getFullYear() + "-" + ((date.getMonth() + 1 < 10)
 										? "0" + (date.getMonth() + 1) : (date.getMonth() + 1)) + "-"
 										+ (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + " "
 										+ (date.getHours() < 10 ? "0" + date.getHours() : date.getHours()) + ":"
 										+ (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) + ":"
 										+ (date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds());
+					console.log(strDate);
 					var result =
 					'<div class="replyRow row border border-top-0 " >'+
 															'<div class="col" >'+
@@ -150,7 +151,7 @@ $(document).ready(function() {
 															'</div>'+
 														'</div>'
 					
-					$("#atReplyList").append(result);
+					$("#rList").append(result);
 					
 				}); // end each
 				
@@ -183,7 +184,7 @@ $(document).ready(function() {
 				
 				$("#rList").empty();
 				$.each(resData, function(i, v){
-					var date = new Date(v.regDate);
+					var date = new Date(v.c_date);
 					var strDate = date.getFullYear() + "-" + ((date.getMonth() + 1 < 10)
 										? "0" + (date.getMonth() + 1) : (date.getMonth() + 1)) + "-"
 										+ (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + " "
@@ -217,9 +218,9 @@ $(document).ready(function() {
 															'</div>'+
 														'</div>'
 					
-					$("#atReplyList").append(result);
-					$("#atReplyList").removeClass("text-center");
-					$("#atReplyList").removeClass("p-5");
+					$("#rList").append(result);
+					$("#rList").removeClass("text-center");
+					$("#rList").removeClass("p-5");
 					
 				}); // end each
 				$("#atReplyForm").slideUp(300).add("#c_con").val("");

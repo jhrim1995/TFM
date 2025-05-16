@@ -108,7 +108,7 @@
 							<i class="bi bi-pencil">수정</i></button>
 							<button class="atDeleteReply btn btn-outline-danger btn-sm" data-no="${r.c_no }" >
 							<i class="bi bi-trash3">삭제</i></button>
-							<button class="atDeleteReply btn btn-outline-warning btn-sm" onclick="atReportReply('${r.c_no }')" >
+							<button class="atReportReply btn btn-outline-warning btn-sm" onclick="atReportReply('${r.c_no }')" >
 							<i class="bi bi-exclamation-triangle">신고</i></button>
 						</div>
 					</div>
