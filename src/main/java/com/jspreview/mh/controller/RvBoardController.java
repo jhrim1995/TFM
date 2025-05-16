@@ -6,10 +6,22 @@ import java.io.IOException;
 import com.jspreview.mh.service.RvBoardDetailService;
 import com.jspreview.mh.service.RvBoardListService;
 import com.jspreview.mh.service.RvBoardWriteService;
+import com.jspreview.mh.service.CancleMembershipService;
 import com.jspreview.mh.service.CommandProcess;
+import com.jspreview.mh.service.JoinMemberFormService;
+import com.jspreview.mh.service.JoinMemberService;
+import com.jspreview.mh.service.LoginCheckService;
+import com.jspreview.mh.service.LoginService;
+import com.jspreview.mh.service.LogoutService;
+import com.jspreview.mh.service.MainFormService;
+import com.jspreview.mh.service.MyProfileFormService;
 import com.jspreview.mh.service.RvDeleteService;
 import com.jspreview.mh.service.RvUpdateFormService;
 import com.jspreview.mh.service.RvUpdateService;
+import com.jspreview.mh.service.SearchIdFormService;
+import com.jspreview.mh.service.SearchIdPassService;
+import com.jspreview.mh.service.SearchPassFormService;
+import com.jspreview.mh.service.UpdateProfileService;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
@@ -79,7 +91,47 @@ public class RvBoardController extends HttpServlet{
 		CommandProcess service = null;
 		String viewPage = null;
 		
-		if(command.equals("/rvBoardList.mvc") || command.equals("/*.mvc") || command.equals("index.mvc")){
+		// 메인 로그인 회원가입
+		/*if(command.equals("/*.mvc") || command.equals("/main.mvc")){
+			service = new MainFormService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/loginForm.mvc")) {
+			service = new LoginService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/joinMemberForm.mvc")) {
+			service = new JoinMemberFormService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/joinMember.mvc")) {
+			service = new JoinMemberService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/loginCheck.mvc")) {
+			service = new LoginCheckService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/logout.mvc")) {
+			service = new LogoutService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/myProfileForm.mvc")) {
+			service = new MyProfileFormService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/updateProfile.mvc")) {
+			service = new UpdateProfileService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/cancleMembership.mvc")) {
+			service = new CancleMembershipService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/searchIdForm.mvc")) {
+			service = new SearchIdFormService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/searchPassForm.mvc")) {
+			service = new SearchPassFormService();
+			viewPage = service.requestProcess(request, response);
+		}else if(command.equals("/searchIdPass.mvc")) {
+			service = new SearchIdPassService();
+			viewPage = service.requestProcess(request, response);
+		}*/
+		
+		//review꺼
+		 if(command.equals("/rvBoardList.mvc") || command.equals("index.mvc")){
 			service = new RvBoardListService();
 			viewPage = service.requestProcess(request, response);
 			
@@ -107,21 +159,11 @@ public class RvBoardController extends HttpServlet{
 			service = new RvDeleteService();
 			viewPage = service.requestProcess(request, response);
 			
-		} /*
-			 * else if (command.equals("/loginForm.mvc")) {
-			 *  service = new LoginFormService(); 
-			 *  viewPage = service.requestProcess(request, response);
-			 * 
-			 * } else if (command.equals("/login.mvc")) { 
-			 * service = new LoginService();
-			 * viewPage = service.requestProcess(request, response);
-			 * 
-			 * } else if (command.equals("/logout.mvc")) { 
-			 * service = new LogoutService();
-			 * viewPage = service.requestProcess(request, response);
-			 * 
-			 * }
-			 */
+		} 
+			
+			 
+		
+		
 			 
 		
 		
@@ -132,9 +174,16 @@ public class RvBoardController extends HttpServlet{
 			
 			if(view.equals("r") || view.equals("redirect")) {
 				response.sendRedirect(viewPage.split(":")[1]);
+				
+				/*
+				 * } else if(view.equals("f") || view.equals("forwqrd")) { RequestDispatcher rd
+				 * = request.getRequestDispatcher(viewPage.split(":")[1]); rd.forward(request,
+				 * response);
+				 */
+				
 			} else {
 				RequestDispatcher rd = 
-						request.getRequestDispatcher(PREFIX + view + SUFFIX);
+						 request.getRequestDispatcher(PREFIX + view + SUFFIX);
 				rd.forward(request, response);
 			}
 		}
@@ -143,5 +192,5 @@ public class RvBoardController extends HttpServlet{
 	
 	
 	
-
+	
 }

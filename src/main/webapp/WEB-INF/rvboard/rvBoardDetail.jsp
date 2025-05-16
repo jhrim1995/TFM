@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
-<script src="js/rvreply.js"></script>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +12,7 @@
 <link href="bootstrap/bootstrap.min.css" rel="stylesheet">
 <script src="js/jquery-3.7.1.min.js"></script>
  <script src="js/rvformcheck.js"></script> 
+ <script src="js/rvreply.js"></script>
 </head>
 <body>
 <div class="container">
@@ -42,8 +43,8 @@
       <th>글쓴이</th>
       <td>
       	<div>
-      		<input class="form-control" type="password" name="m_id" id="m_id">
-      		<%-- <td>${board.m_id }</td> --%>
+      	<!-- 	<input class="form-control" type="password" name="m_id" id="m_id"> -->
+      		 <td>${board.m_id }</td> 
       	</div>
       </td>
       <th>작성일</th>
@@ -96,7 +97,7 @@
         <span class="recommend">${board.recommend })(</span> 
       </span> |
       
-      <span id="ReplyWrite" class="text-warning" style="cursor: pointer;">
+      <span id="rvReplyWrite" class="text-warning" style="cursor: pointer;">
       	<i class="bi bi-file-earmark-text-fill" style="color: cornflowerblue;"></i>댓글
       </span>
     </div>
@@ -114,7 +115,7 @@
 <!-- 댓글이 존재하는 경우 -->
 <c:if test="${not empty replyList }">
   <div class="row mb-3">
-    <div class="col" id="ReplyList">
+    <div class="col" id="rvReplyList">
       <c:forEach var="reply" items="${replyList }">
         <div class="replyRow row border border-top-0">
           <div class="col">
@@ -126,14 +127,14 @@
                 <span class="me-3">
                   <fmt:formatDate value="${reply.c_date }" pattern="yyyy-MM-dd HH:mm:ss" />                  
                 </span>
-                <button class="modifyReply btn btn-outline-success btn-sm" data-no="${reply.c_no }">
-                  <i class="bi bi-journal-text">수정</i>
+                <button class="rvModifyReply btn btn-outline-success btn-sm" data-no="${reply.c_no }">
+                  <i class="bi bi-file-text">수정</i>
                 </button>
-                <button class="deleReply btn btn-outline-warning btn-sm" data-no="${reply.c_no }">
+                <button class="rvDeleteReply btn btn-outline-warning btn-sm" data-no="${reply.c_no }">
                   <i class="bi bi-trash">삭제</i>
                 </button>
-                <button class="btn btn-outline-danger btn-sm" onclick="reportReply('${reply.c_no}')">
-                  <i class="bi bi-telephone-outbound">신고</i>
+                <button class="btn btn-outline-danger btn-sm" onclick="rvReportReply('${reply.c_no}')">
+                  <i class="bi bi-telephone-outbound-fill">신고</i>
                 </button>
               </div>
             </div>
@@ -151,7 +152,7 @@
 
 <!-- 댓글이 존재하지 않는 경우 -->
 <c:if test="${empty replyList }">
-<div class="row mb-5" id="replyList">
+<div class="row mb-5" id="rvReplyList">
   <div class="col text-center border p-5">
     <div>ㄴ 댓글</div>
   </div>
@@ -159,9 +160,9 @@
 </c:if>
 
 <!-- 댓글 쓰기 폼 -->
-<div class="row my-3 d-none" id="replyForm">
+<div class="row my-3 d-none" id="rvReplyForm">
   <div class="col">
-    <form name="replyWriteForm" id="replyWriteForm">
+    <form name="rvReplyWriteForm" id="rvReplyWriteForm" action="#">
       <input type="hidden" name="r_no" value="${board.r_no }" >
       <input type="hidden" name="m_id" value="${sessionScope.id }">
       <div class="row bg-light my-3 p-3 border">
@@ -177,7 +178,7 @@
               </textarea>
             </div>          
             <div class="col-md">
-              <input type="submit" value="댓글쓰기" class="btn btn-primary h-100 w-100" id="replyWriteButton">
+              <input type="submit" value="댓글쓰기" class="btn btn-primary h-100 w-100" id="rvReplyWriteButton">
             </div>
           </div>
         </div>

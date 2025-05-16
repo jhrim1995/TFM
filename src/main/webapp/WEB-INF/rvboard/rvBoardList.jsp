@@ -12,11 +12,11 @@
 <script src="js/jquery-3.7.1.min.js"></script>
 <script src="js/rvformcheck.js"></script>
 </head>
-<body>
+<body class="bs-warning-bg-subtle">
 <div class="container">
 <!-- header -->
 <!-- content -->
-<div class="row my-5" id="global-content">
+<div class="row my-5 " id="global-content" >
 <div class="col">
 <div class="row text-center">
 <div class="col">
@@ -36,7 +36,7 @@
     <input type="text" name="keyword" class="form-control" id="keyword">
    </div>
    <div class="col-auto">
-    <input type="submit" value="검 색" class="btn btn-info">
+    <input type="submit" value="검 색" class="btn btn-outline-danger">
    </div>
  </form>
  <!-- 검색 요청일 경우 -->
@@ -68,7 +68,7 @@
 <div class="col">
   <table class="table table-hober">
   <thead>
-    <tr class="table-dark">
+    <tr class="table-danger">
       <th>번호</th>
       <th>작성자</th>
       <th>제목</th>

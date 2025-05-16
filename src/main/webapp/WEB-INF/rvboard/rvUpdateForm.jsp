@@ -28,10 +28,13 @@
   		<input type="hidden" name="keyword" value="${keyword }">
   	</c:if>
    <div class="col-8 offset-md-2">
-      <label for="m_id" class="form-label">ID</label>
+     <%--  <label for="m_id" class="form-label">ID</label>
       <input type="text" class="form-control" name="m_id" id="m_id"
-      		placeholder="ID를 입력해 주세요~" value="${board.m_id }">
+      		placeholder="ID를 입력해 주세요~" value="${board.m_id }"> --%>
+      <input type="hidden" id="login_m_id" name ="login_m_id" value="${sessionScope.id }">
+      <input type="hidden" id="writer_m_id" name="writer_m_id" value="${board.m_id }">
     </div>
+    
     <div class="col-8 offset-md-2">
       <label for="title" class="form-label">제 목</label>
       <input type="text" class="form-control" name="title" id="title" 

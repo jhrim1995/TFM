@@ -19,11 +19,12 @@ public class RvReplyUpdateAction implements AjaxProcess{
 			throws ServletException, IOException {
 		
 		String r_No = request.getParameter("r_No");
-		String rvReplyNo = request.getParameter("rvReplyNo");
-		String c_Con = request.getParameter("c_Con");
+		String replyM_id = request.getParameter("replyM_id");
+		String replyC_con = request.getParameter("replyC_con");
+		String replyC_no = request.getParameter("replyC_no");
 		
-		RvReply reply = new RvReply(Integer.parseInt(rvReplyNo),
-				Integer.parseInt(r_No), c_Con, null, null);
+		RvReply reply = new RvReply(Integer.parseInt(r_No), replyM_id, replyC_con);
+		reply.setC_no(Integer.parseInt(replyC_no));
 		
 		RvBoardDao dao = new RvBoardDao();
 		dao.updateReply(reply);

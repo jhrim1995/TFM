@@ -163,6 +163,7 @@ public class RvBoardDao {
 	}
 	
 	//게시글 수정, 게시글 삭제시 아이디 입력을 체크하는 메서드
+	
 	public boolean isM_idCheck(int r_no, String m_id) {
 		boolean isM_id = false;
 		String sqlM_id = "SELECT m_id FROM reviewbbs WHERE r_no=?";
@@ -334,7 +335,7 @@ public class RvBoardDao {
 	
 	
 	// 특정 게시글에 해당하는 댓글 리스트를 반환하는 메서드
-	public ArrayList<RvReply> getReplyList(int bbsNo){
+	public ArrayList<RvReply> getReplyList(int r_No){
 		
 		String replyListSql = "SELECT * FROM rv_reply WHERE r_no = ?"
 				+ " ORDER BY c_no DESC";
@@ -345,7 +346,7 @@ public class RvBoardDao {
 		try {
 			conn = DBManager.getConnection();
 			pstmt = conn.prepareStatement(replyListSql);
-			pstmt.setInt(1, bbsNo);
+			pstmt.setInt(1, r_No);
 			rs = pstmt.executeQuery();
 			
 			replyList = new ArrayList<RvReply>();
@@ -377,8 +378,8 @@ public class RvBoardDao {
 		
 		HashMap<String, Integer> map = null;
 		
-		String addRecommendSql = "UPDATE reviewbbs set"
-				+ " recommend=recommend + 1 WHERE r_no=?";
+		String addRecommendSql = "UPDATE reviewbbs set "
+				+ " recommend = recommend + 1 WHERE r_no=?";
 		
 		String selectResultSql = "SELECT recommend FROM reviewbbs WHERE r_no=?";
 		
@@ -466,7 +467,7 @@ public class RvBoardDao {
 	// RvReplyDeleteAction 클래서에서 호출
 	public void deleteReply(RvReply reply) {
 		
-		String replyDeleteSql = "DELETE FROM reply WHERE no = ?";
+		String replyDeleteSql = "DELETE FROM rv_reply WHERE no = ?";
 		
 		try {
 			conn = DBManager.getConnection();

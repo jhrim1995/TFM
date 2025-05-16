@@ -26,7 +26,7 @@ public class AjaxController extends HttpServlet{
 			ajaxAction = new RvPassCheckAction();
 			ajaxAction.ajaxProcess(request,response);
 			
-		} else if(command.equals("/rvRecommend.ajax")) {
+		} else if(command.equals("/recommend.ajax")) {
 			ajaxAction = new RvRecommendAction();
 			ajaxAction.ajaxProcess(request, response);
 			

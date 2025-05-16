@@ -19,9 +19,9 @@ public class RvReplyDeleteAction implements AjaxProcess{
 			throws ServletException, IOException {
 		
 		String r_No = request.getParameter("r_No");
-		String rvReplyNo = request.getParameter("rvReplyNo");
+		String replyC_no = request.getParameter("replyC_no");
 		
-		RvReply reply = new RvReply(Integer.parseInt(rvReplyNo),
+		RvReply reply = new RvReply(Integer.parseInt(replyC_no),
 				Integer.parseInt(r_No), null, null, null);
 		
 		RvBoardDao dao = new RvBoardDao();
@@ -34,7 +34,7 @@ public class RvReplyDeleteAction implements AjaxProcess{
 		String result = gson.toJson(replyList);
 		System.out.println("RvReplyDeleteAction - result : " + result);
 		
-		response.setContentType("text/html; charset=utf-8");
+		response.setContentType("application/json; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.println(result);
 		
