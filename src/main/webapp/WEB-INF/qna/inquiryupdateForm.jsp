@@ -54,8 +54,8 @@
 <div class="container my-5">
  	<h2 class="text-center mb-4 fw-bold py-3 rounded shadow-sm custom-title">글 수정</h2>
 			
-		<form action="faqupdateProcess.mvc" name="updateForm" id="faqupdateForm" class="row g-3 justify-content-center" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="no" value="${faq.no }">
+		<form action="inquiryupdateProcess.mvc" name="updateForm" id="faqupdateForm" class="row g-3 justify-content-center" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="no" value="${inquiry.no }">
 		<input type="hidden" name="pageNum" value="${pageNum}">
 		
 		<c:if test="${searchOption }">
@@ -65,26 +65,26 @@
 			
 			<div class="col-10">
 				<label for="writer" class="form-label">작성자</label>
-				<input type="text" class="form-control" name="writer" id="writer" value="${faq.writer }">
+				<input type="text" class="form-control" name="writer" id="writer" value="${inquiry.writer }">
 			</div>
 			
 			<div class="col-10">
 				<label for="title" class="form-label">제목</label>
-				<input type="text" class="form-control" name="title" id="title" value="${faq.title }">
+				<input type="text" class="form-control" name="title" id="title" value="${inquiry.title }">
 			</div>
 			
 			<div class="col-10">
 				<label for="content" class="form-label">내용</label>
-				<textarea class="form-control" name="content" id="content" rows="10">${faq.content }</textarea>
+				<textarea class="form-control" name="content" id="content" rows="10">${inquiry.content }</textarea>
 			</div>
 			
 			<div class="col-10 text-center mt-4">
 				<input type="submit" value="수정" class="btn btn-primary me-2">
 				<c:if test="${not searchOption }">
-					<input class="btn btn-outline-secondary" type="button" value="목록" onclick="location.href='faqlist.mvc?pageNum=${pageNum}'">
+					<input class="btn btn-outline-secondary" type="button" value="목록" onclick="location.href='inquirylist.mvc?pageNum=${pageNum}'">
 				</c:if>
 				<c:if test="${searchOption }">
-				<input class="btn btn-outline-secondary" type="button" value="목록" onclick="location.href='faqlist.mvc?pageNum=${pageNum}&type=${type }&keyword=${keyword }'">
+				<input class="btn btn-outline-secondary" type="button" value="목록" onclick="location.href='inquirylist.mvc?pageNum=${pageNum}&type=${type }&keyword=${keyword }'">
 				</c:if>
 			</div>
 		</form>

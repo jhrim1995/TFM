@@ -57,8 +57,6 @@ public class FaqWriteService implements CommandProcess{
 						}else if(paramName.equals("content")) {
 							faq.setContent(paramValue);
 							
-						}else if(paramName.equals("pass")) {
-							faq.setPass(paramValue);
 						}
 					
 				

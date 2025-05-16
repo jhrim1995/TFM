@@ -6,7 +6,7 @@
 <head>
 <link href="${pageContext.request.contextPath}/bootstrap/bootstrap.min.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath}/bootstrap/bootstrap.bundle.min.js"></script>
-    
+<script src="${pageContext.request.contextPath}/js/qnaformcheck.js"></script>   
   <style>
 		body {
          background-color: #fdfaf6;
@@ -85,10 +85,7 @@
           <a class="nav-link text-center" href="inquirylist.mvc">문의사항</a>
       </li>
  		</ul>
-<!-- 
-  <div class="container mt-4 w-100">
-  </div>
- -->
+
   <div class="row my-3">
     <div class="col">
       <div class="card shadow-sm border-0 rounded-4">
@@ -224,11 +221,14 @@
         <input type="submit" class="btn btn-primary" value="검색">
     </div>
     <div class="col text-end">
+    	<%-- <c:if test="${!empty isLogin }"> --%>
+    	<c:if test="${sessionScope.id eq 'admin'}">
       <a href="faqwriteForm.mvc" class="btn btn-outline-success">글쓰기</a>
+    	</c:if>
     </div>
   </form>
 		
-	<c:if test="${searchOption }">
+	<c:if test="${searchOption } ">
     <div class="row">
       <div class="col text-center text-muted fst-italic">
           "${keyword}" 검색 결과

@@ -2,27 +2,28 @@ package com.tfm.qna.service;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 
 import com.tfm.qna.dao.FaqDao;
-import com.tfm.qna.vo.Faq;
+import com.tfm.qna.dao.InquiryDao;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class FaqUpdateFormService implements CommandProcess{
+public class InquiryDeleteService implements CommandProcess{
 
 	@Override
 	public String requestProcess(
 			HttpServletRequest request, HttpServletResponse response)
 					throws ServletException, IOException {
 		
-		String fNo = request.getParameter("no");
+		String iNo = request.getParameter("no");
 		String pageNum = request.getParameter("pageNum");
 		String type = request.getParameter("type");
 		String keyword = request.getParameter("keyword");
 		
-		if(fNo == null || fNo.equals("") || pageNum == null || pageNum.equals("")) {
+		if(iNo == null || iNo.equals("") || pageNum == null || pageNum.equals("")) {
 			
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = response.getWriter();
@@ -33,22 +34,21 @@ public class FaqUpdateFormService implements CommandProcess{
 			return null;
 		}
 		
-		FaqDao dao = new FaqDao();
-		int no = Integer.parseInt(fNo);
+		InquiryDao dao = new InquiryDao();
+		int no = Integer.parseInt(iNo);
+		
+		dao.deleteInquiry(no);
 		
 		boolean searchOption = (type == null || type.equals("") || keyword == null || keyword.equals("")) ? false : true;
 		
-		Faq faq = dao.getFaq(Integer.valueOf(no), false);
-		
-		request.setAttribute("faq", faq);
-		request.setAttribute("pageNum", pageNum);
-		request.setAttribute("searchOption", searchOption);
-		
+		String url = "inquirylist.mvc?pageNum=" + pageNum;
 		
 		if(searchOption) {
-			request.setAttribute("type", type);
-			request.setAttribute("keyword", keyword);
+			keyword = URLEncoder.encode(keyword, "utf-8");
+			url += "&type=" + type + "&keyword=" + keyword;
 		}
-		return "qna/faqupdateForm";
+				
+		return "r:" + url;
 	}
+
 }

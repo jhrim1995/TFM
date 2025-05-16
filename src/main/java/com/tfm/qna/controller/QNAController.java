@@ -2,9 +2,6 @@ package com.tfm.qna.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-
-import com.tfm.qna.dao.FaqDao;
 import com.tfm.qna.service.CancleMembershipService;
 import com.tfm.qna.service.CommandProcess;
 import com.tfm.qna.service.FaqDeleteService;
@@ -14,8 +11,11 @@ import com.tfm.qna.service.FaqUpdateFormService;
 import com.tfm.qna.service.FaqUpdateService;
 import com.tfm.qna.service.FaqWriteFormService;
 import com.tfm.qna.service.FaqWriteService;
+import com.tfm.qna.service.InquiryDeleteService;
 import com.tfm.qna.service.InquiryDetailService;
 import com.tfm.qna.service.InquiryService;
+import com.tfm.qna.service.InquiryUpdateFormService;
+import com.tfm.qna.service.InquiryUpdateService;
 import com.tfm.qna.service.InquiryWriteFormService;
 import com.tfm.qna.service.InquiryWriteService;
 import com.tfm.qna.service.JoinMemberFormService;
@@ -29,8 +29,6 @@ import com.tfm.qna.service.SearchIdFormService;
 import com.tfm.qna.service.SearchIdPassService;
 import com.tfm.qna.service.SearchPassFormService;
 import com.tfm.qna.service.UpdateProfileService;
-import com.tfm.qna.vo.Faq;
-
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
@@ -90,10 +88,6 @@ public class QNAController extends HttpServlet{
 		String contextPath = request.getContextPath();
 		String command = requestURI.substring(contextPath.length());
 		
-		/*
-		 * if (command.equals("/*.mvc")) { response.sendRedirect(contextPath +
-		 * "/faqlist.mvc"); return; }
-		 */
 		
 		String viewPage = null;
 		CommandProcess service = null;
@@ -103,6 +97,7 @@ public class QNAController extends HttpServlet{
 	        service = new MainFormService();
 	        viewPage = service.requestProcess(request, response);
 	    
+	        
 		}else if (command.equals("/faqlist.mvc")) {
 	        service = new FaqService();
 	        viewPage = service.requestProcess(request, response);
@@ -139,7 +134,15 @@ public class QNAController extends HttpServlet{
 		} else if (command.equals("/inquirywriteProcess.mvc")) {
 			service = new InquiryWriteService();
 			viewPage = service.requestProcess(request, response);
-		
+		} else if (command.equals("/inquiryupdateForm.mvc")) {
+			service = new InquiryUpdateFormService();
+			viewPage = service.requestProcess(request, response);
+		} else if (command.equals("/inquiryupdateProcess.mvc")) {
+			service = new InquiryUpdateService();
+			viewPage = service.requestProcess(request, response);
+		} else if (command.equals("/inquirydeleteProcess.mvc")) {
+			service = new InquiryDeleteService();
+			viewPage = service.requestProcess(request, response);
 			
 			
 		}else if(command.equals("/loginForm.mvc")) {
@@ -177,10 +180,7 @@ public class QNAController extends HttpServlet{
 			viewPage = service.requestProcess(request, response);
 		}
 		
-		if (service != null) {
-			viewPage = service.requestProcess(request, response);
-		}
-
+		
 		if (viewPage != null) {
 			// 반환값에 접두어가 있으면 처리 (r:, f:)
 			if (viewPage.startsWith("r:") || viewPage.startsWith("redirect:")) {

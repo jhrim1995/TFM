@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <head>
 <link href="${pageContext.request.contextPath}/bootstrap/bootstrap.min.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath}/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/qnaformcheck.js"></script>
   <style>
     body {
       background-color: #fdfaf6;
@@ -14,14 +14,9 @@
       color: #5e4637;
       border: 2px solid #f0e2c1;
     }
-    .table thead {
-      background-color: #fbeedb;
-      color: #4e3b28;
-    }
     .table-bordered th {
       background-color: #f9f0e3;
       color: #5a4231;
-      width: 20%;
     }
     .btn-primary {
       background-color: #a38c6b;
@@ -65,23 +60,17 @@
 				<table class="table table-bordered align-middle">
 					<tbody>
 						<tr>
-							<th >제 목</th>
-							<td colspan="3">${faq.title }</td>
+							<th class="text-center">제 목</th>
+							<td colspan="5">${faq.title }</td>
 						</tr>
 						<tr>
-							<th>작성자</th>
-							<td>${faq.writer }</td>
-							<th>작성일</th>
-							<td><fmt:formatDate value="${faq.regDate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+							<th class="col-2 text-center">작성자</th>
+							<td class="col-4">${faq.writer }</td>
+							<th class="col-2 text-center">조회수</th>
+							<td class="col-4">${faq.readCount }</td>
 						</tr>
 						<tr>
-							<th>비밀번호</th>
-							<td><input class="form-control" type="password" name="pass" id="pass"></td>
-							<th>조회수</th>
-							<td>${faq.readCount }</td>
-						</tr>
-						<tr>
-							<td colspan="4">
+							<td colspan="6">
 								<pre>${faq.content }</pre>
 							</td>
 						</tr>
@@ -92,8 +81,10 @@
 		
 		<div class="row my-3">
 			<div class="col text-center">
+				<c:if test="${sessionScope.id eq 'admin'}">
 				<input type="button" class="btn btn-primary" id="faqdetailUpdate" value="수정하기">
 				<input type="button" class="btn btn-danger ms-2 me-2" id="faqdetailDelete" value="삭제하기">
+				</c:if>
 				<c:if test="${searchOption }">
 					<input type="button" class="btn btn-warning" value="목록보기" onclick="location.href='faqlist.mvc?pageNum=${pageNum }&type=${type }&keyword=${keyword }'">
 				</c:if>
@@ -102,9 +93,4 @@
 				</c:if>
 			</div>
 		</div>
-		
-		
-		
-		
 	</div>
-</div>

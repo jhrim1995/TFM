@@ -12,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.tfm.bbs.dao.DBManager;
 import com.tfm.qna.vo.Faq;
 
 public class FaqDao {
@@ -81,9 +82,7 @@ public class FaqDao {
 				f.setTitle(rs.getString("title"));
 				f.setWriter(rs.getString("writer"));
 				f.setContent(rs.getString("content"));
-				f.setRegDate(rs.getTimestamp("reg_date"));
 				f.setReadCount(rs.getInt("read_count"));
-				f.setPass(rs.getString("pass"));
 				
 				fList.add(f);
 			}
@@ -139,9 +138,7 @@ public class FaqDao {
 				f.setTitle(rs.getString("title"));
 				f.setWriter(rs.getString("writer"));
 				f.setContent(rs.getString("content"));
-				f.setRegDate(rs.getTimestamp("reg_date"));
 				f.setReadCount(rs.getInt("read_count"));
-				f.setPass(rs.getString("pass"));
 				
 				fList.add(f);
 			}
@@ -179,9 +176,8 @@ public class FaqDao {
 				f.setTitle(rs.getString("title"));
 				f.setWriter(rs.getString("writer"));
 				f.setContent(rs.getString("content"));
-				f.setRegDate(rs.getTimestamp("reg_date"));
 				f.setReadCount(rs.getInt("read_count"));
-				f.setPass(rs.getString("pass"));
+				
 			}
 			
 			DBManager.commit(conn);
@@ -197,9 +193,8 @@ public class FaqDao {
 	}
 	
 	public void insertFaq(Faq f) {
-		String insertFaq = "INSERT INTO FaqSQL(no, title, writer, content,"
-				+ " reg_date, read_count, pass)"
-				+ " VALUES(FaqSQL_seq.NEXTVAL, ?, ?, ?, SYSDATE, 0, ?)";
+		String insertFaq = "INSERT INTO FaqSQL(no, title, writer, content, read_count)"
+				+ " VALUES(FaqSQL_seq.NEXTVAL, ?, ?, ?, 0)";
 		
 		try {
 			conn = DBManager.getConnection();
@@ -208,7 +203,6 @@ public class FaqDao {
 			pstmt.setString(1, f.getTitle());
 			pstmt.setString(2, f.getWriter());
 			pstmt.setString(3, f.getContent());
-			pstmt.setString(4, f.getPass());
 			pstmt.executeUpdate();
 			
 		}catch(SQLException e) {
@@ -241,7 +235,7 @@ public class FaqDao {
 	}
 	
 	public void updateFaq(Faq faq) {
-		String sqlUpdate = "UPDATE FaqSQL set title=?, writer=?, content=?, reg_date=SYSDATE WHERE no=?";
+		String sqlUpdate = "UPDATE FaqSQL set title=?, writer=?, content=? WHERE no=?";
 		
 		try {
 			conn=DBManager.getConnection();

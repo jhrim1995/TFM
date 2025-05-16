@@ -5,6 +5,7 @@
 <head>
 <link href="${pageContext.request.contextPath}/bootstrap/bootstrap.min.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath}/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/qnaformcheck.js"></script>
   <style>
     body {
       background-color: #fdfaf6;
@@ -14,14 +15,10 @@
       color: #5e4637;
       border: 2px solid #f0e2c1;
     }
-    .table thead {
-      background-color: #fbeedb;
-      color: #4e3b28;
-    }
     .table-bordered th {
       background-color: #f9f0e3;
       color: #5a4231;
-      width: 20%;
+     
     }
     .btn-primary {
       background-color: #a38c6b;
@@ -65,23 +62,19 @@
 				<table class="table table-bordered align-middle">
 					<tbody>
 						<tr>
-							<th >제 목</th>
-							<td colspan="3">${inquiry.title }</td>
+							<th class="text-center">제 목</th>
+							<td colspan="5">${inquiry.title }</td>
 						</tr>
 						<tr>
-							<th>작성자</th>
-							<td>${inquiry.writer }</td>
-							<th>작성일</th>
-							<td><fmt:formatDate value="${inquiry.regDate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+							<th class="col-2 text-center">작성자</th>
+							<td class="col-2 ">${inquiry.writer }</td>
+							<th class="col-2 text-center">작성일</th>
+							<td class="col-2"><fmt:formatDate value="${inquiry.regDate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+							<th class="col-2 text-center">조회수</th>
+							<td class="col-2 text-center">${inquiry.readCount }</td>
 						</tr>
 						<tr>
-							<th>비밀번호</th>
-							<td><input class="form-control" type="password" name="pass" id="pass"></td>
-							<th>조회수</th>
-							<td>${inquiry.readCount }</td>
-						</tr>
-						<tr>
-							<td colspan="4">
+							<td colspan="6">
 								<pre>${inquiry.content }</pre>
 							</td>
 						</tr>
@@ -92,8 +85,10 @@
 		
 		<div class="row my-3">
 			<div class="col text-center">
-				<input type="button" class="btn btn-primary" id="detailUpdate" value="수정하기">
-				<input type="button" class="btn btn-danger ms-2 me-2" id="detailDelete" value="삭제하기">
+				<c:if test="${! empty sessionScope.id and (sessionScope.id eq inquiry.id or sessionScope.id eq 'admin')}">
+				<input type="button" class="btn btn-primary" id="inquirydetailUpdate" value="수정하기">
+				<input type="button" class="btn btn-danger ms-2 me-2" id="inquirydetailDelete" value="삭제하기">
+				</c:if>
 				<c:if test="${searchOption }">
 					<input type="button" class="btn btn-warning" value="목록보기" onclick="location.href='inquirylist.mvc?pageNum=${pageNum }&type=${type }&keyword=${keyword }'">
 				</c:if>

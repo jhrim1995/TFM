@@ -13,6 +13,7 @@ import com.tfm.qna.vo.Inquiry;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 
 public class InquiryWriteService implements CommandProcess{
@@ -27,6 +28,13 @@ public class InquiryWriteService implements CommandProcess{
 		
 		request.setCharacterEncoding("utf-8");
 		String contentType = request.getContentType();
+		
+		HttpSession session = request.getSession();
+		String loginId = (String) session.getAttribute("id");
+		String nickname = (String) session.getAttribute("nickname");
+		
+		inquiry.setId(loginId);
+		inquiry.setWriter(nickname);
 		
 		if(contentType != null && contentType.toLowerCase().startsWith("multipart/")) {
 			Collection<Part> parts = request.getParts();
@@ -60,18 +68,17 @@ public class InquiryWriteService implements CommandProcess{
 						}else if(paramName.equals("content")) {
 							inquiry.setContent(paramValue);
 							
-						}else if(paramName.equals("pass")) {
-							inquiry.setPass(paramValue);
 						}
 					}
 				
 				}
-			}
-		
+			
 			InquiryDao dao = new InquiryDao();
 			dao.insertInquiry(inquiry);
+			
+			}
 		
-			return "r:InquiryList.mvc";
+			return "r:inquirylist.mvc";
 		}
 	}
 

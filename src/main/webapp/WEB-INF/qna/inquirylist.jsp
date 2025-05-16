@@ -6,7 +6,7 @@
 <head>
 <link href="${pageContext.request.contextPath}/bootstrap/bootstrap.min.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath}/bootstrap/bootstrap.bundle.min.js"></script>
-
+<script src="${pageContext.request.contextPath}/js/qnaformcheck.js"></script>
   <style>
 		body {
          background-color: #fdfaf6;
@@ -227,7 +227,9 @@
 				<input type="submit" class="btn btn-primary" value="검색">
 			</div>
 	    <div class="col text-end">
+	    <c:if test="${!empty isLogin }">
 	      <a href="inquirywriteForm.mvc" class="btn btn-outline-success">글쓰기</a>
+	    </c:if>
 	    </div>
 		</form>
 		

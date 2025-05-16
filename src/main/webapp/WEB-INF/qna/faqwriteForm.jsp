@@ -7,6 +7,7 @@
 <head>
 <link href="${pageContext.request.contextPath}/bootstrap/bootstrap.min.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath}/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/qnaformcheck.js"></script>
   <style>
     body {
       background-color: #fdfaf6;
@@ -55,14 +56,9 @@
 		<form action="faqwriteProcess.mvc" name="writeForm" id="faqwriteForm" 
 					class="row g-3 justify-content-center" method="post" enctype="multipart/form-data">
 			
-			<div class="col-5 md-5">
+			<div class="col-10 md-10">
 				<label for="writer" class="form-label">작성자</label>
 				<input type="text" class="form-control" id="writer" name="writer" placeholder="작성자를 입력하기">
-			</div>
-			
-			<div class="col-5 md-5">
-				<label for="pass" class="form-label">비밀번호</label>
-				<input type="text" class="form-control" id="pass" name="pass">
 			</div>
 			
 			<div class="col-10 md-10">

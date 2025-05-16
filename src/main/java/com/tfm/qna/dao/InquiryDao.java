@@ -1,7 +1,6 @@
 package com.tfm.qna.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,8 +11,9 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import com.tfm.qna.vo.Faq;
+import com.tfm.bbs.dao.DBManager;
 import com.tfm.qna.vo.Inquiry;
+import com.tfm.qna.vo.InquiryReply;
 
 public class InquiryDao {
 	
@@ -84,7 +84,6 @@ public class InquiryDao {
 				i.setContent(rs.getString("content"));
 				i.setRegDate(rs.getTimestamp("reg_date"));
 				i.setReadCount(rs.getInt("read_count"));
-				i.setPass(rs.getString("pass"));
 				
 				iList.add(i);
 			}
@@ -142,7 +141,6 @@ public class InquiryDao {
 				i.setContent(rs.getString("content"));
 				i.setRegDate(rs.getTimestamp("reg_date"));
 				i.setReadCount(rs.getInt("read_count"));
-				i.setPass(rs.getString("pass"));
 				
 				iList.add(i);
 			}
@@ -180,9 +178,9 @@ public class InquiryDao {
 				i.setTitle(rs.getString("title"));
 				i.setWriter(rs.getString("writer"));
 				i.setContent(rs.getString("content"));
+				i.setId(rs.getString("id"));
 				i.setRegDate(rs.getTimestamp("reg_date"));
 				i.setReadCount(rs.getInt("read_count"));
-				i.setPass(rs.getString("pass"));
 				}
 			
 			DBManager.commit(conn);
@@ -198,9 +196,8 @@ public class InquiryDao {
 	}
 	
 	public void insertInquiry(Inquiry i) {
-		String insertInquiry = "INSERT INTO InquirySQL(no, title, writer, content,"
-				+ " reg_date, read_count, pass)"
-				+ " VALUES(InquirySQL_seq.NEXTVAL, ?, ?, ?, SYSDATE, 0, ?)";
+		String insertInquiry = "INSERT INTO InquirySQL(no, title, writer, content, id, reg_date, read_count)"
+				+ " VALUES(InquirySQL_seq.NEXTVAL, ?, ?, ?, ?, SYSDATE, 0)";
 		
 		try {
 			conn = DBManager.getConnection();
@@ -209,7 +206,7 @@ public class InquiryDao {
 			pstmt.setString(1, i.getTitle());
 			pstmt.setString(2, i.getWriter());
 			pstmt.setString(3, i.getContent());
-			pstmt.setString(4, i.getPass());
+			pstmt.setString(4, i.getId());
 			pstmt.executeUpdate();
 			
 		}catch(SQLException e) {
@@ -219,6 +216,120 @@ public class InquiryDao {
 			DBManager.close(conn, pstmt);
 		}
 	}	
+
+	public void updateInquiry(Inquiry inquiry) {
+		String sqlUpdate = "UPDATE InquirySQL set title=?, writer=?, content=?, reg_date=SYSDATE WHERE no=?";
+		
+		try {
+			conn=DBManager.getConnection();
+			pstmt = conn.prepareStatement(sqlUpdate);
+			pstmt.setString(1, inquiry.getTitle());
+			pstmt.setString(2, inquiry.getWriter());
+			pstmt.setString(3, inquiry.getContent());
+			pstmt.setInt(4, inquiry.getNo());
+			
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt);
+		}
+	}
 	
+	public void deleteInquiry(int no) {
+		String sqlDelete = "DELETE FROM InquirySQL WHERE no=?";
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sqlDelete);
+			pstmt.setInt(1, no);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+	}
 	
+	public ArrayList<InquiryReply> getInquiryReplyList(int iNo) {
+		
+		String replyListSql = "SELECT * FROM InquiryReplySQL WHERE i_no = ? ORDER BY no DESC";
+		
+		InquiryReply inquiryreply = null;
+		ArrayList<InquiryReply> inquiryreplyList = null;
+		
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(replyListSql);
+			pstmt.setInt(1, iNo);
+			rs = pstmt.executeQuery();
+			
+			inquiryreplyList = new ArrayList<InquiryReply>();
+			
+			while(rs.next()) {
+				inquiryreply = new InquiryReply();
+				inquiryreply.setNo(rs.getInt("no"));
+				inquiryreply.setiNo(rs.getInt("iNo"));
+				inquiryreply.setReplyContent(rs.getString("reply_content"));
+				inquiryreply.setReplyWriter(rs.getString("reply_writer"));
+				inquiryreply.setRegDate(rs.getTimestamp("reg_date"));
+				inquiryreplyList.add(inquiryreply);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+		return inquiryreplyList;
+	}
+	
+	public void addInquiryReply(InquiryReply inquiryreply) {
+		String inquiryreplyInsertSql = "INSERT INTO InquiryReplySQL VALUES(InquiryReplySQL_seq.NEXTVAL, ?, ?, ?, SYSDATE)";
+		
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(inquiryreplyInsertSql);
+			pstmt.setInt(1, inquiryreply.getiNo());
+			pstmt.setString(2, inquiryreply.getReplyContent());
+			pstmt.setString(3, inquiryreply.getReplyWriter());
+			pstmt.executeUpdate();
+		
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+	}
+	
+	public void updateInquiryReply(InquiryReply inquiryreply) {
+		String inquiryreplyUpdateSql = "UPDATE InquiryReplySQL SET reply_content=? reg_date=SYSDATE WHERE no = ?";
+		
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(inquiryreplyUpdateSql);
+			pstmt.setString(1, inquiryreply.getReplyContent());
+			pstmt.setInt(2, inquiryreply.getNo());
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+	}
+	
+	public void deleteInquiryReply(InquiryReply inquiryreply) {
+		String inquiryreplyDeleteSql = "DELETE FROM InquiryReplySQL WHERE no = ?";
+		
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(inquiryreplyDeleteSql);
+			pstmt.setInt(1, inquiryreply.getNo());
+			pstmt.executeUpdate();
+		
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt);
+		}
+	}
 }

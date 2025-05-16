@@ -24,16 +24,7 @@ public class InquiryDetailService implements CommandProcess{
 		HttpSession session = request.getSession();
 		boolean isLogin = session.getAttribute("isLogin") != null ? (Boolean) session.getAttribute("isLogin") : false;
 		
-		// 로그인상태 확인 코드 어떻게 활용할지 파악
-		/*
-		 * if(! isLogin) { response.setContentType("text/html; charset=utf-8");
-		 * PrintWriter out = response.getWriter(); out.println("<script>");
-		 * out.println("	alert('로그인이 필요한 기능입니다.')");
-		 * out.println("	location.href='loginForm.mvc'"); out.println("</script>"); }
-			return null;
-	}
-*/	
-		 	
+			
 	String no = request.getParameter("no");
 	String pageNum = request.getParameter("pageNum");
 	String type = request.getParameter("type");

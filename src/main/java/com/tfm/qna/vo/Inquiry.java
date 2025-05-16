@@ -8,21 +8,20 @@ public class Inquiry {
 	private String title;
 	private String writer;
 	private String content;
+	private String id;
 	private Timestamp regDate;
 	private int readCount;
-	private String pass;
-	
+
 	public Inquiry() {}
-	public Inquiry(int no, String title, String writer, String content, 
-			Timestamp regDate, int readCount, String pass) {
+	public Inquiry(int no, String title, String writer, String content, Timestamp regDate, int readCount, String id) {
 		
 		this.no = no;
 		this.title = title;
 		this.writer = writer;
 		this.content = content;
+		this.id = id;
 		this.regDate = regDate;
 		this.readCount = readCount;
-		this.pass = pass;
 	}
 	
 	public int getNo() {
@@ -49,6 +48,12 @@ public class Inquiry {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}	
 	public Timestamp getRegDate() {
 		return regDate;
 	}
@@ -61,11 +66,4 @@ public class Inquiry {
 	public void setReadCount(int readCount) {
 		this.readCount = readCount;
 	}
-	public String getPass() {
-		return pass;
-	}
-	public void setPass(String pass) {
-		this.pass = pass;
-	}
-		
 }

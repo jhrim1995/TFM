@@ -21,10 +21,9 @@ public class FaqUpdateService implements CommandProcess{
 		request.setCharacterEncoding("utf-8");
 		
 		String fNo = request.getParameter("no");
-		String pass = request.getParameter("pass");
 		String pageNum = request.getParameter("pageNum");
 		
-		if(fNo == null || fNo.equals("") || pass == null || pass.equals("") || pageNum == null || pageNum.equals("")) {
+		if(fNo == null || fNo.equals("") || pageNum == null || pageNum.equals("")) {
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
@@ -33,21 +32,7 @@ public class FaqUpdateService implements CommandProcess{
 			out.println("</script>");
 			return null;
 		}
-		
 		FaqDao dao = new FaqDao();
-		boolean isPassCheck = dao.isPassCheck(Integer.parseInt(fNo), pass);
-		if(! isPassCheck) {
-			StringBuilder sb = new StringBuilder();
-			sb.append("<script>");
-			sb.append(" alert('비밀번호가 다름');");
-			sb.append(" history.back();");
-			sb.append("</script>");
-			
-			response.setContentType("text/html; charset=utf-8");
-			PrintWriter out = response.getWriter();
-			out.println(sb.toString());
-			return null;
-		}
 		
 		Faq faq = new Faq();
 		String title = request.getParameter("title");
@@ -57,7 +42,6 @@ public class FaqUpdateService implements CommandProcess{
 		faq.setNo(Integer.parseInt(fNo));
 		faq.setTitle(title);
 		faq.setWriter(writer);
-		faq.setPass(pass);
 		faq.setContent(content);
 		
 		dao.updateFaq(faq);

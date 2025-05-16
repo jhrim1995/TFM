@@ -8,21 +8,16 @@ public class Faq {
 	private String title;
 	private String writer;
 	private String content;
-	private Timestamp regDate;
 	private int readCount;
-	private String pass;
 	
 	public Faq() {}
-	public Faq(int no, String title, String writer, String content, 
-			Timestamp regDate, int readCount, String pass, String file1) {
+	public Faq(int no, String title, String writer, String content, int readCount) {
 		
 		this.no = no;
 		this.title = title;
 		this.writer = writer;
 		this.content = content;
-		this.regDate = regDate;
 		this.readCount = readCount;
-		this.pass = pass;
 	}
 	
 	public int getNo() {
@@ -49,23 +44,12 @@ public class Faq {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Timestamp getRegDate() {
-		return regDate;
-	}
-	public void setRegDate(Timestamp regDate) {
-		this.regDate = regDate;
-	}
 	public int getReadCount() {
 		return readCount;
 	}
 	public void setReadCount(int readCount) {
 		this.readCount = readCount;
 	}
-	public String getPass() {
-		return pass;
-	}
-	public void setPass(String pass) {
-		this.pass = pass;
-	}
+	
 		
 }
